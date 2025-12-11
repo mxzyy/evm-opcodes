@@ -1,5 +1,16 @@
 00000001: PUSH1 0x80
+; PUSH1 1-byte immediate ke stack.
+; 0x80 adalah nilai awal Free Memory Pointer (first free memory offset) sesuai konvensi Solidity,
+; yang akan disimpan ke slot memori 0x40 sebagai penanda offset memori bebas berikutnya.
+; Referensi: https://docs.soliditylang.org/en/latest/internals/layout_in_memory.html
+
 00000003: PUSH1 0x40
+; PUSH1 1-byte immediate ke stack.
+; 0x40 adalah offset memori untuk slot Free Memory Pointer (FMP) sesuai konvensi Solidity,
+; yaitu word memory[0x40..0x5f] yang menyimpan alamat awal memori bebas berikutnya.
+; Instruksi setelah ini (MSTORE) akan menulis nilai 0x80 ke slot tersebut: memory[0x40] = 0x80.
+
+
 00000005: MSTORE
 00000006: CALLVALUE
 00000007: DUP1

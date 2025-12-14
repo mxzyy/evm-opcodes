@@ -2,7 +2,10 @@
 ; PUSH1 1-byte immediate ke stack.
 ; 0x80 adalah nilai awal Free Memory Pointer (first free memory offset) sesuai konvensi Solidity,
 ; yang akan disimpan ke slot memori 0x40 sebagai penanda offset memori bebas berikutnya.
+; Byte di offset 00000002 (0x80) adalah immediate/argumen untuk PUSH1 ini, sehingga tidak muncul
+; sebagai instruksi terpisah di disassembly.
 ; Referensi: https://docs.soliditylang.org/en/latest/internals/layout_in_memory.html
+
 
 00000003: PUSH1 0x40
 ; PUSH1 1-byte immediate ke stack.

@@ -15,6 +15,43 @@
 
 
 00000005: MSTORE
+; MSTORE (Memory Store) - Opcode 0x52
+; Menyimpan 32-byte (256-bit word) ke dalam memori EVM.
+;
+; Cara kerja MSTORE:
+; 1. Pop 2 nilai dari stack:
+;    - Nilai pertama (top of stack): offset/alamat memori tujuan
+;    - Nilai kedua: data 32-byte yang akan disimpan
+; 2. Simpan data tersebut ke memori pada offset yang ditentukan
+;
+; Kondisi stack SEBELUM MSTORE dieksekusi:
+;   Stack: [0x40, 0x80, ...] (0x40 di paling atas)
+;   - 0x40 = alamat memori tujuan (slot Free Memory Pointer)
+;   - 0x80 = nilai yang akan disimpan (offset memori bebas awal)
+;
+; Kondisi SETELAH MSTORE dieksekusi:
+;   - Stack: kosong (kedua nilai sudah di-pop)
+;   - Memory[0x40] = 0x0000...0080 (32 bytes, padded dengan zeros di depan)
+;
+; Analogi sederhana:
+; Bayangkan memory seperti "papan tulis" raksasa dengan kotak-kotak bernomor.
+; MSTORE seperti menulis angka 0x80 (128) di kotak nomor 0x40 (64).
+; Setelah ini, setiap kali EVM perlu tahu "di mana memori kosong berikutnya?",
+; ia akan melihat kotak 0x40 dan menemukan jawaban: "mulai dari offset 0x80".
+;
+; Kenapa ini penting?
+; Instruksi PUSH1 0x80 + PUSH1 0x40 + MSTORE adalah "ritual pembuka" standar
+; yang dilakukan oleh SEMUA smart contract Solidity. Ini menginisialisasi
+; Free Memory Pointer (FMP) sehingga Solidity tahu di mana harus menyimpan
+; data dinamis seperti array, string, struct, dll saat runtime.
+;
+; Gas cost: 3 gas (minimum) + biaya ekspansi memori jika mengakses area baru
+;
+; Referensi:
+; - https://www.evm.codes/#52
+; - https://ethereum.org/developers/docs/evm/opcodes/
+; - https://docs.soliditylang.org/en/latest/internals/layout_in_memory.html
+
 00000006: CALLVALUE
 00000007: DUP1
 00000008: ISZERO

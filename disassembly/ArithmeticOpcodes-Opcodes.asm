@@ -117,6 +117,58 @@
 ; - https://ethervm.io/
 
 00000007: DUP1
+; DUP1 (Duplicate 1st Stack Item) - Opcode 0x80
+; Menduplikasi (meng-copy) nilai yang ada di paling atas stack, lalu mendorong
+; salinan tersebut ke atas stack. Nilai asli TETAP ADA, tidak dihapus.
+;
+; Cara kerja DUP1:
+; 1. Mengintip (peek) nilai di posisi pertama stack (top of stack)
+; 2. Membuat salinan dari nilai tersebut
+; 3. Mendorong (push) salinan ke atas stack
+; 4. Nilai asli tetap di tempatnya (sekarang menjadi posisi ke-2)
+;
+; Kondisi stack SEBELUM DUP1 dieksekusi:
+;   Stack: [msg.value] (hasil dari CALLVALUE sebelumnya)
+;
+; Kondisi stack SETELAH DUP1 dieksekusi:
+;   Stack: [msg.value, msg.value]
+;   - Kedua nilai identik (salinan sempurna)
+;   - Top of stack: msg.value (salinan)
+;   - Posisi ke-2: msg.value (asli)
+;
+; Analogi sederhana:
+; Bayangkan kamu punya tumpukan kertas, dan kertas paling atas bertuliskan "100".
+; DUP1 seperti memfotokopi kertas tersebut dan meletakkan hasil fotokopinya
+; di atas tumpukan. Sekarang kamu punya DUA kertas bertuliskan "100" di paling atas.
+; Kertas asli tidak hilang, hanya "turun" satu posisi.
+;
+; Mengapa perlu DUP1 di sini?
+; Karena opcode ISZERO (berikutnya) akan MENGKONSUMSI (pop) nilai dari stack
+; untuk mengecek apakah nilainya nol. Tapi kita masih butuh nilai msg.value
+; untuk keperluan lain nanti (misalnya di-POP setelah JUMPDEST).
+;
+; Jadi flow-nya:
+;   1. CALLVALUE → stack: [msg.value]
+;   2. DUP1      → stack: [msg.value, msg.value]  ← duplikat untuk "dikorbankan"
+;   3. ISZERO    → stack: [isZero, msg.value]     ← salinan dikonsumsi, asli tetap
+;
+; Ini adalah pola umum di EVM: duplikasi nilai sebelum operasi yang mengkonsumsi
+; nilai tersebut, agar nilai asli masih tersedia untuk operasi selanjutnya.
+;
+; Keluarga DUP (DUP1 - DUP16):
+; - DUP1 (0x80): Duplikat item ke-1 (top)
+; - DUP2 (0x81): Duplikat item ke-2
+; - DUP3 (0x82): Duplikat item ke-3
+; - ... dan seterusnya sampai ...
+; - DUP16 (0x8f): Duplikat item ke-16
+;
+; Gas cost: 3 gas (sangat murah, operasi stack sederhana)
+;
+; Referensi:
+; - https://www.evm.codes/#80
+; - https://ethereum.org/developers/docs/evm/opcodes/
+; - https://ethervm.io/
+
 00000008: ISZERO
 00000009: PUSH1 0x0e
 0000000b: JUMPI

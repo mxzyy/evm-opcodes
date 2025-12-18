@@ -30,6 +30,39 @@ get_contracts() {
   fi
 }
 
+# ══════════════════════════════════════════════════════════════════
+# FIX: Function to adjust offset from 1-indexed to 0-indexed
+# ══════════════════════════════════════════════════════════════════
+fix_offsets() {
+  local input_file="$1"
+  local output_file="$2"
+  
+  # Read each line, parse offset, subtract 1, reformat
+  while IFS= read -r line; do
+    if [[ "$line" =~ ^([0-9a-fA-F]+):(.*)$ ]]; then
+      # Extract hex offset and rest of line
+      hex_offset="${BASH_REMATCH[1]}"
+      rest="${BASH_REMATCH[2]}"
+      
+      # Convert to decimal, subtract 1, convert back to hex
+      decimal_offset=$((16#$hex_offset))
+      if ((decimal_offset > 0)); then
+        new_decimal=$((decimal_offset - 1))
+      else
+        new_decimal=0
+      fi
+      
+      # Format as 8-digit hex (like original)
+      new_hex=$(printf '%08x' "$new_decimal")
+      
+      echo "${new_hex}:${rest}"
+    else
+      # Line doesn't match pattern, output as-is
+      echo "$line"
+    fi
+  done < "$input_file" > "$output_file"
+}
+
 mkdir -p "$OUT_DIR"
 
 mapfile -t solidity_files < <(find "$SRC_DIR" -type f -name '*.sol' | sort)
@@ -46,8 +79,9 @@ for sol_file in "${solidity_files[@]}"; do
 
   for contract in "${contracts[@]}"; do
     target="${sol_file}:${contract}"
-    bytecode_file="${OUT_DIR}/${contract} Bytecodes.txt"
-    opcode_file="${OUT_DIR}/${contract} Opcodes.txt"
+    bytecode_file="${OUT_DIR}/${contract}--Bytecodes.txt"
+    opcode_file="${OUT_DIR}/${contract}--Opcodes.txt"
+    opcode_file_tmp="${OUT_DIR}/${contract} Opcodes.tmp"
 
     echo "Inspecting ${target}"
     if ! bytecode=$(forge inspect "$target" bytecode 2>&1); then
@@ -62,8 +96,16 @@ for sol_file in "${solidity_files[@]}"; do
     pad_count=0
     while :; do
       if output=$(cast disassemble "$candidate" 2>&1); then
-        echo "$output" >"$opcode_file"
-        echo "Saved opcodes to ${opcode_file}"
+        # Save raw output to temp file
+        echo "$output" >"$opcode_file_tmp"
+        
+        # Fix offsets (subtract 1) and save to final file
+        fix_offsets "$opcode_file_tmp" "$opcode_file"
+        
+        # Clean up temp file
+        rm -f "$opcode_file_tmp"
+        
+        echo "Saved opcodes to ${opcode_file} (offsets fixed)"
         break
       fi
 

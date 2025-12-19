@@ -112,13 +112,13 @@ split_opcodes() {
     echo "║                      CREATION CODE                             ║"
     echo "╚════════════════════════════════════════════════════════════════╝"
     echo ""
-    
+
     while IFS= read -r line; do
       if [[ "$line" =~ ^([0-9a-fA-F]+):(.*)$ ]]; then
         hex_offset="${BASH_REMATCH[1]}"
         rest="${BASH_REMATCH[2]}"
         decimal_offset=$((16#$hex_offset))
-        
+
         if $in_creation && ((decimal_offset >= runtime_offset_dec)); then
           # Switch to runtime section
           in_creation=false
@@ -128,13 +128,16 @@ split_opcodes() {
           echo "║                  (Deployed Contract Code)                      ║"
           echo "╚════════════════════════════════════════════════════════════════╝"
           echo ""
-          
-          # Reset offset to 0 for runtime code
+        fi
+
+        if $in_creation; then
+          # Keep original offset for creation code
+          echo "$line"
+        else
+          # Reset offset for runtime code
           new_offset=$((decimal_offset - runtime_offset_dec))
           new_hex=$(printf '%08x' "$new_offset")
           echo "${new_hex}:${rest}"
-        else
-          echo "$line"
         fi
       else
         echo "$line"

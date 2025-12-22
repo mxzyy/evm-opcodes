@@ -2,16 +2,16 @@
 pragma solidity ^0.8.20;
 
 import {Script, console} from "forge-std/Script.sol";
-import {ArithmeticOpcodes} from "../src/ArithmeticOps.sol";
+import {Arithmetic} from "../src/Arithmetic.sol";
 
 contract ArithmeticOpcodesScript is Script {
-    ArithmeticOpcodes public arithmeticOpcodes;
+    Arithmetic public arithmetic;
 
     function setUp() public {}
 
     function run() public {
         vm.startBroadcast();
-        arithmeticOpcodes = new ArithmeticOpcodes();
+        arithmetic = new Arithmetic();
         vm.stopBroadcast();
     }
 }

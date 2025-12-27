@@ -13,7 +13,7 @@ contract ArithmeticTest is Test {
 
     // ========== BASIC ARITHMETIC TESTS ==========
 
-    function testAddRaw() public view {
+    function testAddRawNoOverflow() public view {
         // Normal addition
         assertEq(arithmetic.addRaw(5, 3), 8);
         assertEq(arithmetic.addRaw(100, 200), 300);

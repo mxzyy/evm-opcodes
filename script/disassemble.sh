@@ -459,8 +459,8 @@ for sol_file in "${solidity_files[@]}"; do
 
   for contract in "${contracts[@]}"; do
     target="${sol_file}:${contract}"
-    bytecode_file="${OUT_DIR}/${contract}--Bytecodes.txt"
-    opcode_file="${OUT_DIR}/${contract}--Opcodes.txt"
+    bytecode_file="${OUT_DIR}/${contract}-Bytecodes.evm"
+    opcode_file="${OUT_DIR}/${contract}-Opcodes.evm"
     opcode_file_tmp="${OUT_DIR}/${contract}--Opcodes.tmp"
     opcode_file_fixed="${OUT_DIR}/${contract}--Opcodes-fixed.tmp"
     opcode_file_split="${OUT_DIR}/${contract}--Opcodes-split.tmp"

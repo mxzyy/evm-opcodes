@@ -45,7 +45,7 @@ Examples:
   ./disassemble.sh --gas-tracking --storage-annotations  # Custom combination
 
 Output:
-  Disassembled bytecode is saved to disassembly/<ContractName>-Opcodes.evm
+  Disassembled bytecode is saved to disassembly/<ContractName>-Opcodes.asm
   DOT files (if enabled) are saved to disassembly/<ContractName>-CFG.dot
 EOF
   exit 0
@@ -1848,8 +1848,8 @@ for sol_file in "${solidity_files[@]}"; do
 
   for contract in "${contracts[@]}"; do
     target="${sol_file}:${contract}"
-    bytecode_file="${OUT_DIR}/${contract}-Bytecodes.evm"
-    opcode_file="${OUT_DIR}/${contract}-Opcodes.evm"
+    bytecode_file="${OUT_DIR}/${contract}-Bytecodes.hex"
+    opcode_file="${OUT_DIR}/${contract}-Opcodes.asm"
     cfg_dot_file="${OUT_DIR}/${contract}-CFG.dot"
     opcode_file_tmp="${OUT_DIR}/${contract}--Opcodes.tmp"
     opcode_file_fixed="${OUT_DIR}/${contract}--Opcodes-fixed.tmp"

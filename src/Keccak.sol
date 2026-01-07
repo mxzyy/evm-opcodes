@@ -253,7 +253,7 @@ contract Keccak {
     }
 
     /// @notice Generate unique ID with timestamp
-    function generateTimestampedId(address user, uint256 timestamp) external pure returns (bytes32) {
+    function generateTimestampedId(address user, uint256 timestamp) external view returns (bytes32) {
         return keccak256(abi.encodePacked(user, timestamp, block.number));
     }
 

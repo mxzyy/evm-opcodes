@@ -95,11 +95,11 @@ contract Events {
             mstore(0x0, value)
 
             log3(
-                0x0,    // data offset
-                0x20,   // data size
-                sig,    // topic0: event signature
-                id,     // topic1: indexed id
-                sender  // topic2: indexed sender
+                0x0, // data offset
+                0x20, // data size
+                sig, // topic0: event signature
+                id, // topic1: indexed id
+                sender // topic2: indexed sender
             )
         }
     }
@@ -148,9 +148,7 @@ contract Events {
 
             // Copy string data
             let memPtr := 0x40
-            for { let i := 0 } lt(i, dataSize) { i := add(i, 0x20) } {
-                mstore(add(memPtr, i), mload(add(dataPtr, i)))
-            }
+            for { let i := 0 } lt(i, dataSize) { i := add(i, 0x20) } { mstore(add(memPtr, i), mload(add(dataPtr, i))) }
 
             let totalSize := add(0x40, and(add(dataSize, 0x1f), not(0x1f)))
             log1(0x0, totalSize, sig)
@@ -169,10 +167,10 @@ contract Events {
             mstore(0x40, eventTimestamp)
 
             log2(
-                0x0,      // data offset
-                0x60,     // data size (3 * 32 bytes)
-                sig,      // topic0: signature
-                id        // topic1: indexed id
+                0x0, // data offset
+                0x60, // data size (3 * 32 bytes)
+                sig, // topic0: signature
+                id // topic1: indexed id
             )
         }
     }
@@ -180,9 +178,7 @@ contract Events {
     // ========== EVENT FILTERING PATTERNS ==========
 
     /// @notice Emit event with multiple indexed fields for filtering
-    function emitFilterableEvent(uint256 category, address user, bytes32 action, uint256 value)
-        external
-    {
+    function emitFilterableEvent(uint256 category, address user, bytes32 action, uint256 value) external {
         // FilterableEvent(uint256,address,bytes32,uint256) signature
         bytes32 sig = keccak256("FilterableEvent(uint256,address,bytes32,uint256)");
 
@@ -240,11 +236,12 @@ contract Events {
             let sig := 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef
 
             log4(
-                0x0, 0x20,
+                0x0,
+                0x20,
                 sig,
                 from,
                 to,
-                tokenId  // tokenId as 4th topic for ERC721
+                tokenId // tokenId as 4th topic for ERC721
             )
         }
     }
@@ -270,9 +267,14 @@ contract Events {
     }
 
     /// @notice Swap event (Uniswap pattern)
-    function emitSwap(address sender, uint256 amount0In, uint256 amount1In, uint256 amount0Out, uint256 amount1Out, address to)
-        external
-    {
+    function emitSwap(
+        address sender,
+        uint256 amount0In,
+        uint256 amount1In,
+        uint256 amount0Out,
+        uint256 amount1Out,
+        address to
+    ) external {
         // Swap(address,uint256,uint256,uint256,uint256,address) signature
         bytes32 sig = keccak256("Swap(address,uint256,uint256,uint256,uint256,address)");
 

@@ -120,9 +120,7 @@ contract Errors {
     /// @notice assert() - uses INVALID on failure (consumes all gas)
     function assertExample(uint256 value) external pure returns (uint256) {
         assembly {
-            if iszero(value) {
-                invalid() // Assert failure
-            }
+            if iszero(value) { invalid() } // Assert failure
 
             mstore(0x0, value)
             return(0x0, 0x20)
@@ -177,9 +175,7 @@ contract Errors {
 
             success := call(gas(), target, 0, dataPtr, dataSize, retPtr, 0x20)
 
-            if success {
-                result := mload(retPtr)
-            }
+            if success { result := mload(retPtr) }
             // If failed, success = false, result = 0 (default)
         }
     }

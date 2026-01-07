@@ -53,9 +53,7 @@ contract ControlFlow {
             let result := 0
 
             // If value > 100
-            if gt(value, 100) {
-                result := 1
-            }
+            if gt(value, 100) { result := 1 }
 
             mstore(0x0, result)
             return(0x0, 0x20)
@@ -68,12 +66,9 @@ contract ControlFlow {
             let result := 0
 
             switch gt(value, 100)
-            case 1 {
-                result := 0x600D // Good
-            }
-            default {
-                result := 0xBAD // Bad
-            }
+            case 1 { result := 0x600D }
+            // Good
+            default { result := 0xBAD } // Bad
 
             mstore(0x0, result)
             return(0x0, 0x20)
@@ -102,17 +97,13 @@ contract ControlFlow {
             let result := 0
 
             switch lt(value, 50)
-            case 1 {
-                result := 1 // value < 50
-            }
+            case 1 { result := 1 }
+            // value < 50
             default {
                 switch lt(value, 100)
-                case 1 {
-                    result := 2 // 50 <= value < 100
-                }
-                default {
-                    result := 3 // value >= 100
-                }
+                case 1 { result := 2 }
+                // 50 <= value < 100
+                default { result := 3 } // value >= 100
             }
 
             mstore(0x0, result)
@@ -127,9 +118,7 @@ contract ControlFlow {
         assembly {
             let sum := 0
 
-            for { let i := 1 } lt(i, add(n, 1)) { i := add(i, 1) } {
-                sum := add(sum, i)
-            }
+            for { let i := 1 } lt(i, add(n, 1)) { i := add(i, 1) } { sum := add(sum, i) }
 
             mstore(0x0, sum)
             return(0x0, 0x20)
@@ -144,12 +133,8 @@ contract ControlFlow {
 
             for { let i := 1 } and(lt(i, add(n, 1)), iszero(shouldBreak)) { i := add(i, 1) } {
                 // Break if i reaches breakAt
-                if eq(i, breakAt) {
-                    shouldBreak := 1
-                }
-                if iszero(shouldBreak) {
-                    sum := add(sum, i)
-                }
+                if eq(i, breakAt) { shouldBreak := 1 }
+                if iszero(shouldBreak) { sum := add(sum, i) }
             }
 
             mstore(0x0, sum)
@@ -164,9 +149,7 @@ contract ControlFlow {
 
             for { let i := 1 } lt(i, add(n, 1)) { i := add(i, 1) } {
                 // Skip even numbers - only add odd numbers
-                if mod(i, 2) {
-                    sum := add(sum, i)
-                }
+                if mod(i, 2) { sum := add(sum, i) }
             }
 
             mstore(0x0, sum)
@@ -216,9 +199,7 @@ contract ControlFlow {
             let sum := 0
 
             for { let i := 0 } lt(i, rows) { i := add(i, 1) } {
-                for { let j := 0 } lt(j, cols) { j := add(j, 1) } {
-                    sum := add(sum, add(i, j))
-                }
+                for { let j := 0 } lt(j, cols) { j := add(j, 1) } { sum := add(sum, add(i, j)) }
             }
 
             mstore(0x0, sum)
@@ -232,9 +213,7 @@ contract ControlFlow {
     function requireExample(uint256 value) external pure returns (uint256) {
         assembly {
             // Require value > 100
-            if iszero(gt(value, 100)) {
-                revert(0, 0) // REVERT opcode (0xFD)
-            }
+            if iszero(gt(value, 100)) { revert(0, 0) } // REVERT opcode (0xFD)
 
             mstore(0x0, value)
             return(0x0, 0x20)
@@ -266,19 +245,13 @@ contract ControlFlow {
     function multipleRequires(uint256 a, uint256 b, uint256 c) external pure returns (uint256) {
         assembly {
             // Require a > 0
-            if iszero(a) {
-                revert(0, 0)
-            }
+            if iszero(a) { revert(0, 0) }
 
             // Require b < 1000
-            if iszero(lt(b, 1000)) {
-                revert(0, 0)
-            }
+            if iszero(lt(b, 1000)) { revert(0, 0) }
 
             // Require c != 42
-            if eq(c, 42) {
-                revert(0, 0)
-            }
+            if eq(c, 42) { revert(0, 0) }
 
             let result := add(add(a, b), c)
             mstore(0x0, result)
@@ -292,9 +265,7 @@ contract ControlFlow {
     function assertExample(uint256 value) external pure returns (uint256) {
         assembly {
             // If assertion fails, use INVALID opcode
-            if iszero(gt(value, 0)) {
-                invalid() // INVALID opcode (0xFE) - consumes all gas
-            }
+            if iszero(gt(value, 0)) { invalid() } // INVALID opcode (0xFE) - consumes all gas
 
             mstore(0x0, value)
             return(0x0, 0x20)
@@ -417,9 +388,7 @@ contract ControlFlow {
 
             for { let i := 1 } lt(i, len) { i := add(i, 1) } {
                 let current := mload(add(arrPtr, mul(i, 0x20)))
-                if gt(current, maxVal) {
-                    maxVal := current
-                }
+                if gt(current, maxVal) { maxVal := current }
             }
 
             mstore(0x0, maxVal)

@@ -29,9 +29,7 @@ contract SpecialOpcodes {
             let guard := tload(guardSlot)
 
             // Check if already entered
-            if guard {
-                revert(0, 0)
-            }
+            if guard { revert(0, 0) }
 
             // Set guard
             tstore(guardSlot, 1)
@@ -73,9 +71,7 @@ contract SpecialOpcodes {
             let inFlash := tload(flashSlot)
 
             // Verify we're in flash loan context
-            if iszero(inFlash) {
-                revert(0, 0)
-            }
+            if iszero(inFlash) { revert(0, 0) }
 
             // Clear after use
             tstore(flashSlot, 0)
@@ -106,12 +102,12 @@ contract SpecialOpcodes {
     // ========== PC (Program Counter) ==========
 
     /// @notice Get current program counter
+    /// @dev Note: PC opcode (0x58) is disallowed in strict assembly mode
+    /// PC is position-dependent and can break with optimizer changes
     function demonstratePC() external pure returns (uint256 pc1, uint256 pc2, uint256 pc3) {
-        assembly {
-            pc1 := pc() // PC opcode (0x58)
-            pc2 := pc()
-            pc3 := pc()
-        }
+        // PC instruction not available in modern Yul strict assembly
+        // It would return the current position in the bytecode
+        return (0, 0, 0);
     }
 
     // ========== GAS OPCODE ==========
@@ -267,9 +263,7 @@ contract SpecialOpcodes {
             let lockSlot := add(1000, lockId)
             let isLocked := tload(lockSlot)
 
-            if isLocked {
-                revert(0, 0)
-            }
+            if isLocked { revert(0, 0) }
 
             tstore(lockSlot, 1)
         }
@@ -319,14 +313,13 @@ contract SpecialOpcodes {
     }
 
     /// @notice Comprehensive opcode demonstration
-    function demonstrateAllSpecialOpcodes() external view returns (
-        uint256 gasRemaining,
-        uint256 programCounter,
-        uint256 transientValue
-    ) {
+    function demonstrateAllSpecialOpcodes()
+        external
+        returns (uint256 gasRemaining, uint256 programCounter, uint256 transientValue)
+    {
         assembly {
             gasRemaining := gas()
-            programCounter := pc()
+            programCounter := 0 // PC opcode not available in strict assembly
 
             tstore(9999, 0xDEADBEEF)
             transientValue := tload(9999)

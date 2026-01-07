@@ -4,16 +4,16 @@ pragma solidity ^0.8.20;
 contract Storage {
     // ========== STATE VARIABLES (STORAGE) ==========
 
-    uint256 public counter;                          // slot 0
-    address public owner;                            // slot 1
-    bool public isActive;                            // slot 2 (packed with next vars if small enough)
-    uint128 public smallNum1;                        // slot 2 (packed)
-    uint128 public smallNum2;                        // slot 2 (packed)
+    uint256 public counter; // slot 0
+    address public owner; // slot 1
+    bool public isActive; // slot 2 (packed with next vars if small enough)
+    uint128 public smallNum1; // slot 2 (packed)
+    uint128 public smallNum2; // slot 2 (packed)
 
-    mapping(address => uint256) public balances;     // slot 3
+    mapping(address => uint256) public balances; // slot 3
     mapping(address => mapping(address => uint256)) public allowances; // slot 4
 
-    uint256[] public dynamicArray;                   // slot 5
+    uint256[] public dynamicArray; // slot 5
 
     struct User {
         uint256 id;
@@ -21,7 +21,8 @@ contract Storage {
         uint256 balance;
         bool active;
     }
-    mapping(address => User) public users;           // slot 6
+
+    mapping(address => User) public users; // slot 6
 
     // ========== RAW STORAGE OPERATIONS ==========
 
@@ -116,8 +117,8 @@ contract Storage {
             mstore(0x0, account)
             mstore(0x20, 3)
             let mappingSlot := keccak256(0x0, 0x40)
-            let balance := sload(mappingSlot)
-            mstore(0x0, balance)
+            let balanceSlot := sload(mappingSlot)
+            mstore(0x0, balanceSlot)
             return(0x0, 0x20)
         }
     }
@@ -195,9 +196,7 @@ contract Storage {
             let length := sload(slot)
 
             // Bounds check
-            if iszero(lt(index, length)) {
-                revert(0, 0)
-            }
+            if iszero(lt(index, length)) { revert(0, 0) }
 
             // Calculate element slot
             mstore(0x0, slot)
@@ -213,7 +212,7 @@ contract Storage {
 
     /// @notice Set user struct in mapping
     /// @dev Struct fields stored consecutively from base slot
-    function setUser(address account, uint256 id, address wallet, uint256 balance, bool active) external {
+    function setUser(address account, uint256 id, address wallet, uint256 balanceAddr, bool active) external {
         assembly {
             // Calculate base slot for this user
             mstore(0x0, account)
@@ -221,15 +220,19 @@ contract Storage {
             let baseSlot := keccak256(0x0, 0x40)
 
             // Store struct fields (consecutive slots)
-            sstore(baseSlot, id)                    // User.id at baseSlot + 0
-            sstore(add(baseSlot, 1), wallet)        // User.wallet at baseSlot + 1
-            sstore(add(baseSlot, 2), balance)       // User.balance at baseSlot + 2
-            sstore(add(baseSlot, 3), active)        // User.active at baseSlot + 3
+            sstore(baseSlot, id) // User.id at baseSlot + 0
+            sstore(add(baseSlot, 1), wallet) // User.wallet at baseSlot + 1
+            sstore(add(baseSlot, 2), balanceAddr) // User.balance at baseSlot + 2
+            sstore(add(baseSlot, 3), active) // User.active at baseSlot + 3
         }
     }
 
     /// @notice Get user struct from mapping
-    function getUser(address account) external view returns (uint256 id, address wallet, uint256 balance, bool active) {
+    function getUser(address account)
+        external
+        view
+        returns (uint256 id, address wallet, uint256 balanceAddr, bool active)
+    {
         assembly {
             mstore(0x0, account)
             mstore(0x20, 6)
@@ -237,7 +240,7 @@ contract Storage {
 
             id := sload(baseSlot)
             wallet := sload(add(baseSlot, 1))
-            balance := sload(add(baseSlot, 2))
+            balanceAddr := sload(add(baseSlot, 2))
             active := sload(add(baseSlot, 3))
         }
     }
@@ -264,9 +267,9 @@ contract Storage {
     function batchRead(uint256[] calldata slots) external view returns (uint256[] memory values) {
         values = new uint256[](slots.length);
         assembly {
-            let len := mload(slots)
+            let len := slots.length
             let valuesPtr := add(values, 0x20)
-            let slotsPtr := add(slots.offset, 0)
+            let slotsPtr := slots.offset
 
             for { let i := 0 } lt(i, len) { i := add(i, 1) } {
                 let slot := calldataload(add(slotsPtr, mul(i, 0x20)))

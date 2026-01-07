@@ -227,9 +227,7 @@ contract Memory {
             let bPtr := add(bytesB, 0x20)
 
             // Copy string A
-            for { let i := 0 } lt(i, lenA) { i := add(i, 0x20) } {
-                mstore(add(resultPtr, i), mload(add(aPtr, i)))
-            }
+            for { let i := 0 } lt(i, lenA) { i := add(i, 0x20) } { mstore(add(resultPtr, i), mload(add(aPtr, i))) }
 
             // Copy string B
             for { let i := 0 } lt(i, lenB) { i := add(i, 0x20) } {
@@ -243,11 +241,7 @@ contract Memory {
     // ========== RETURN DATA ==========
 
     /// @notice Return multiple values using memory
-    function returnMultipleValues(uint256 a, uint256 b, uint256 c)
-        external
-        pure
-        returns (uint256, uint256, uint256)
-    {
+    function returnMultipleValues(uint256 a, uint256 b, uint256 c) external pure returns (uint256, uint256, uint256) {
         assembly {
             // Store values in memory
             mstore(0x0, a)
@@ -276,9 +270,7 @@ contract Memory {
             newSize := add(ptr, size)
 
             // Check for overflow
-            if lt(newSize, ptr) {
-                revert(0, 0)
-            }
+            if lt(newSize, ptr) { revert(0, 0) }
 
             mstore(0x40, newSize)
         }
@@ -291,9 +283,7 @@ contract Memory {
             let end := add(offset, length)
 
             // Zero out in 32-byte chunks
-            for { let i := offset } lt(i, end) { i := add(i, 0x20) } {
-                mstore(i, 0)
-            }
+            for { let i := offset } lt(i, end) { i := add(i, 0x20) } { mstore(i, 0) }
 
             mstore(0x0, 1)
             return(0x0, 0x20)

@@ -166,9 +166,7 @@ contract Bitwise {
             }
 
             // Check upper 1 bit
-            if iszero(shr(255, value)) {
-                count := add(count, 1)
-            }
+            if iszero(shr(255, value)) { count := add(count, 1) }
         }
     }
 
@@ -209,7 +207,11 @@ contract Bitwise {
     }
 
     /// @notice Insert bits at position
-    function insertBits(uint256 value, uint256 bits, uint256 position, uint256 length) external pure returns (uint256) {
+    function insertBits(uint256 value, uint256 bits, uint256 position, uint256 length)
+        external
+        pure
+        returns (uint256)
+    {
         assembly {
             // Create mask for the bits to insert
             let bitMask := sub(shl(length, 1), 1)
@@ -259,10 +261,7 @@ contract Bitwise {
     /// @notice Pack four uint64 into one uint256
     function packFourUint64(uint64 a, uint64 b, uint64 c, uint64 d) external pure returns (uint256) {
         assembly {
-            let result := or(
-                or(shl(192, a), shl(128, b)),
-                or(shl(64, c), d)
-            )
+            let result := or(or(shl(192, a), shl(128, b)), or(shl(64, c), d))
             mstore(0x0, result)
             return(0x0, 0x20)
         }

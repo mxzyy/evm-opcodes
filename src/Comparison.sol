@@ -97,11 +97,11 @@ contract Comparison {
     }
 
     /// @notice Check if value is within range [min, max]
-    function inRange(uint256 value, uint256 min, uint256 max) external pure returns (bool) {
+    function inRange(uint256 value, uint256 minValue, uint256 maxValue) external pure returns (bool) {
         assembly {
             // value >= min AND value <= max
-            let geMin := iszero(lt(value, min))
-            let leMax := iszero(gt(value, max))
+            let geMin := iszero(lt(value, minValue))
+            let leMax := iszero(gt(value, maxValue))
             let result := and(geMin, leMax)
             mstore(0x0, result)
             return(0x0, 0x20)

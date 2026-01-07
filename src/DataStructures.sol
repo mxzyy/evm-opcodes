@@ -88,13 +88,7 @@ contract DataStructures {
 
     /// @notice Create user struct
     function createUser(address account, uint256 id, uint256 balance, string memory userName) external {
-        users[account] = User({
-            id: id,
-            wallet: account,
-            balance: balance,
-            active: true,
-            name: userName
-        });
+        users[account] = User({id: id, wallet: account, balance: balance, active: true, name: userName});
     }
 
     /// @notice Get user struct
@@ -218,11 +212,7 @@ contract DataStructures {
     }
 
     function addItemToOrder(uint256 orderId, uint256 productId, uint256 quantity, uint256 price) external {
-        orders[orderId].items.push(Item({
-            productId: productId,
-            quantity: quantity,
-            price: price
-        }));
+        orders[orderId].items.push(Item({productId: productId, quantity: quantity, price: price}));
     }
 
     // ========== MEMORY ARRAYS ==========

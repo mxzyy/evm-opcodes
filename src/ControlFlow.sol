@@ -5,22 +5,21 @@ contract ControlFlow {
     // ========== JUMP OPERATIONS ==========
 
     /// @notice PC - Get program counter
-    function getProgramCounter() external pure returns (uint256 pc) {
-        assembly {
-            pc := pc() // PC opcode (0x58)
-        }
+    /// @dev Note: PC opcode (0x58) is disallowed in strict assembly mode
+    /// PC is position-dependent and can break with optimizer changes
+    function getProgramCounter() external pure returns (uint256 pcAddress) {
+        // PC instruction not available in modern Yul strict assembly
+        // It would return the current position in the bytecode
+        return 0;
     }
 
     /// @notice Demonstrate JUMP and JUMPDEST
-    /// @dev JUMP transfers control to JUMPDEST
+    /// @dev Note: Modern Yul doesn't support arbitrary JUMP with labels
+    /// This demonstrates the concept but uses structured control flow
     function demonstrateJump() external pure returns (uint256) {
         assembly {
-            // JUMP to label
-            let target := jumpdest_label
-            jump(target) // JUMP opcode (0x56)
-
-        jumpdest_label:
-            jumpdest() // JUMPDEST opcode (0x5B) - valid jump destination
+            // In modern Yul, use structured control flow instead of JUMP
+            // JUMPDEST is implicitly placed by the compiler at valid locations
 
             let result := 0x1234
             mstore(0x0, result)
@@ -29,20 +28,19 @@ contract ControlFlow {
     }
 
     /// @notice Demonstrate JUMPI (conditional jump)
-    /// @dev JUMPI only jumps if condition is non-zero
+    /// @dev JUMPI concept using structured if statement
     function demonstrateJumpi(bool condition) external pure returns (uint256) {
         assembly {
-            // JUMPI(destination, condition)
-            let target := success_label
-            jumpi(target, condition) // JUMPI opcode (0x57)
+            // Modern Yul uses if statements instead of JUMPI with labels
+            // The compiler generates JUMPI opcodes behind the scenes
+
+            if condition {
+                mstore(0x0, 0x600D) // GOOD
+                return(0x0, 0x20)
+            }
 
             // If condition is false, execution continues here
             mstore(0x0, 0xBAD)
-            return(0x0, 0x20)
-
-        success_label:
-            jumpdest()
-            mstore(0x0, 0x600D) // GOOD
             return(0x0, 0x20)
         }
     }
@@ -82,19 +80,18 @@ contract ControlFlow {
         }
     }
 
-    /// @notice If-else using JUMPI
+    /// @notice If-else using structured control flow
     function ifElseJumpi(uint256 value) external pure returns (uint256) {
         assembly {
             let condition := gt(value, 100)
-            jumpi(then_branch, condition)
+
+            if condition {
+                mstore(0x0, 0x600D)
+                return(0x0, 0x20)
+            }
 
             // Else branch
             mstore(0x0, 0xBAD)
-            return(0x0, 0x20)
-
-        then_branch:
-            jumpdest()
-            mstore(0x0, 0x600D)
             return(0x0, 0x20)
         }
     }
@@ -143,13 +140,16 @@ contract ControlFlow {
     function forLoopWithBreak(uint256 n, uint256 breakAt) external pure returns (uint256) {
         assembly {
             let sum := 0
+            let shouldBreak := 0
 
-            for { let i := 1 } lt(i, add(n, 1)) { i := add(i, 1) } {
+            for { let i := 1 } and(lt(i, add(n, 1)), iszero(shouldBreak)) { i := add(i, 1) } {
                 // Break if i reaches breakAt
                 if eq(i, breakAt) {
-                    break
+                    shouldBreak := 1
                 }
-                sum := add(sum, i)
+                if iszero(shouldBreak) {
+                    sum := add(sum, i)
+                }
             }
 
             mstore(0x0, sum)
@@ -163,11 +163,10 @@ contract ControlFlow {
             let sum := 0
 
             for { let i := 1 } lt(i, add(n, 1)) { i := add(i, 1) } {
-                // Skip even numbers
-                if iszero(mod(i, 2)) {
-                    continue
+                // Skip even numbers - only add odd numbers
+                if mod(i, 2) {
+                    sum := add(sum, i)
                 }
-                sum := add(sum, i)
             }
 
             mstore(0x0, sum)
@@ -196,15 +195,14 @@ contract ControlFlow {
         assembly {
             let i := 0
             let sum := 0
+            let shouldContinue := 1
 
-            for {} 1 {} {
+            for {} shouldContinue {} {
                 sum := add(sum, i)
                 i := add(i, 1)
 
-                // Break condition
-                if iszero(lt(i, n)) {
-                    break
-                }
+                // Update continue condition
+                shouldContinue := lt(i, n)
             }
 
             mstore(0x0, sum)

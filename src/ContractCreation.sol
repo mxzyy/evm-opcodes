@@ -35,16 +35,15 @@ contract ContractCreation {
     function createRaw(bytes memory bytecode) external payable returns (address addr) {
         assembly {
             // CREATE(value, offset, size)
-            addr := create(
-                callvalue(),           // value to send
-                add(bytecode, 0x20),   // bytecode offset (skip length)
-                mload(bytecode)        // bytecode size
-            )
+            addr :=
+                create(
+                    callvalue(), // value to send
+                    add(bytecode, 0x20), // bytecode offset (skip length)
+                    mload(bytecode) // bytecode size
+                )
 
             // Check if deployment succeeded
-            if iszero(addr) {
-                revert(0, 0)
-            }
+            if iszero(addr) { revert(0, 0) }
         }
 
         emit ContractDeployed(addr, msg.value);
@@ -53,18 +52,13 @@ contract ContractCreation {
     /// @notice Deploy SimpleContract using CREATE
     function deploySimpleContract(uint256 initialValue) external returns (address) {
         // Get bytecode
-        bytes memory bytecode = abi.encodePacked(
-            type(SimpleContract).creationCode,
-            abi.encode(initialValue)
-        );
+        bytes memory bytecode = abi.encodePacked(type(SimpleContract).creationCode, abi.encode(initialValue));
 
         address addr;
         assembly {
             addr := create(0, add(bytecode, 0x20), mload(bytecode))
 
-            if iszero(addr) {
-                revert(0, 0)
-            }
+            if iszero(addr) { revert(0, 0) }
         }
 
         return addr;
@@ -78,9 +72,7 @@ contract ContractCreation {
         assembly {
             addr := create(callvalue(), add(bytecode, 0x20), mload(bytecode))
 
-            if iszero(addr) {
-                revert(0, 0)
-            }
+            if iszero(addr) { revert(0, 0) }
         }
 
         return addr;
@@ -93,16 +85,9 @@ contract ContractCreation {
     function create2Raw(bytes memory bytecode, bytes32 salt) external payable returns (address addr) {
         assembly {
             // CREATE2(value, offset, size, salt)
-            addr := create2(
-                callvalue(),
-                add(bytecode, 0x20),
-                mload(bytecode),
-                salt
-            )
+            addr := create2(callvalue(), add(bytecode, 0x20), mload(bytecode), salt)
 
-            if iszero(addr) {
-                revert(0, 0)
-            }
+            if iszero(addr) { revert(0, 0) }
         }
 
         emit ContractDeployed(addr, msg.value);
@@ -110,18 +95,13 @@ contract ContractCreation {
 
     /// @notice Deploy SimpleContract using CREATE2
     function deploySimpleContractCreate2(uint256 initialValue, bytes32 salt) external returns (address) {
-        bytes memory bytecode = abi.encodePacked(
-            type(SimpleContract).creationCode,
-            abi.encode(initialValue)
-        );
+        bytes memory bytecode = abi.encodePacked(type(SimpleContract).creationCode, abi.encode(initialValue));
 
         address addr;
         assembly {
             addr := create2(0, add(bytecode, 0x20), mload(bytecode), salt)
 
-            if iszero(addr) {
-                revert(0, 0)
-            }
+            if iszero(addr) { revert(0, 0) }
         }
 
         return addr;
@@ -129,14 +109,7 @@ contract ContractCreation {
 
     /// @notice Predict CREATE2 address before deployment
     function predictCreate2Address(bytes memory bytecode, bytes32 salt) external view returns (address) {
-        bytes32 hash = keccak256(
-            abi.encodePacked(
-                bytes1(0xff),
-                address(this),
-                salt,
-                keccak256(bytecode)
-            )
-        );
+        bytes32 hash = keccak256(abi.encodePacked(bytes1(0xff), address(this), salt, keccak256(bytecode)));
 
         return address(uint160(uint256(hash)));
     }
@@ -156,10 +129,7 @@ contract ContractCreation {
         address[] memory addrs = new address[](values.length);
 
         for (uint256 i = 0; i < values.length; i++) {
-            bytes memory bytecode = abi.encodePacked(
-                type(SimpleContract).creationCode,
-                abi.encode(values[i])
-            );
+            bytes memory bytecode = abi.encodePacked(type(SimpleContract).creationCode, abi.encode(values[i]));
 
             address addr;
             assembly {
@@ -195,9 +165,7 @@ contract ContractCreation {
 
             clone := create(0, ptr, 0x37)
 
-            if iszero(clone) {
-                revert(0, 0)
-            }
+            if iszero(clone) { revert(0, 0) }
         }
     }
 
@@ -214,9 +182,7 @@ contract ContractCreation {
 
             clone := create2(0, ptr, 0x37, salt)
 
-            if iszero(clone) {
-                revert(0, 0)
-            }
+            if iszero(clone) { revert(0, 0) }
         }
     }
 
@@ -274,19 +240,12 @@ contract ContractCreation {
     // ========== CONSTRUCTOR PATTERNS ==========
 
     /// @notice Deploy with complex constructor
-    function deployWithComplexConstructor(
-        uint256 value,
-        address addr,
-        string memory str
-    ) external returns (address) {
+    function deployWithComplexConstructor(uint256 value, address addr, string memory str) external returns (address) {
         // Encode constructor parameters
         bytes memory constructorParams = abi.encode(value, addr, str);
 
         // Combine creation code with constructor params
-        bytes memory bytecode = abi.encodePacked(
-            type(SimpleContract).creationCode,
-            constructorParams
-        );
+        bytes memory bytecode = abi.encodePacked(type(SimpleContract).creationCode, constructorParams);
 
         address deployed;
         assembly {
@@ -299,7 +258,7 @@ contract ContractCreation {
     // ========== GAS OPTIMIZATION ==========
 
     /// @notice Check deployment cost
-    function estimateDeploymentCost(bytes memory bytecode) external view returns (uint256) {
+    function estimateDeploymentCost(bytes memory bytecode) external returns (uint256) {
         uint256 gasBefore = gasleft();
 
         address addr;

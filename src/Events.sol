@@ -73,12 +73,13 @@ contract Events {
 
     /// @notice Emit event with single uint256 value
     function emitValueEvent(uint256 value) external {
+        // EventWithValue(uint256) signature
+        bytes32 sig = keccak256("EventWithValue(uint256)");
+
         assembly {
             // Store value in memory
             mstore(0x0, value)
 
-            // Emit: EventWithValue(uint256)
-            let sig := keccak256(add(mload(0x40), 0), mload("EventWithValue(uint256)"))
             log1(0x0, 0x20, sig)
         }
     }
@@ -86,13 +87,12 @@ contract Events {
     /// @notice Emit event with indexed parameters
     /// @dev Indexed parameters become topics, non-indexed are data
     function emitIndexedEvent(uint256 id, address sender, uint256 value) external {
+        // EventWithIndexed(uint256,address,uint256) signature
+        bytes32 sig = keccak256("EventWithIndexed(uint256,address,uint256)");
+
         assembly {
             // Store non-indexed data
             mstore(0x0, value)
-
-            // Emit with event signature + indexed params as topics
-            // EventWithIndexed(uint256 indexed id, address indexed sender, uint256 value)
-            let sig := keccak256(add(mload(0x40), 0), mload("EventWithIndexed(uint256,address,uint256)"))
 
             log3(
                 0x0,    // data offset
@@ -134,10 +134,11 @@ contract Events {
 
     /// @notice Emit event with string data
     function emitStringEvent(string memory message) external {
+        // EventWithString(string) signature
+        bytes32 sig = keccak256("EventWithString(string)");
         bytes memory messageBytes = bytes(message);
 
         assembly {
-            let sig := keccak256(add(mload(0x40), 0), mload("EventWithString(string)"))
             let dataPtr := add(messageBytes, 0x20)
             let dataSize := mload(messageBytes)
 
@@ -157,14 +158,15 @@ contract Events {
     }
 
     /// @notice Emit event with multiple data fields
-    function emitComplexEvent(uint256 id, address user, uint256 amount, uint256 timestamp) external {
+    function emitComplexEvent(uint256 id, address user, uint256 amount, uint256 eventTimestamp) external {
+        // ComplexEvent(uint256,address,uint256,uint256) signature
+        bytes32 sig = keccak256("ComplexEvent(uint256,address,uint256,uint256)");
+
         assembly {
             // Store all non-indexed fields in memory
             mstore(0x0, user)
             mstore(0x20, amount)
-            mstore(0x40, timestamp)
-
-            let sig := keccak256(add(mload(0x40), 0), mload("ComplexEvent(uint256,address,uint256,uint256)"))
+            mstore(0x40, eventTimestamp)
 
             log2(
                 0x0,      // data offset
@@ -178,13 +180,14 @@ contract Events {
     // ========== EVENT FILTERING PATTERNS ==========
 
     /// @notice Emit event with multiple indexed fields for filtering
-    function emitFilterableEvent(uint256 indexed category, address indexed user, bytes32 indexed action, uint256 value)
+    function emitFilterableEvent(uint256 category, address user, bytes32 action, uint256 value)
         external
     {
+        // FilterableEvent(uint256,address,bytes32,uint256) signature
+        bytes32 sig = keccak256("FilterableEvent(uint256,address,bytes32,uint256)");
+
         assembly {
             mstore(0x0, value)
-
-            let sig := keccak256(add(mload(0x40), 0), mload("FilterableEvent(uint256,address,bytes32,uint256)"))
 
             log4(0x0, 0x20, sig, category, user, action)
         }
@@ -270,6 +273,9 @@ contract Events {
     function emitSwap(address sender, uint256 amount0In, uint256 amount1In, uint256 amount0Out, uint256 amount1Out, address to)
         external
     {
+        // Swap(address,uint256,uint256,uint256,uint256,address) signature
+        bytes32 sig = keccak256("Swap(address,uint256,uint256,uint256,uint256,address)");
+
         assembly {
             // Store non-indexed data
             mstore(0x0, amount0In)
@@ -278,18 +284,17 @@ contract Events {
             mstore(0x60, amount1Out)
             mstore(0x80, to)
 
-            let sig := keccak256(add(mload(0x40), 0), mload("Swap(address,uint256,uint256,uint256,uint256,address)"))
-
             log2(0x0, 0xa0, sig, sender)
         }
     }
 
     /// @notice Role granted event (AccessControl pattern)
     function emitRoleGranted(bytes32 role, address account, address sender) external {
+        // RoleGranted(bytes32,address,address) signature
+        bytes32 sig = keccak256("RoleGranted(bytes32,address,address)");
+
         assembly {
             mstore(0x0, account)
-
-            let sig := keccak256(add(mload(0x40), 0), mload("RoleGranted(bytes32,address,address)"))
 
             log3(0x0, 0x20, sig, role, sender)
         }

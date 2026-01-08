@@ -1,0 +1,76 @@
+digraph CFG {
+  rankdir=TB;
+  node [shape=box, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  node_0000007f [label="setValue(uint256)\n0x0000007f", style=filled, fillcolor=lightblue];
+  node_00000043 [label="getValue()\n0x00000043", style=filled, fillcolor=lightblue];
+  node_00000061 [label="value()\n0x00000061", style=filled, fillcolor=lightblue];
+
+  node_00000028 -> node_00000043;
+  node_00000075 -> node_000000c9;
+  node_000000db -> node_000000ba;
+  node_00000123 -> node_000000e2;
+  node_0000004a -> node_0000009b;
+  node_000000f5 -> node_000000f9;
+  node_00000068 -> node_000000a3;
+  node_00000109 -> node_000000e6;
+  node_00000018 -> node_0000003f;
+  node_000000c2 -> node_000000b1;
+  node_00000098 -> node_000000a8;
+  node_00000093 -> node_00000110;
+  node_0000003e -> node_0000007f;
+  node_00000033 -> node_00000061;
+  node_00000131 -> node_000000fc;
+  node_000000ee -> node_000000b1;
+  node_00000057 -> node_000000c9;
+  node_0000000b -> node_0000000f;
+  node_0000011c -> node_00000125;
+
+  // Basic blocks
+  node_00000029 [label="0x00000029-0x00000033"];
+  node_00000076 [label="0x00000076-0x0000007e"];
+  node_000000dc [label="0x000000dc-0x000000e1"];
+  node_00000124 [label="0x00000124-0x00000124"];
+  node_00000125 [label="0x00000125-0x00000131"];
+  node_0000004b [label="0x0000004b-0x00000057"];
+  node_0000015c [label="0x0000015c-0x0000015c"];
+  node_0000015b [label="0x0000015b-0x0000015b"];
+  node_0000015a [label="0x0000015a-0x0000015a"];
+  node_00000152 [label="0x00000152-0x00000159"];
+  node_00000151 [label="0x00000151-0x00000151"];
+  node_000000f6 [label="0x000000f6-0x000000f8"];
+  node_000000f9 [label="0x000000f9-0x000000fb"];
+  node_000000a3 [label="0x000000a3-0x000000a7"];
+  node_000000a8 [label="0x000000a8-0x000000b0"];
+  node_000000fc [label="0x000000fc-0x00000109"];
+  node_00000069 [label="0x00000069-0x00000075"];
+  node_00000019 [label="0x00000019-0x00000028"];
+  node_000000c9 [label="0x000000c9-0x000000db"];
+  node_000000c3 [label="0x000000c3-0x000000c8"];
+  node_0000010a [label="0x0000010a-0x0000010f"];
+  node_00000099 [label="0x00000099-0x0000009a"];
+  node_0000013c [label="0x0000013c-0x00000143"];
+  node_0000013b [label="0x0000013b-0x0000013b"];
+  node_00000094 [label="0x00000094-0x00000098"];
+  node_0000003f [label="0x0000003f-0x00000042"];
+  node_00000034 [label="0x00000034-0x0000003e"];
+  node_00000132 [label="0x00000132-0x0000013a"];
+  node_0000009b [label="0x0000009b-0x000000a2"];
+  node_000000ef [label="0x000000ef-0x000000f5"];
+  node_000000e6 [label="0x000000e6-0x000000ee"];
+  node_000000e2 [label="0x000000e2-0x000000e5"];
+  node_00000058 [label="0x00000058-0x00000060"];
+  node_000000ba [label="0x000000ba-0x000000c2"];
+  node_0000014a [label="0x0000014a-0x0000014b"];
+  node_0000014c [label="0x0000014c-0x0000014d"];
+  node_0000014e [label="0x0000014e-0x0000014e"];
+  node_00000000 [label="0x00000000-0x0000000b"];
+  node_0000014f [label="0x0000014f-0x00000150"];
+  node_00000110 [label="0x00000110-0x0000011c"];
+  node_000000b1 [label="0x000000b1-0x000000b9"];
+  node_0000000f [label="0x0000000f-0x00000018"];
+  node_00000144 [label="0x00000144-0x00000149"];
+  node_0000000c [label="0x0000000c-0x0000000e"];
+  node_0000011d [label="0x0000011d-0x00000123"];
+}

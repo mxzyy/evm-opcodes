@@ -14,7 +14,6 @@ ENABLE_STACK_PREVIEW=false
 ENABLE_STORAGE_ANNOTATIONS=false
 ENABLE_GAS_TRACKING=false
 ENABLE_CFG_ASCII=false
-ENABLE_CFG_DOT=false
 ENABLE_MEMORY_TRACKING=false
 VERBOSE=false
 
@@ -32,7 +31,6 @@ Options:
   --storage-annotations    Enable storage slot annotations (maps SLOAD/SSTORE to variable names)
   --gas-tracking           Enable gas cost tracking (shows individual and cumulative costs)
   --cfg-ascii              Generate ASCII control flow graph
-  --cfg-dot                Generate DOT format control flow graph (for Graphviz)
   --memory-tracking        Enable memory layout tracking
   --all                    Enable all analysis features
   --verbose                Enable verbose/debug output
@@ -45,8 +43,8 @@ Examples:
   ./disassemble.sh --gas-tracking --storage-annotations  # Custom combination
 
 Output:
-  Disassembled bytecode is saved to disassembly/<ContractName>-Opcodes.asm
-  DOT files (if enabled) are saved to disassembly/<ContractName>-CFG.dot
+  Disassembled bytecode is saved to disassembly/<SolFileName>/<ContractName>-Opcodes.asm
+  Bytecode files are saved to disassembly/<SolFileName>/<ContractName>-Bytecodes.hex
 EOF
   exit 0
 }
@@ -73,10 +71,6 @@ parse_args() {
         ENABLE_CFG_ASCII=true
         shift
         ;;
-      --cfg-dot)
-        ENABLE_CFG_DOT=true
-        shift
-        ;;
       --memory-tracking)
         ENABLE_MEMORY_TRACKING=true
         shift
@@ -86,7 +80,6 @@ parse_args() {
         ENABLE_STORAGE_ANNOTATIONS=true
         ENABLE_GAS_TRACKING=true
         ENABLE_CFG_ASCII=true
-        ENABLE_CFG_DOT=true
         ENABLE_MEMORY_TRACKING=true
         shift
         ;;
@@ -1814,7 +1807,7 @@ mkdir -p "$OUT_DIR"
 any_analysis_enabled=false
 if [[ "$ENABLE_STACK_PREVIEW" == true ]] || [[ "$ENABLE_STORAGE_ANNOTATIONS" == true ]] || \
    [[ "$ENABLE_GAS_TRACKING" == true ]] || [[ "$ENABLE_CFG_ASCII" == true ]] || \
-   [[ "$ENABLE_CFG_DOT" == true ]] || [[ "$ENABLE_MEMORY_TRACKING" == true ]]; then
+   [[ "$ENABLE_MEMORY_TRACKING" == true ]]; then
   any_analysis_enabled=true
   echo "════════════════════════════════════════════════════════════════"
   echo "Advanced Analysis Features Enabled:"
@@ -1823,7 +1816,6 @@ if [[ "$ENABLE_STACK_PREVIEW" == true ]] || [[ "$ENABLE_STORAGE_ANNOTATIONS" == 
   [[ "$ENABLE_GAS_TRACKING" == true ]] && echo "  ✓ Gas cost tracking"
   [[ "$ENABLE_MEMORY_TRACKING" == true ]] && echo "  ✓ Memory layout tracking"
   [[ "$ENABLE_CFG_ASCII" == true ]] && echo "  ✓ Control flow graph (ASCII)"
-  [[ "$ENABLE_CFG_DOT" == true ]] && echo "  ✓ Control flow graph (DOT)"
   echo "════════════════════════════════════════════════════════════════"
   echo ""
 fi
@@ -1846,18 +1838,24 @@ for sol_file in "${solidity_files[@]}"; do
     continue
   fi
 
+  # Extract base name of .sol file (without extension)
+  sol_basename=$(basename "$sol_file" .sol)
+  sol_output_dir="${OUT_DIR}/${sol_basename}"
+
+  # Create subdirectory for this .sol file
+  mkdir -p "$sol_output_dir"
+
   for contract in "${contracts[@]}"; do
     target="${sol_file}:${contract}"
-    bytecode_file="${OUT_DIR}/${contract}-Bytecodes.hex"
-    opcode_file="${OUT_DIR}/${contract}-Opcodes.asm"
-    cfg_dot_file="${OUT_DIR}/${contract}-CFG.dot"
-    opcode_file_tmp="${OUT_DIR}/${contract}--Opcodes.tmp"
-    opcode_file_fixed="${OUT_DIR}/${contract}--Opcodes-fixed.tmp"
-    opcode_file_split="${OUT_DIR}/${contract}--Opcodes-split.tmp"
-    opcode_file_push4="${OUT_DIR}/${contract}--Opcodes-push4.tmp"
-    opcode_file_bodies="${OUT_DIR}/${contract}--Opcodes-bodies.tmp"
-    opcode_file_sections="${OUT_DIR}/${contract}--Opcodes-sections.tmp"
-    opcode_file_analysis="${OUT_DIR}/${contract}--Opcodes-analysis.tmp"
+    bytecode_file="${sol_output_dir}/${contract}-Bytecodes.hex"
+    opcode_file="${sol_output_dir}/${contract}-Opcodes.asm"
+    opcode_file_tmp="${sol_output_dir}/${contract}--Opcodes.tmp"
+    opcode_file_fixed="${sol_output_dir}/${contract}--Opcodes-fixed.tmp"
+    opcode_file_split="${sol_output_dir}/${contract}--Opcodes-split.tmp"
+    opcode_file_push4="${sol_output_dir}/${contract}--Opcodes-push4.tmp"
+    opcode_file_bodies="${sol_output_dir}/${contract}--Opcodes-bodies.tmp"
+    opcode_file_sections="${sol_output_dir}/${contract}--Opcodes-sections.tmp"
+    opcode_file_analysis="${sol_output_dir}/${contract}--Opcodes-analysis.tmp"
 
     echo "Inspecting ${target}"
 
@@ -1924,21 +1922,13 @@ for sol_file in "${solidity_files[@]}"; do
           apply_advanced_analysis "$opcode_file_sections" "$opcode_file_analysis"
 
           # Step 10: Generate CFG if enabled
-          if [[ "$ENABLE_CFG_ASCII" == true ]] || [[ "$ENABLE_CFG_DOT" == true ]]; then
+          if [[ "$ENABLE_CFG_ASCII" == true ]]; then
             echo "  ↳ Building control flow graph..."
             cfg_collect_data "$opcode_file_analysis"
             cfg_build_edges "$opcode_file_analysis"
 
             # Append ASCII CFG to output
-            if [[ "$ENABLE_CFG_ASCII" == true ]]; then
-              cfg_generate_ascii "$opcode_file_analysis" >> "$opcode_file_analysis"
-            fi
-
-            # Generate DOT file
-            if [[ "$ENABLE_CFG_DOT" == true ]]; then
-              cfg_generate_dot "$cfg_dot_file"
-              echo "  ✓ Generated CFG DOT file: ${cfg_dot_file}"
-            fi
+            cfg_generate_ascii "$opcode_file_analysis" >> "$opcode_file_analysis"
           fi
 
           # Move final analysis output to opcode file
@@ -1980,6 +1970,7 @@ done
 echo ""
 echo "════════════════════════════════════════════════════════════════"
 echo "✓ Disassembly complete"
+echo "  - Output organized by Solidity file in disassembly/<SolFileName>/"
 echo "  - Offsets converted to 0-based (EVM standard)"
 echo "  - Creation and Runtime code separated"
 echo "  - Runtime code offsets reset to 0"
@@ -1994,6 +1985,5 @@ if [[ "$any_analysis_enabled" == true ]]; then
   [[ "$ENABLE_GAS_TRACKING" == true ]] && echo "  - Gas cost tracking (individual + cumulative)"
   [[ "$ENABLE_MEMORY_TRACKING" == true ]] && echo "  - Memory layout tracking"
   [[ "$ENABLE_CFG_ASCII" == true ]] && echo "  - ASCII control flow graph"
-  [[ "$ENABLE_CFG_DOT" == true ]] && echo "  - DOT format control flow graph (use with Graphviz)"
 fi
 echo "════════════════════════════════════════════════════════════════"

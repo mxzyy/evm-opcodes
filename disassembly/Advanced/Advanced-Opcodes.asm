@@ -2,48 +2,48 @@
 ║                      CREATION CODE                             ║
 ╚════════════════════════════════════════════════════════════════╝
 
-00000000: PUSH1 0x80                         │ Stack: [0x80] # gas: 3 (total: 3)
-00000002: PUSH1 0x40                         │ Stack: [0x40, 0x80] # gas: 3 (total: 6)
-00000004: MSTORE                             │ Stack: [] # gas: 3 (total: 9) # memory write: free memory pointer (free memory pointer)
-00000005: CALLVALUE                          │ Stack: [[CALLVALUE]] # gas: 2 (total: 11)
-00000006: DUP1                               │ Stack: [[CALLVALUE], [CALLVALUE]] # gas: 3 (total: 14)
-00000007: ISZERO                             │ Stack: [[![CALLVALUE]], [CALLVALUE], [CALLVALUE]] # gas: 3 (total: 17)
-00000008: PUSH1 0x0e                         │ Stack: [0x0e, [![CALLVALUE]], [CALLVALUE], [CALLVALUE]] # gas: 3 (total: 20)
-0000000a: JUMPI                              │ Stack: [[CALLVALUE], [CALLVALUE]] # gas: 10 (total: 30)
-0000000b: PUSH0                              │ Stack: [0x0, [CALLVALUE], [CALLVALUE]] # gas: 2 (total: 32)
-0000000c: PUSH0                              │ Stack: [0x0, 0x0, [CALLVALUE], [CALLVALUE]] # gas: 2 (total: 34)
-0000000d: REVERT                             │ Stack: [] # gas: 0 (total: 34)
-0000000e: JUMPDEST                           │ Stack: [] # gas: 1 (total: 35)
-0000000f: POP                                │ Stack: [] # gas: 2 (total: 37)
-00000010: CALLER                             │ Stack: [[CALLER]] # gas: 2 (total: 39)
-00000011: PUSH0                              │ Stack: [0x0, [CALLER]] # gas: 2 (total: 41)
-00000012: PUSH0                              │ Stack: [0x0, 0x0, [CALLER]] # gas: 2 (total: 43)
-00000013: PUSH2 0x0100                       │ Stack: [0x0100, 0x0, 0x0, [CALLER]] # gas: 3 (total: 46)
-00000016: EXP                                │ Stack: [[arith], 0x0100, 0x0, 0x0, ...+1] # gas: 10 (base + dynamic) (total: 56+)
-00000017: DUP2                               │ Stack: [0x0100, [arith], 0x0100, 0x0, ...+2] # gas: 3 (total: 59+)
-00000018: SLOAD                              │ Stack: [[S@0x0100], 0x0100, [arith], 0x0100, ...+3] # gas: 100 (warm) / 2100 (cold) (total: 159+)
-00000019: DUP2                               │ Stack: [0x0100, [S@0x0100], 0x0100, [arith], ...+4] # gas: 3 (total: 162+)
-0000001a: PUSH20 0xffffffffffffffffffffffffffffffffffffffff │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, 0x0100, [S@0x0100], 0x0100, ...+5] # gas: 3 (total: 165+)
-0000002f: MUL                                │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0x0100, [S@0x0100], ...+6] # gas: 5 (total: 170+)
-00000030: NOT                                │ Stack: [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0x0100, ...+7] # gas: 3 (total: 173+)
-00000031: AND                                │ Stack: [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+8] # gas: 3 (total: 176+)
-00000032: SWAP1                              │ Stack: [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+8] # gas: 3 (total: 179+)
-00000033: DUP4                               │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], ...+9] # gas: 3 (total: 182+)
-00000034: PUSH20 0xffffffffffffffffffffffffffffffffffffffff │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], ...+10] # gas: 3 (total: 185+)
-00000049: AND                                │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], ...+11] # gas: 3 (total: 188+)
-0000004a: MUL                                │ Stack: [[[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]*[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, ...+12] # gas: 5 (total: 193+)
-0000004b: OR                                 │ Stack: [[[[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]*[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]]|[[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]*[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]]], [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]*[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+13] # gas: 3 (total: 196+)
-0000004c: SWAP1                              │ Stack: [[[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]*[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]], [[[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]*[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]]|[[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]*[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+13] # gas: 3 (total: 199+)
-0000004d: SSTORE                             │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], ...+11] # gas: 100 (warm) / 20000 (cold new) (total: 299+)
-0000004e: POP                                │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], ...+10] # gas: 2 (total: 301+)
-0000004f: PUSH2 0x05a8                       │ Stack: [0x05a8, 0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], ...+11] # gas: 3 (total: 304+)
-00000052: DUP1                               │ Stack: [0x05a8, 0x05a8, 0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, ...+12] # gas: 3 (total: 307+)
-00000053: PUSH2 0x005b                       │ Stack: [0x005b, 0x05a8, 0x05a8, 0xffffffffffffffffffffffffffffffffffffffff, ...+13] # gas: 3 (total: 310+)
-00000056: PUSH0                              │ Stack: [0x0, 0x005b, 0x05a8, 0x05a8, ...+14] # gas: 2 (total: 312+)
-00000057: CODECOPY                           │ Stack: [0x05a8, 0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], ...+11] # gas: 3 (base + dynamic) (total: 315+)
-00000058: PUSH0                              │ Stack: [0x0, 0x05a8, 0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, ...+12] # gas: 2 (total: 317+)
-00000059: RETURN                             │ Stack: [] # gas: 0 (total: 317+)
-0000005a: INVALID                            │ Stack: [] # gas: 0 (total: 317+)
+00000000: PUSH1 0x80
+00000002: PUSH1 0x40
+00000004: MSTORE
+00000005: CALLVALUE
+00000006: DUP1
+00000007: ISZERO
+00000008: PUSH1 0x0e
+0000000a: JUMPI
+0000000b: PUSH0
+0000000c: PUSH0
+0000000d: REVERT
+0000000e: JUMPDEST
+0000000f: POP
+00000010: CALLER
+00000011: PUSH0
+00000012: PUSH0
+00000013: PUSH2 0x0100
+00000016: EXP
+00000017: DUP2
+00000018: SLOAD
+00000019: DUP2
+0000001a: PUSH20 0xffffffffffffffffffffffffffffffffffffffff
+0000002f: MUL
+00000030: NOT
+00000031: AND
+00000032: SWAP1
+00000033: DUP4
+00000034: PUSH20 0xffffffffffffffffffffffffffffffffffffffff
+00000049: AND
+0000004a: MUL
+0000004b: OR
+0000004c: SWAP1
+0000004d: SSTORE
+0000004e: POP
+0000004f: PUSH2 0x05a8
+00000052: DUP1
+00000053: PUSH2 0x005b
+00000056: PUSH0
+00000057: CODECOPY
+00000058: PUSH0
+00000059: RETURN
+0000005a: INVALID
 
 ╔════════════════════════════════════════════════════════════════╗
 ║                      RUNTIME CODE                              ║
@@ -55,821 +55,752 @@
 ║              Memory Init & Callvalue Check                     ║
 ╚════════════════════════════════════════════════════════════════╝
 
-00000000: PUSH1 0x80                         │ Stack: [0x80] # gas: 3 (total: 320+)
-00000002: PUSH1 0x40                         │ Stack: [0x40, 0x80] # gas: 3 (total: 323+)
-00000004: MSTORE                             │ Stack: [] # gas: 3 (total: 326+) # memory write: free memory pointer (free memory pointer)
-00000005: CALLVALUE                          │ Stack: [[CALLVALUE]] # gas: 2 (total: 328+)
-00000006: DUP1                               │ Stack: [[CALLVALUE], [CALLVALUE]] # gas: 3 (total: 331+)
-00000007: ISZERO                             │ Stack: [[![CALLVALUE]], [CALLVALUE], [CALLVALUE]] # gas: 3 (total: 334+)
-00000008: PUSH2 0x000f                       │ Stack: [0x000f, [![CALLVALUE]], [CALLVALUE], [CALLVALUE]] # gas: 3 (total: 337+)
-0000000b: JUMPI                              │ Stack: [[CALLVALUE], [CALLVALUE]] # gas: 10 (total: 347+)
-0000000c: PUSH0                              │ Stack: [0x0, [CALLVALUE], [CALLVALUE]] # gas: 2 (total: 349+)
-0000000d: PUSH0                              │ Stack: [0x0, 0x0, [CALLVALUE], [CALLVALUE]] # gas: 2 (total: 351+)
-0000000e: REVERT                             │ Stack: [] # gas: 0 (total: 351+)
-0000000f: JUMPDEST                           │ Stack: [] # gas: 1 (total: 352+)
-00000010: POP                                │ Stack: [] # gas: 2 (total: 354+)
-00000011: PUSH1 0x04                         │ Stack: [0x04] # gas: 3 (total: 357+)
-00000013: CALLDATASIZE                       │ Stack: [[CALLDATASIZE], 0x04] # gas: 2 (total: 359+)
-00000014: LT                                 │ Stack: [[cmp], [CALLDATASIZE], 0x04] # gas: 3 (total: 362+)
-00000015: PUSH2 0x004a                       │ Stack: [0x004a, [cmp], [CALLDATASIZE], 0x04] # gas: 3 (total: 365+)
-00000018: JUMPI                              │ Stack: [[CALLDATASIZE], 0x04] # gas: 10 (total: 375+)
-00000019: PUSH0                              │ Stack: [0x0, [CALLDATASIZE], 0x04] # gas: 2 (total: 377+)
+00000000: PUSH1 0x80
+00000002: PUSH1 0x40
+00000004: MSTORE
+00000005: CALLVALUE
+00000006: DUP1
+00000007: ISZERO
+00000008: PUSH2 0x000f
+0000000b: JUMPI
+0000000c: PUSH0
+0000000d: PUSH0
+0000000e: REVERT
+0000000f: JUMPDEST
+00000010: POP
+00000011: PUSH1 0x04
+00000013: CALLDATASIZE
+00000014: LT
+00000015: PUSH2 0x004a
+00000018: JUMPI
+00000019: PUSH0
 
 ╔════════════════════════════════════════════════════════════════╗
 ║                   FUNCTION DISPATCHER                          ║
 ║             Routes Calls to Function Bodies                    ║
 ╚════════════════════════════════════════════════════════════════╝
 
-0000001a: CALLDATALOAD                       │ Stack: [[CD@0x0], 0x0, [CALLDATASIZE], 0x04] # gas: 3 (total: 380+)
-0000001b: PUSH1 0xe0                         │ Stack: [0xe0, [CD@0x0], 0x0, [CALLDATASIZE], ...+1] # gas: 3 (total: 383+)
-0000001d: SHR                                │ Stack: [[0xe0>>0xe0], 0xe0, [CD@0x0], 0x0, ...+2] # gas: 3 (total: 386+)
-0000001e: DUP1                               │ Stack: [[0xe0>>0xe0], [0xe0>>0xe0], 0xe0, [CD@0x0], ...+3] # gas: 3 (total: 389+)
-0000001f: PUSH4 0x021e9894                   │ Stack: [0x021e9894, [0xe0>>0xe0], [0xe0>>0xe0], 0xe0, ...+4]# protectedFunction() # gas: 3 (total: 392+)
-00000024: EQ                                 │ Stack: [[cmp], 0x021e9894, [0xe0>>0xe0], [0xe0>>0xe0], ...+5] # gas: 3 (total: 395+)
-00000025: PUSH2 0x004e                       │ Stack: [0x004e, [cmp], 0x021e9894, [0xe0>>0xe0], ...+6] # gas: 3 (total: 398+)
-00000028: JUMPI                              │ Stack: [0x021e9894, [0xe0>>0xe0], [0xe0>>0xe0], 0xe0, ...+4] # gas: 10 (total: 408+)
-00000029: DUP1                               │ Stack: [0x021e9894, 0x021e9894, [0xe0>>0xe0], [0xe0>>0xe0], ...+5] # gas: 3 (total: 411+)
-0000002a: PUSH4 0x777acf37                   │ Stack: [0x777acf37, 0x021e9894, 0x021e9894, [0xe0>>0xe0], ...+6]# restrictedFunction() # gas: 3 (total: 414+)
-0000002f: EQ                                 │ Stack: [[cmp], 0x777acf37, 0x021e9894, 0x021e9894, ...+7] # gas: 3 (total: 417+)
-00000030: PUSH2 0x006c                       │ Stack: [0x006c, [cmp], 0x777acf37, 0x021e9894, ...+8] # gas: 3 (total: 420+)
-00000033: JUMPI                              │ Stack: [0x777acf37, 0x021e9894, 0x021e9894, [0xe0>>0xe0], ...+6] # gas: 10 (total: 430+)
-00000034: DUP1                               │ Stack: [0x777acf37, 0x777acf37, 0x021e9894, 0x021e9894, ...+7] # gas: 3 (total: 433+)
-00000035: PUSH4 0x8da5cb5b                   │ Stack: [0x8da5cb5b, 0x777acf37, 0x777acf37, 0x021e9894, ...+8]# owner() # gas: 3 (total: 436+)
-0000003a: EQ                                 │ Stack: [[cmp], 0x8da5cb5b, 0x777acf37, 0x777acf37, ...+9] # gas: 3 (total: 439+)
-0000003b: PUSH2 0x008a                       │ Stack: [0x008a, [cmp], 0x8da5cb5b, 0x777acf37, ...+10] # gas: 3 (total: 442+)
-0000003e: JUMPI                              │ Stack: [0x8da5cb5b, 0x777acf37, 0x777acf37, 0x021e9894, ...+8] # gas: 10 (total: 452+)
-0000003f: DUP1                               │ Stack: [0x8da5cb5b, 0x8da5cb5b, 0x777acf37, 0x777acf37, ...+9] # gas: 3 (total: 455+)
-00000040: PUSH4 0xf2fde38b                   │ Stack: [0xf2fde38b, 0x8da5cb5b, 0x8da5cb5b, 0x777acf37, ...+10]# transferOwnership(address) # gas: 3 (total: 458+)
-00000045: EQ                                 │ Stack: [[cmp], 0xf2fde38b, 0x8da5cb5b, 0x8da5cb5b, ...+11] # gas: 3 (total: 461+)
-00000046: PUSH2 0x00a8                       │ Stack: [0x00a8, [cmp], 0xf2fde38b, 0x8da5cb5b, ...+12] # gas: 3 (total: 464+)
-00000049: JUMPI                              │ Stack: [0xf2fde38b, 0x8da5cb5b, 0x8da5cb5b, 0x777acf37, ...+10] # gas: 10 (total: 474+)
-0000004a: JUMPDEST                           │ Stack: [0xf2fde38b, 0x8da5cb5b, 0x8da5cb5b, 0x777acf37, ...+10] # gas: 1 (total: 475+)
-0000004b: PUSH0                              │ Stack: [0x0, 0xf2fde38b, 0x8da5cb5b, 0x8da5cb5b, ...+11] # gas: 2 (total: 477+)
-0000004c: PUSH0                              │ Stack: [0x0, 0x0, 0xf2fde38b, 0x8da5cb5b, ...+12] # gas: 2 (total: 479+)
-0000004d: REVERT                             │ Stack: [] # gas: 0 (total: 479+)
+0000001a: CALLDATALOAD
+0000001b: PUSH1 0xe0
+0000001d: SHR
+0000001e: DUP1
+0000001f: PUSH4 0x021e9894 # protectedFunction()
+00000024: EQ
+00000025: PUSH2 0x004e
+00000028: JUMPI
+00000029: DUP1
+0000002a: PUSH4 0x777acf37 # restrictedFunction()
+0000002f: EQ
+00000030: PUSH2 0x006c
+00000033: JUMPI
+00000034: DUP1
+00000035: PUSH4 0x8da5cb5b # owner()
+0000003a: EQ
+0000003b: PUSH2 0x008a
+0000003e: JUMPI
+0000003f: DUP1
+00000040: PUSH4 0xf2fde38b # transferOwnership(address)
+00000045: EQ
+00000046: PUSH2 0x00a8
+00000049: JUMPI
+0000004a: JUMPDEST
+0000004b: PUSH0
+0000004c: PUSH0
+0000004d: REVERT
 
 ╔════════════════════════════════════════════════════════════════╗
 ║                    FUNCTION BODIES                             ║
 ║              External Function Implementations                 ║
 ╚════════════════════════════════════════════════════════════════╝
 
-0000004e: JUMPDEST                           │ Stack: [] # === protectedFunction() === # gas: 1 (total: 480+)
-0000004f: PUSH2 0x0056                       │ Stack: [0x0056] # gas: 3 (total: 483+)
-00000052: PUSH2 0x00c4                       │ Stack: [0x00c4, 0x0056] # gas: 3 (total: 486+)
-00000055: JUMP                               │ Stack: [0x0056] # gas: 8 (total: 494+)
-00000056: JUMPDEST                           │ Stack: [0x0056] # gas: 1 (total: 495+)
-00000057: PUSH1 0x40                         │ Stack: [0x40, 0x0056] # gas: 3 (total: 498+)
-00000059: MLOAD                              │ Stack: [[M@0x40], 0x40, 0x0056] # gas: 3 (total: 501+) # memory read: free memory pointer
-0000005a: PUSH2 0x0063                       │ Stack: [0x0063, [M@0x40], 0x40, 0x0056] # gas: 3 (total: 504+)
-0000005d: SWAP2                              │ Stack: [0x40, [M@0x40], 0x0063, 0x0056] # gas: 3 (total: 507+)
-0000005e: SWAP1                              │ Stack: [[M@0x40], 0x40, 0x0063, 0x0056] # gas: 3 (total: 510+)
-0000005f: PUSH2 0x0360                       │ Stack: [0x0360, [M@0x40], 0x40, 0x0063, ...+1] # gas: 3 (total: 513+)
-00000062: JUMP                               │ Stack: [[M@0x40], 0x40, 0x0063, 0x0056] # gas: 8 (total: 521+)
-00000063: JUMPDEST                           │ Stack: [[M@0x40], 0x40, 0x0063, 0x0056] # gas: 1 (total: 522+)
-00000064: PUSH1 0x40                         │ Stack: [0x40, [M@0x40], 0x40, 0x0063, ...+1] # gas: 3 (total: 525+)
-00000066: MLOAD                              │ Stack: [[M@0x40], 0x40, [M@0x40], 0x40, ...+2] # gas: 3 (total: 528+) # memory read: free memory pointer
-00000067: DUP1                               │ Stack: [[M@0x40], [M@0x40], 0x40, [M@0x40], ...+3] # gas: 3 (total: 531+)
-00000068: SWAP2                              │ Stack: [0x40, [M@0x40], [M@0x40], [M@0x40], ...+3] # gas: 3 (total: 534+)
-00000069: SUB                                │ Stack: [[0x40-0x40], 0x40, [M@0x40], [M@0x40], ...+4] # gas: 3 (total: 537+)
-0000006a: SWAP1                              │ Stack: [0x40, [0x40-0x40], [M@0x40], [M@0x40], ...+4] # gas: 3 (total: 540+)
-0000006b: RETURN                             │ Stack: [] # gas: 0 (total: 540+)
-0000006c: JUMPDEST                           │ Stack: [] # === restrictedFunction() === # gas: 1 (total: 541+)
-0000006d: PUSH2 0x0074                       │ Stack: [0x0074] # gas: 3 (total: 544+)
-00000070: PUSH2 0x014e                       │ Stack: [0x014e, 0x0074] # gas: 3 (total: 547+)
-00000073: JUMP                               │ Stack: [0x0074] # gas: 8 (total: 555+)
-00000074: JUMPDEST                           │ Stack: [0x0074] # gas: 1 (total: 556+)
-00000075: PUSH1 0x40                         │ Stack: [0x40, 0x0074] # gas: 3 (total: 559+)
-00000077: MLOAD                              │ Stack: [[M@0x40], 0x40, 0x0074] # gas: 3 (total: 562+) # memory read: free memory pointer
-00000078: PUSH2 0x0081                       │ Stack: [0x0081, [M@0x40], 0x40, 0x0074] # gas: 3 (total: 565+)
-0000007b: SWAP2                              │ Stack: [0x40, [M@0x40], 0x0081, 0x0074] # gas: 3 (total: 568+)
-0000007c: SWAP1                              │ Stack: [[M@0x40], 0x40, 0x0081, 0x0074] # gas: 3 (total: 571+)
-0000007d: PUSH2 0x0360                       │ Stack: [0x0360, [M@0x40], 0x40, 0x0081, ...+1] # gas: 3 (total: 574+)
-00000080: JUMP                               │ Stack: [[M@0x40], 0x40, 0x0081, 0x0074] # gas: 8 (total: 582+)
-00000081: JUMPDEST                           │ Stack: [[M@0x40], 0x40, 0x0081, 0x0074] # gas: 1 (total: 583+)
-00000082: PUSH1 0x40                         │ Stack: [0x40, [M@0x40], 0x40, 0x0081, ...+1] # gas: 3 (total: 586+)
-00000084: MLOAD                              │ Stack: [[M@0x40], 0x40, [M@0x40], 0x40, ...+2] # gas: 3 (total: 589+) # memory read: free memory pointer
-00000085: DUP1                               │ Stack: [[M@0x40], [M@0x40], 0x40, [M@0x40], ...+3] # gas: 3 (total: 592+)
-00000086: SWAP2                              │ Stack: [0x40, [M@0x40], [M@0x40], [M@0x40], ...+3] # gas: 3 (total: 595+)
-00000087: SUB                                │ Stack: [[0x40-0x40], 0x40, [M@0x40], [M@0x40], ...+4] # gas: 3 (total: 598+)
-00000088: SWAP1                              │ Stack: [0x40, [0x40-0x40], [M@0x40], [M@0x40], ...+4] # gas: 3 (total: 601+)
-00000089: RETURN                             │ Stack: [] # gas: 0 (total: 601+)
-0000008a: JUMPDEST                           │ Stack: [] # === owner() === # gas: 1 (total: 602+)
-0000008b: PUSH2 0x0092                       │ Stack: [0x0092] # gas: 3 (total: 605+)
-0000008e: PUSH2 0x01e4                       │ Stack: [0x01e4, 0x0092] # gas: 3 (total: 608+)
-00000091: JUMP                               │ Stack: [0x0092] # gas: 8 (total: 616+)
-00000092: JUMPDEST                           │ Stack: [0x0092] # gas: 1 (total: 617+)
-00000093: PUSH1 0x40                         │ Stack: [0x40, 0x0092] # gas: 3 (total: 620+)
-00000095: MLOAD                              │ Stack: [[M@0x40], 0x40, 0x0092] # gas: 3 (total: 623+) # memory read: free memory pointer
-00000096: PUSH2 0x009f                       │ Stack: [0x009f, [M@0x40], 0x40, 0x0092] # gas: 3 (total: 626+)
-00000099: SWAP2                              │ Stack: [0x40, [M@0x40], 0x009f, 0x0092] # gas: 3 (total: 629+)
-0000009a: SWAP1                              │ Stack: [[M@0x40], 0x40, 0x009f, 0x0092] # gas: 3 (total: 632+)
-0000009b: PUSH2 0x03b8                       │ Stack: [0x03b8, [M@0x40], 0x40, 0x009f, ...+1] # gas: 3 (total: 635+)
-0000009e: JUMP                               │ Stack: [[M@0x40], 0x40, 0x009f, 0x0092] # gas: 8 (total: 643+)
-0000009f: JUMPDEST                           │ Stack: [[M@0x40], 0x40, 0x009f, 0x0092] # gas: 1 (total: 644+)
-000000a0: PUSH1 0x40                         │ Stack: [0x40, [M@0x40], 0x40, 0x009f, ...+1] # gas: 3 (total: 647+)
-000000a2: MLOAD                              │ Stack: [[M@0x40], 0x40, [M@0x40], 0x40, ...+2] # gas: 3 (total: 650+) # memory read: free memory pointer
-000000a3: DUP1                               │ Stack: [[M@0x40], [M@0x40], 0x40, [M@0x40], ...+3] # gas: 3 (total: 653+)
-000000a4: SWAP2                              │ Stack: [0x40, [M@0x40], [M@0x40], [M@0x40], ...+3] # gas: 3 (total: 656+)
-000000a5: SUB                                │ Stack: [[0x40-0x40], 0x40, [M@0x40], [M@0x40], ...+4] # gas: 3 (total: 659+)
-000000a6: SWAP1                              │ Stack: [0x40, [0x40-0x40], [M@0x40], [M@0x40], ...+4] # gas: 3 (total: 662+)
-000000a7: RETURN                             │ Stack: [] # gas: 0 (total: 662+)
-000000a8: JUMPDEST                           │ Stack: [] # === transferOwnership(address) === # gas: 1 (total: 663+)
-000000a9: PUSH2 0x00c2                       │ Stack: [0x00c2] # gas: 3 (total: 666+)
-000000ac: PUSH1 0x04                         │ Stack: [0x04, 0x00c2] # gas: 3 (total: 669+)
-000000ae: DUP1                               │ Stack: [0x04, 0x04, 0x00c2] # gas: 3 (total: 672+)
-000000af: CALLDATASIZE                       │ Stack: [[CALLDATASIZE], 0x04, 0x04, 0x00c2] # gas: 2 (total: 674+)
-000000b0: SUB                                │ Stack: [[[CALLDATASIZE]-[CALLDATASIZE]], [CALLDATASIZE], 0x04, 0x04, ...+1] # gas: 3 (total: 677+)
-000000b1: DUP2                               │ Stack: [[CALLDATASIZE], [[CALLDATASIZE]-[CALLDATASIZE]], [CALLDATASIZE], 0x04, ...+2] # gas: 3 (total: 680+)
-000000b2: ADD                                │ Stack: [[[CALLDATASIZE]+[CALLDATASIZE]], [CALLDATASIZE], [[CALLDATASIZE]-[CALLDATASIZE]], [CALLDATASIZE], ...+3] # gas: 3 (total: 683+)
-000000b3: SWAP1                              │ Stack: [[CALLDATASIZE], [[CALLDATASIZE]+[CALLDATASIZE]], [[CALLDATASIZE]-[CALLDATASIZE]], [CALLDATASIZE], ...+3] # gas: 3 (total: 686+)
-000000b4: PUSH2 0x00bd                       │ Stack: [0x00bd, [CALLDATASIZE], [[CALLDATASIZE]+[CALLDATASIZE]], [[CALLDATASIZE]-[CALLDATASIZE]], ...+4] # gas: 3 (total: 689+)
-000000b7: SWAP2                              │ Stack: [[[CALLDATASIZE]+[CALLDATASIZE]], [CALLDATASIZE], 0x00bd, [[CALLDATASIZE]-[CALLDATASIZE]], ...+4] # gas: 3 (total: 692+)
-000000b8: SWAP1                              │ Stack: [[CALLDATASIZE], [[CALLDATASIZE]+[CALLDATASIZE]], 0x00bd, [[CALLDATASIZE]-[CALLDATASIZE]], ...+4] # gas: 3 (total: 695+)
-000000b9: PUSH2 0x03ff                       │ Stack: [0x03ff, [CALLDATASIZE], [[CALLDATASIZE]+[CALLDATASIZE]], 0x00bd, ...+5] # gas: 3 (total: 698+)
-000000bc: JUMP                               │ Stack: [[CALLDATASIZE], [[CALLDATASIZE]+[CALLDATASIZE]], 0x00bd, [[CALLDATASIZE]-[CALLDATASIZE]], ...+4] # gas: 8 (total: 706+)
-000000bd: JUMPDEST                           │ Stack: [[CALLDATASIZE], [[CALLDATASIZE]+[CALLDATASIZE]], 0x00bd, [[CALLDATASIZE]-[CALLDATASIZE]], ...+4] # gas: 1 (total: 707+)
-000000be: PUSH2 0x0208                       │ Stack: [0x0208, [CALLDATASIZE], [[CALLDATASIZE]+[CALLDATASIZE]], 0x00bd, ...+5] # gas: 3 (total: 710+)
-000000c1: JUMP                               │ Stack: [[CALLDATASIZE], [[CALLDATASIZE]+[CALLDATASIZE]], 0x00bd, [[CALLDATASIZE]-[CALLDATASIZE]], ...+4] # gas: 8 (total: 718+)
-000000c2: JUMPDEST                           │ Stack: [[CALLDATASIZE], [[CALLDATASIZE]+[CALLDATASIZE]], 0x00bd, [[CALLDATASIZE]-[CALLDATASIZE]], ...+4] # gas: 1 (total: 719+)
-000000c3: STOP                               │ Stack: [] # gas: 0 (total: 719+)
-000000c4: JUMPDEST                           │ Stack: [] # gas: 1 (total: 720+)
-000000c5: PUSH0                              │ Stack: [0x0] # gas: 2 (total: 722+)
-000000c6: PUSH0                              │ Stack: [0x0, 0x0] # gas: 2 (total: 724+)
-000000c7: PUSH1 0x14                         │ Stack: [0x14, 0x0, 0x0] # gas: 3 (total: 727+)
-000000c9: SWAP1                              │ Stack: [0x0, 0x14, 0x0] # gas: 3 (total: 730+)
-000000ca: SLOAD                              │ Stack: [[S@0x0], 0x0, 0x14, 0x0] # gas: 100 (warm) / 2100 (cold) (total: 830+)
-000000cb: SWAP1                              │ Stack: [0x0, [S@0x0], 0x14, 0x0] # gas: 3 (total: 833+)
-000000cc: PUSH2 0x0100                       │ Stack: [0x0100, 0x0, [S@0x0], 0x14, ...+1] # gas: 3 (total: 836+)
-000000cf: EXP                                │ Stack: [[arith], 0x0100, 0x0, [S@0x0], ...+2] # gas: 10 (base + dynamic) (total: 846+)
-000000d0: SWAP1                              │ Stack: [0x0100, [arith], 0x0, [S@0x0], ...+2] # gas: 3 (total: 849+)
-000000d1: DIV                                │ Stack: [[0x0100/0x0100], 0x0100, [arith], 0x0, ...+3] # gas: 5 (total: 854+)
-000000d2: PUSH1 0xff                         │ Stack: [0xff, [0x0100/0x0100], 0x0100, [arith], ...+4] # gas: 3 (total: 857+)
-000000d4: AND                                │ Stack: [[0xff&0xff], 0xff, [0x0100/0x0100], 0x0100, ...+5] # gas: 3 (total: 860+)
-000000d5: ISZERO                             │ Stack: [[![0xff&0xff]], [0xff&0xff], 0xff, [0x0100/0x0100], ...+6] # gas: 3 (total: 863+)
-000000d6: PUSH2 0x0114                       │ Stack: [0x0114, [![0xff&0xff]], [0xff&0xff], 0xff, ...+7] # gas: 3 (total: 866+)
-000000d9: JUMPI                              │ Stack: [[0xff&0xff], 0xff, [0x0100/0x0100], 0x0100, ...+5] # gas: 10 (total: 876+)
-000000da: PUSH1 0x40                         │ Stack: [0x40, [0xff&0xff], 0xff, [0x0100/0x0100], ...+6] # gas: 3 (total: 879+)
-000000dc: MLOAD                              │ Stack: [[M@0x40], 0x40, [0xff&0xff], 0xff, ...+7] # gas: 3 (total: 882+) # memory read: free memory pointer
-000000dd: PUSH32 0x08c379a000000000000000000000000000000000000000000000000000000000 │ Stack: [0x08c379a000000000000000000000000000000000000000000000000000000000, [M@0x40], 0x40, [0xff&0xff], ...+8] # gas: 3 (total: 885+)
-000000fe: DUP2                               │ Stack: [[M@0x40], 0x08c379a000000000000000000000000000000000000000000000000000000000, [M@0x40], 0x40, ...+9] # gas: 3 (total: 888+)
-000000ff: MSTORE                             │ Stack: [[M@0x40], 0x40, [0xff&0xff], 0xff, ...+7] # gas: 3 (total: 891+)
-00000100: PUSH1 0x04                         │ Stack: [0x04, [M@0x40], 0x40, [0xff&0xff], ...+8] # gas: 3 (total: 894+)
-00000102: ADD                                │ Stack: [[0x04+0x04], 0x04, [M@0x40], 0x40, ...+9] # gas: 3 (total: 897+)
-00000103: PUSH2 0x010b                       │ Stack: [0x010b, [0x04+0x04], 0x04, [M@0x40], ...+10] # gas: 3 (total: 900+)
-00000106: SWAP1                              │ Stack: [[0x04+0x04], 0x010b, 0x04, [M@0x40], ...+10] # gas: 3 (total: 903+)
-00000107: PUSH2 0x0484                       │ Stack: [0x0484, [0x04+0x04], 0x010b, 0x04, ...+11] # gas: 3 (total: 906+)
-0000010a: JUMP                               │ Stack: [[0x04+0x04], 0x010b, 0x04, [M@0x40], ...+10] # gas: 8 (total: 914+)
-0000010b: JUMPDEST                           │ Stack: [[0x04+0x04], 0x010b, 0x04, [M@0x40], ...+10] # gas: 1 (total: 915+)
-0000010c: PUSH1 0x40                         │ Stack: [0x40, [0x04+0x04], 0x010b, 0x04, ...+11] # gas: 3 (total: 918+)
-0000010e: MLOAD                              │ Stack: [[M@0x40], 0x40, [0x04+0x04], 0x010b, ...+12] # gas: 3 (total: 921+) # memory read: free memory pointer
-0000010f: DUP1                               │ Stack: [[M@0x40], [M@0x40], 0x40, [0x04+0x04], ...+13] # gas: 3 (total: 924+)
-00000110: SWAP2                              │ Stack: [0x40, [M@0x40], [M@0x40], [0x04+0x04], ...+13] # gas: 3 (total: 927+)
-00000111: SUB                                │ Stack: [[0x40-0x40], 0x40, [M@0x40], [M@0x40], ...+14] # gas: 3 (total: 930+)
-00000112: SWAP1                              │ Stack: [0x40, [0x40-0x40], [M@0x40], [M@0x40], ...+14] # gas: 3 (total: 933+)
-00000113: REVERT                             │ Stack: [] # gas: 0 (total: 933+)
-00000114: JUMPDEST                           │ Stack: [] # gas: 1 (total: 934+)
-00000115: PUSH1 0x01                         │ Stack: [0x01] # gas: 3 (total: 937+)
-00000117: PUSH0                              │ Stack: [0x0, 0x01] # gas: 2 (total: 939+)
-00000118: PUSH1 0x14                         │ Stack: [0x14, 0x0, 0x01] # gas: 3 (total: 942+)
-0000011a: PUSH2 0x0100                       │ Stack: [0x0100, 0x14, 0x0, 0x01] # gas: 3 (total: 945+)
-0000011d: EXP                                │ Stack: [[arith], 0x0100, 0x14, 0x0, ...+1] # gas: 10 (base + dynamic) (total: 955+)
-0000011e: DUP2                               │ Stack: [0x0100, [arith], 0x0100, 0x14, ...+2] # gas: 3 (total: 958+)
-0000011f: SLOAD                              │ Stack: [[S@0x0100], 0x0100, [arith], 0x0100, ...+3] # gas: 100 (warm) / 2100 (cold) (total: 1058+)
-00000120: DUP2                               │ Stack: [0x0100, [S@0x0100], 0x0100, [arith], ...+4] # gas: 3 (total: 1061+)
-00000121: PUSH1 0xff                         │ Stack: [0xff, 0x0100, [S@0x0100], 0x0100, ...+5] # gas: 3 (total: 1064+)
-00000123: MUL                                │ Stack: [[0xff*0xff], 0xff, 0x0100, [S@0x0100], ...+6] # gas: 5 (total: 1069+)
-00000124: NOT                                │ Stack: [[~[0xff*0xff]], [0xff*0xff], 0xff, 0x0100, ...+7] # gas: 3 (total: 1072+)
-00000125: AND                                │ Stack: [[[~[0xff*0xff]]&[~[0xff*0xff]]], [~[0xff*0xff]], [0xff*0xff], 0xff, ...+8] # gas: 3 (total: 1075+)
-00000126: SWAP1                              │ Stack: [[~[0xff*0xff]], [[~[0xff*0xff]]&[~[0xff*0xff]]], [0xff*0xff], 0xff, ...+8] # gas: 3 (total: 1078+)
-00000127: DUP4                               │ Stack: [0xff, [~[0xff*0xff]], [[~[0xff*0xff]]&[~[0xff*0xff]]], [0xff*0xff], ...+9] # gas: 3 (total: 1081+)
-00000128: ISZERO                             │ Stack: [[!0xff], 0xff, [~[0xff*0xff]], [[~[0xff*0xff]]&[~[0xff*0xff]]], ...+10] # gas: 3 (total: 1084+)
-00000129: ISZERO                             │ Stack: [[![!0xff]], [!0xff], 0xff, [~[0xff*0xff]], ...+11] # gas: 3 (total: 1087+)
-0000012a: MUL                                │ Stack: [[[![!0xff]]*[![!0xff]]], [![!0xff]], [!0xff], 0xff, ...+12] # gas: 5 (total: 1092+)
-0000012b: OR                                 │ Stack: [[[[![!0xff]]*[![!0xff]]]|[[![!0xff]]*[![!0xff]]]], [[![!0xff]]*[![!0xff]]], [![!0xff]], [!0xff], ...+13] # gas: 3 (total: 1095+)
-0000012c: SWAP1                              │ Stack: [[[![!0xff]]*[![!0xff]]], [[[![!0xff]]*[![!0xff]]]|[[![!0xff]]*[![!0xff]]]], [![!0xff]], [!0xff], ...+13] # gas: 3 (total: 1098+)
-0000012d: SSTORE                             │ Stack: [[![!0xff]], [!0xff], 0xff, [~[0xff*0xff]], ...+11] # gas: 100 (warm) / 20000 (cold new) (total: 1198+)
-0000012e: POP                                │ Stack: [[!0xff], 0xff, [~[0xff*0xff]], [[~[0xff*0xff]]&[~[0xff*0xff]]], ...+10] # gas: 2 (total: 1200+)
-0000012f: PUSH1 0x01                         │ Stack: [0x01, [!0xff], 0xff, [~[0xff*0xff]], ...+11] # gas: 3 (total: 1203+)
-00000131: SWAP1                              │ Stack: [[!0xff], 0x01, 0xff, [~[0xff*0xff]], ...+11] # gas: 3 (total: 1206+)
-00000132: POP                                │ Stack: [0x01, 0xff, [~[0xff*0xff]], [[~[0xff*0xff]]&[~[0xff*0xff]]], ...+10] # gas: 2 (total: 1208+)
-00000133: PUSH0                              │ Stack: [0x0, 0x01, 0xff, [~[0xff*0xff]], ...+11] # gas: 2 (total: 1210+)
-00000134: PUSH0                              │ Stack: [0x0, 0x0, 0x01, 0xff, ...+12] # gas: 2 (total: 1212+)
-00000135: PUSH1 0x14                         │ Stack: [0x14, 0x0, 0x0, 0x01, ...+13] # gas: 3 (total: 1215+)
-00000137: PUSH2 0x0100                       │ Stack: [0x0100, 0x14, 0x0, 0x0, ...+14] # gas: 3 (total: 1218+)
-0000013a: EXP                                │ Stack: [[arith], 0x0100, 0x14, 0x0, ...+15] # gas: 10 (base + dynamic) (total: 1228+)
-0000013b: DUP2                               │ Stack: [0x0100, [arith], 0x0100, 0x14, ...+16] # gas: 3 (total: 1231+)
-0000013c: SLOAD                              │ Stack: [[S@0x0100], 0x0100, [arith], 0x0100, ...+17] # gas: 100 (warm) / 2100 (cold) (total: 1331+)
-0000013d: DUP2                               │ Stack: [0x0100, [S@0x0100], 0x0100, [arith], ...+18] # gas: 3 (total: 1334+)
-0000013e: PUSH1 0xff                         │ Stack: [0xff, 0x0100, [S@0x0100], 0x0100, ...+19] # gas: 3 (total: 1337+)
-00000140: MUL                                │ Stack: [[0xff*0xff], 0xff, 0x0100, [S@0x0100], ...+20] # gas: 5 (total: 1342+)
-00000141: NOT                                │ Stack: [[~[0xff*0xff]], [0xff*0xff], 0xff, 0x0100, ...+21] # gas: 3 (total: 1345+)
-00000142: AND                                │ Stack: [[[~[0xff*0xff]]&[~[0xff*0xff]]], [~[0xff*0xff]], [0xff*0xff], 0xff, ...+22] # gas: 3 (total: 1348+)
-00000143: SWAP1                              │ Stack: [[~[0xff*0xff]], [[~[0xff*0xff]]&[~[0xff*0xff]]], [0xff*0xff], 0xff, ...+22] # gas: 3 (total: 1351+)
-00000144: DUP4                               │ Stack: [0xff, [~[0xff*0xff]], [[~[0xff*0xff]]&[~[0xff*0xff]]], [0xff*0xff], ...+23] # gas: 3 (total: 1354+)
-00000145: ISZERO                             │ Stack: [[!0xff], 0xff, [~[0xff*0xff]], [[~[0xff*0xff]]&[~[0xff*0xff]]], ...+24] # gas: 3 (total: 1357+)
-00000146: ISZERO                             │ Stack: [[![!0xff]], [!0xff], 0xff, [~[0xff*0xff]], ...+25] # gas: 3 (total: 1360+)
-00000147: MUL                                │ Stack: [[[![!0xff]]*[![!0xff]]], [![!0xff]], [!0xff], 0xff, ...+26] # gas: 5 (total: 1365+)
-00000148: OR                                 │ Stack: [[[[![!0xff]]*[![!0xff]]]|[[![!0xff]]*[![!0xff]]]], [[![!0xff]]*[![!0xff]]], [![!0xff]], [!0xff], ...+27] # gas: 3 (total: 1368+)
-00000149: SWAP1                              │ Stack: [[[![!0xff]]*[![!0xff]]], [[[![!0xff]]*[![!0xff]]]|[[![!0xff]]*[![!0xff]]]], [![!0xff]], [!0xff], ...+27] # gas: 3 (total: 1371+)
-0000014a: SSTORE                             │ Stack: [[![!0xff]], [!0xff], 0xff, [~[0xff*0xff]], ...+25] # gas: 100 (warm) / 20000 (cold new) (total: 1471+)
-0000014b: POP                                │ Stack: [[!0xff], 0xff, [~[0xff*0xff]], [[~[0xff*0xff]]&[~[0xff*0xff]]], ...+24] # gas: 2 (total: 1473+)
-0000014c: SWAP1                              │ Stack: [0xff, [!0xff], [~[0xff*0xff]], [[~[0xff*0xff]]&[~[0xff*0xff]]], ...+24] # gas: 3 (total: 1476+)
-0000014d: JUMP                               │ Stack: [[!0xff], [~[0xff*0xff]], [[~[0xff*0xff]]&[~[0xff*0xff]]], [0xff*0xff], ...+23] # gas: 8 (total: 1484+)
-0000014e: JUMPDEST                           │ Stack: [[!0xff], [~[0xff*0xff]], [[~[0xff*0xff]]&[~[0xff*0xff]]], [0xff*0xff], ...+23] # gas: 1 (total: 1485+)
-0000014f: PUSH0                              │ Stack: [0x0, [!0xff], [~[0xff*0xff]], [[~[0xff*0xff]]&[~[0xff*0xff]]], ...+24] # gas: 2 (total: 1487+)
-00000150: PUSH0                              │ Stack: [0x0, 0x0, [!0xff], [~[0xff*0xff]], ...+25] # gas: 2 (total: 1489+)
-00000151: PUSH0                              │ Stack: [0x0, 0x0, 0x0, [!0xff], ...+26] # gas: 2 (total: 1491+)
-00000152: SWAP1                              │ Stack: [0x0, 0x0, 0x0, [!0xff], ...+26] # gas: 3 (total: 1494+)
-00000153: SLOAD                              │ Stack: [[S@0x0], 0x0, 0x0, 0x0, ...+27] # gas: 100 (warm) / 2100 (cold) (total: 1594+)
-00000154: SWAP1                              │ Stack: [0x0, [S@0x0], 0x0, 0x0, ...+27] # gas: 3 (total: 1597+)
-00000155: PUSH2 0x0100                       │ Stack: [0x0100, 0x0, [S@0x0], 0x0, ...+28] # gas: 3 (total: 1600+)
-00000158: EXP                                │ Stack: [[arith], 0x0100, 0x0, [S@0x0], ...+29] # gas: 10 (base + dynamic) (total: 1610+)
-00000159: SWAP1                              │ Stack: [0x0100, [arith], 0x0, [S@0x0], ...+29] # gas: 3 (total: 1613+)
-0000015a: DIV                                │ Stack: [[0x0100/0x0100], 0x0100, [arith], 0x0, ...+30] # gas: 5 (total: 1618+)
-0000015b: PUSH20 0xffffffffffffffffffffffffffffffffffffffff │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, [0x0100/0x0100], 0x0100, [arith], ...+31] # gas: 3 (total: 1621+)
-00000170: AND                                │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [0x0100/0x0100], 0x0100, ...+32] # gas: 3 (total: 1624+)
-00000171: PUSH20 0xffffffffffffffffffffffffffffffffffffffff │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [0x0100/0x0100], ...+33] # gas: 3 (total: 1627+)
-00000186: AND                                │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+34] # gas: 3 (total: 1630+)
-00000187: CALLER                             │ Stack: [[CALLER], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], ...+35] # gas: 2 (total: 1632+)
-00000188: PUSH20 0xffffffffffffffffffffffffffffffffffffffff │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, [CALLER], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+36] # gas: 3 (total: 1635+)
-0000019d: AND                                │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [CALLER], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], ...+37] # gas: 3 (total: 1638+)
-0000019e: EQ                                 │ Stack: [[cmp], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [CALLER], ...+38] # gas: 3 (total: 1641+)
-0000019f: PUSH2 0x01dd                       │ Stack: [0x01dd, [cmp], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+39] # gas: 3 (total: 1644+)
-000001a2: JUMPI                              │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [CALLER], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], ...+37] # gas: 10 (total: 1654+)
-000001a3: PUSH1 0x40                         │ Stack: [0x40, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [CALLER], ...+38] # gas: 3 (total: 1657+)
-000001a5: MLOAD                              │ Stack: [[M@0x40], 0x40, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+39] # gas: 3 (total: 1660+) # memory read: free memory pointer
-000001a6: PUSH32 0x08c379a000000000000000000000000000000000000000000000000000000000 │ Stack: [0x08c379a000000000000000000000000000000000000000000000000000000000, [M@0x40], 0x40, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], ...+40] # gas: 3 (total: 1663+)
-000001c7: DUP2                               │ Stack: [[M@0x40], 0x08c379a000000000000000000000000000000000000000000000000000000000, [M@0x40], 0x40, ...+41] # gas: 3 (total: 1666+)
-000001c8: MSTORE                             │ Stack: [[M@0x40], 0x40, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+39] # gas: 3 (total: 1669+)
-000001c9: PUSH1 0x04                         │ Stack: [0x04, [M@0x40], 0x40, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], ...+40] # gas: 3 (total: 1672+)
-000001cb: ADD                                │ Stack: [[0x04+0x04], 0x04, [M@0x40], 0x40, ...+41] # gas: 3 (total: 1675+)
-000001cc: PUSH2 0x01d4                       │ Stack: [0x01d4, [0x04+0x04], 0x04, [M@0x40], ...+42] # gas: 3 (total: 1678+)
-000001cf: SWAP1                              │ Stack: [[0x04+0x04], 0x01d4, 0x04, [M@0x40], ...+42] # gas: 3 (total: 1681+)
-000001d0: PUSH2 0x04ec                       │ Stack: [0x04ec, [0x04+0x04], 0x01d4, 0x04, ...+43] # gas: 3 (total: 1684+)
-000001d3: JUMP                               │ Stack: [[0x04+0x04], 0x01d4, 0x04, [M@0x40], ...+42] # gas: 8 (total: 1692+)
-000001d4: JUMPDEST                           │ Stack: [[0x04+0x04], 0x01d4, 0x04, [M@0x40], ...+42] # gas: 1 (total: 1693+)
-000001d5: PUSH1 0x40                         │ Stack: [0x40, [0x04+0x04], 0x01d4, 0x04, ...+43] # gas: 3 (total: 1696+)
-000001d7: MLOAD                              │ Stack: [[M@0x40], 0x40, [0x04+0x04], 0x01d4, ...+44] # gas: 3 (total: 1699+) # memory read: free memory pointer
-000001d8: DUP1                               │ Stack: [[M@0x40], [M@0x40], 0x40, [0x04+0x04], ...+45] # gas: 3 (total: 1702+)
-000001d9: SWAP2                              │ Stack: [0x40, [M@0x40], [M@0x40], [0x04+0x04], ...+45] # gas: 3 (total: 1705+)
-000001da: SUB                                │ Stack: [[0x40-0x40], 0x40, [M@0x40], [M@0x40], ...+46] # gas: 3 (total: 1708+)
-000001db: SWAP1                              │ Stack: [0x40, [0x40-0x40], [M@0x40], [M@0x40], ...+46] # gas: 3 (total: 1711+)
-000001dc: REVERT                             │ Stack: [] # gas: 0 (total: 1711+)
-000001dd: JUMPDEST                           │ Stack: [] # gas: 1 (total: 1712+)
-000001de: PUSH1 0x01                         │ Stack: [0x01] # gas: 3 (total: 1715+)
-000001e0: SWAP1                              │ Stack: [0x01] # gas: 3 (total: 1718+)
-000001e1: POP                                │ Stack: [] # gas: 2 (total: 1720+)
-000001e2: SWAP1                              │ Stack: [] # gas: 3 (total: 1723+)
-000001e3: JUMP                               │ Stack: [] # gas: 8 (total: 1731+)
-000001e4: JUMPDEST                           │ Stack: [] # gas: 1 (total: 1732+)
-000001e5: PUSH0                              │ Stack: [0x0] # gas: 2 (total: 1734+)
-000001e6: PUSH0                              │ Stack: [0x0, 0x0] # gas: 2 (total: 1736+)
-000001e7: SWAP1                              │ Stack: [0x0, 0x0] # gas: 3 (total: 1739+)
-000001e8: SLOAD                              │ Stack: [[S@0x0], 0x0, 0x0] # gas: 100 (warm) / 2100 (cold) (total: 1839+)
-000001e9: SWAP1                              │ Stack: [0x0, [S@0x0], 0x0] # gas: 3 (total: 1842+)
-000001ea: PUSH2 0x0100                       │ Stack: [0x0100, 0x0, [S@0x0], 0x0] # gas: 3 (total: 1845+)
-000001ed: EXP                                │ Stack: [[arith], 0x0100, 0x0, [S@0x0], ...+1] # gas: 10 (base + dynamic) (total: 1855+)
-000001ee: SWAP1                              │ Stack: [0x0100, [arith], 0x0, [S@0x0], ...+1] # gas: 3 (total: 1858+)
-000001ef: DIV                                │ Stack: [[0x0100/0x0100], 0x0100, [arith], 0x0, ...+2] # gas: 5 (total: 1863+)
-000001f0: PUSH20 0xffffffffffffffffffffffffffffffffffffffff │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, [0x0100/0x0100], 0x0100, [arith], ...+3] # gas: 3 (total: 1866+)
-00000205: AND                                │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [0x0100/0x0100], 0x0100, ...+4] # gas: 3 (total: 1869+)
-00000206: DUP2                               │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [0x0100/0x0100], ...+5] # gas: 3 (total: 1872+)
-00000207: JUMP                               │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [0x0100/0x0100], 0x0100, ...+4] # gas: 8 (total: 1880+)
-00000208: JUMPDEST                           │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [0x0100/0x0100], 0x0100, ...+4] # gas: 1 (total: 1881+)
-00000209: PUSH0                              │ Stack: [0x0, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [0x0100/0x0100], ...+5] # gas: 2 (total: 1883+)
-0000020a: PUSH0                              │ Stack: [0x0, 0x0, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+6] # gas: 2 (total: 1885+)
-0000020b: SWAP1                              │ Stack: [0x0, 0x0, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+6] # gas: 3 (total: 1888+)
-0000020c: SLOAD                              │ Stack: [[S@0x0], 0x0, 0x0, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], ...+7] # gas: 100 (warm) / 2100 (cold) (total: 1988+)
-0000020d: SWAP1                              │ Stack: [0x0, [S@0x0], 0x0, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], ...+7] # gas: 3 (total: 1991+)
-0000020e: PUSH2 0x0100                       │ Stack: [0x0100, 0x0, [S@0x0], 0x0, ...+8] # gas: 3 (total: 1994+)
-00000211: EXP                                │ Stack: [[arith], 0x0100, 0x0, [S@0x0], ...+9] # gas: 10 (base + dynamic) (total: 2004+)
-00000212: SWAP1                              │ Stack: [0x0100, [arith], 0x0, [S@0x0], ...+9] # gas: 3 (total: 2007+)
-00000213: DIV                                │ Stack: [[0x0100/0x0100], 0x0100, [arith], 0x0, ...+10] # gas: 5 (total: 2012+)
-00000214: PUSH20 0xffffffffffffffffffffffffffffffffffffffff │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, [0x0100/0x0100], 0x0100, [arith], ...+11] # gas: 3 (total: 2015+)
-00000229: AND                                │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [0x0100/0x0100], 0x0100, ...+12] # gas: 3 (total: 2018+)
-0000022a: PUSH20 0xffffffffffffffffffffffffffffffffffffffff │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [0x0100/0x0100], ...+13] # gas: 3 (total: 2021+)
-0000023f: AND                                │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+14] # gas: 3 (total: 2024+)
-00000240: CALLER                             │ Stack: [[CALLER], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], ...+15] # gas: 2 (total: 2026+)
-00000241: PUSH20 0xffffffffffffffffffffffffffffffffffffffff │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, [CALLER], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+16] # gas: 3 (total: 2029+)
-00000256: AND                                │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [CALLER], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], ...+17] # gas: 3 (total: 2032+)
-00000257: EQ                                 │ Stack: [[cmp], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [CALLER], ...+18] # gas: 3 (total: 2035+)
-00000258: PUSH2 0x0296                       │ Stack: [0x0296, [cmp], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+19] # gas: 3 (total: 2038+)
-0000025b: JUMPI                              │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [CALLER], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], ...+17] # gas: 10 (total: 2048+)
-0000025c: PUSH1 0x40                         │ Stack: [0x40, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, [CALLER], ...+18] # gas: 3 (total: 2051+)
-0000025e: MLOAD                              │ Stack: [[M@0x40], 0x40, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+19] # gas: 3 (total: 2054+) # memory read: free memory pointer
-0000025f: PUSH32 0x08c379a000000000000000000000000000000000000000000000000000000000 │ Stack: [0x08c379a000000000000000000000000000000000000000000000000000000000, [M@0x40], 0x40, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], ...+20] # gas: 3 (total: 2057+)
-00000280: DUP2                               │ Stack: [[M@0x40], 0x08c379a000000000000000000000000000000000000000000000000000000000, [M@0x40], 0x40, ...+21] # gas: 3 (total: 2060+)
-00000281: MSTORE                             │ Stack: [[M@0x40], 0x40, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+19] # gas: 3 (total: 2063+)
-00000282: PUSH1 0x04                         │ Stack: [0x04, [M@0x40], 0x40, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], ...+20] # gas: 3 (total: 2066+)
-00000284: ADD                                │ Stack: [[0x04+0x04], 0x04, [M@0x40], 0x40, ...+21] # gas: 3 (total: 2069+)
-00000285: PUSH2 0x028d                       │ Stack: [0x028d, [0x04+0x04], 0x04, [M@0x40], ...+22] # gas: 3 (total: 2072+)
-00000288: SWAP1                              │ Stack: [[0x04+0x04], 0x028d, 0x04, [M@0x40], ...+22] # gas: 3 (total: 2075+)
-00000289: PUSH2 0x04ec                       │ Stack: [0x04ec, [0x04+0x04], 0x028d, 0x04, ...+23] # gas: 3 (total: 2078+)
-0000028c: JUMP                               │ Stack: [[0x04+0x04], 0x028d, 0x04, [M@0x40], ...+22] # gas: 8 (total: 2086+)
-0000028d: JUMPDEST                           │ Stack: [[0x04+0x04], 0x028d, 0x04, [M@0x40], ...+22] # gas: 1 (total: 2087+)
-0000028e: PUSH1 0x40                         │ Stack: [0x40, [0x04+0x04], 0x028d, 0x04, ...+23] # gas: 3 (total: 2090+)
-00000290: MLOAD                              │ Stack: [[M@0x40], 0x40, [0x04+0x04], 0x028d, ...+24] # gas: 3 (total: 2093+) # memory read: free memory pointer
-00000291: DUP1                               │ Stack: [[M@0x40], [M@0x40], 0x40, [0x04+0x04], ...+25] # gas: 3 (total: 2096+)
-00000292: SWAP2                              │ Stack: [0x40, [M@0x40], [M@0x40], [0x04+0x04], ...+25] # gas: 3 (total: 2099+)
-00000293: SUB                                │ Stack: [[0x40-0x40], 0x40, [M@0x40], [M@0x40], ...+26] # gas: 3 (total: 2102+)
-00000294: SWAP1                              │ Stack: [0x40, [0x40-0x40], [M@0x40], [M@0x40], ...+26] # gas: 3 (total: 2105+)
-00000295: REVERT                             │ Stack: [] # gas: 0 (total: 2105+)
-00000296: JUMPDEST                           │ Stack: [] # gas: 1 (total: 2106+)
-00000297: PUSH0                              │ Stack: [0x0] # gas: 2 (total: 2108+)
-00000298: PUSH20 0xffffffffffffffffffffffffffffffffffffffff │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, 0x0] # gas: 3 (total: 2111+)
-000002ad: AND                                │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0x0] # gas: 3 (total: 2114+)
-000002ae: DUP2                               │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0x0] # gas: 3 (total: 2117+)
-000002af: PUSH20 0xffffffffffffffffffffffffffffffffffffffff │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+1] # gas: 3 (total: 2120+)
-000002c4: AND                                │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], ...+2] # gas: 3 (total: 2123+)
-000002c5: SUB                                │ Stack: [[[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]-[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, ...+3] # gas: 3 (total: 2126+)
-000002c6: PUSH2 0x0304                       │ Stack: [0x0304, [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]-[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+4] # gas: 3 (total: 2129+)
-000002c9: JUMPI                              │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], ...+2] # gas: 10 (total: 2139+)
-000002ca: PUSH1 0x40                         │ Stack: [0x40, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, ...+3] # gas: 3 (total: 2142+)
-000002cc: MLOAD                              │ Stack: [[M@0x40], 0x40, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+4] # gas: 3 (total: 2145+) # memory read: free memory pointer
-000002cd: PUSH32 0x08c379a000000000000000000000000000000000000000000000000000000000 │ Stack: [0x08c379a000000000000000000000000000000000000000000000000000000000, [M@0x40], 0x40, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], ...+5] # gas: 3 (total: 2148+)
-000002ee: DUP2                               │ Stack: [[M@0x40], 0x08c379a000000000000000000000000000000000000000000000000000000000, [M@0x40], 0x40, ...+6] # gas: 3 (total: 2151+)
-000002ef: MSTORE                             │ Stack: [[M@0x40], 0x40, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+4] # gas: 3 (total: 2154+)
-000002f0: PUSH1 0x04                         │ Stack: [0x04, [M@0x40], 0x40, [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], ...+5] # gas: 3 (total: 2157+)
-000002f2: ADD                                │ Stack: [[0x04+0x04], 0x04, [M@0x40], 0x40, ...+6] # gas: 3 (total: 2160+)
-000002f3: PUSH2 0x02fb                       │ Stack: [0x02fb, [0x04+0x04], 0x04, [M@0x40], ...+7] # gas: 3 (total: 2163+)
-000002f6: SWAP1                              │ Stack: [[0x04+0x04], 0x02fb, 0x04, [M@0x40], ...+7] # gas: 3 (total: 2166+)
-000002f7: PUSH2 0x0554                       │ Stack: [0x0554, [0x04+0x04], 0x02fb, 0x04, ...+8] # gas: 3 (total: 2169+)
-000002fa: JUMP                               │ Stack: [[0x04+0x04], 0x02fb, 0x04, [M@0x40], ...+7] # gas: 8 (total: 2177+)
-000002fb: JUMPDEST                           │ Stack: [[0x04+0x04], 0x02fb, 0x04, [M@0x40], ...+7] # gas: 1 (total: 2178+)
-000002fc: PUSH1 0x40                         │ Stack: [0x40, [0x04+0x04], 0x02fb, 0x04, ...+8] # gas: 3 (total: 2181+)
-000002fe: MLOAD                              │ Stack: [[M@0x40], 0x40, [0x04+0x04], 0x02fb, ...+9] # gas: 3 (total: 2184+) # memory read: free memory pointer
-000002ff: DUP1                               │ Stack: [[M@0x40], [M@0x40], 0x40, [0x04+0x04], ...+10] # gas: 3 (total: 2187+)
-00000300: SWAP2                              │ Stack: [0x40, [M@0x40], [M@0x40], [0x04+0x04], ...+10] # gas: 3 (total: 2190+)
-00000301: SUB                                │ Stack: [[0x40-0x40], 0x40, [M@0x40], [M@0x40], ...+11] # gas: 3 (total: 2193+)
-00000302: SWAP1                              │ Stack: [0x40, [0x40-0x40], [M@0x40], [M@0x40], ...+11] # gas: 3 (total: 2196+)
-00000303: REVERT                             │ Stack: [] # gas: 0 (total: 2196+)
-00000304: JUMPDEST                           │ Stack: [] # gas: 1 (total: 2197+)
-00000305: DUP1                               │ Stack: [?] # gas: 3 (total: 2200+)
-00000306: PUSH0                              │ Stack: [0x0, ?] # gas: 2 (total: 2202+)
-00000307: PUSH0                              │ Stack: [0x0, 0x0, ?] # gas: 2 (total: 2204+)
-00000308: PUSH2 0x0100                       │ Stack: [0x0100, 0x0, 0x0, ?] # gas: 3 (total: 2207+)
-0000030b: EXP                                │ Stack: [[arith], 0x0100, 0x0, 0x0, ...+1] # gas: 10 (base + dynamic) (total: 2217+)
-0000030c: DUP2                               │ Stack: [0x0100, [arith], 0x0100, 0x0, ...+2] # gas: 3 (total: 2220+)
-0000030d: SLOAD                              │ Stack: [[S@0x0100], 0x0100, [arith], 0x0100, ...+3] # gas: 100 (warm) / 2100 (cold) (total: 2320+)
-0000030e: DUP2                               │ Stack: [0x0100, [S@0x0100], 0x0100, [arith], ...+4] # gas: 3 (total: 2323+)
-0000030f: PUSH20 0xffffffffffffffffffffffffffffffffffffffff │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, 0x0100, [S@0x0100], 0x0100, ...+5] # gas: 3 (total: 2326+)
-00000324: MUL                                │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0x0100, [S@0x0100], ...+6] # gas: 5 (total: 2331+)
-00000325: NOT                                │ Stack: [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0x0100, ...+7] # gas: 3 (total: 2334+)
-00000326: AND                                │ Stack: [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+8] # gas: 3 (total: 2337+)
-00000327: SWAP1                              │ Stack: [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+8] # gas: 3 (total: 2340+)
-00000328: DUP4                               │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], ...+9] # gas: 3 (total: 2343+)
-00000329: PUSH20 0xffffffffffffffffffffffffffffffffffffffff │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], ...+10] # gas: 3 (total: 2346+)
-0000033e: AND                                │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], ...+11] # gas: 3 (total: 2349+)
-0000033f: MUL                                │ Stack: [[[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]*[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, ...+12] # gas: 5 (total: 2354+)
-00000340: OR                                 │ Stack: [[[[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]*[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]]|[[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]*[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]]], [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]*[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+13] # gas: 3 (total: 2357+)
-00000341: SWAP1                              │ Stack: [[[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]*[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]], [[[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]*[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]]|[[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]*[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+13] # gas: 3 (total: 2360+)
-00000342: SSTORE                             │ Stack: [[0xffffffffffffffffffffffffffffffffffffffff&0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], ...+11] # gas: 100 (warm) / 20000 (cold new) (total: 2460+)
-00000343: POP                                │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, 0xffffffffffffffffffffffffffffffffffffffff, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], ...+10] # gas: 2 (total: 2462+)
-00000344: POP                                │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], ...+9] # gas: 2 (total: 2464+)
-00000345: JUMP                               │ Stack: [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+8] # gas: 8 (total: 2472+)
-00000346: JUMPDEST                           │ Stack: [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+8] # gas: 1 (total: 2473+)
-00000347: PUSH0                              │ Stack: [0x0, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], ...+9] # gas: 2 (total: 2475+)
-00000348: DUP2                               │ Stack: [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], 0x0, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], ...+10] # gas: 3 (total: 2478+)
-00000349: ISZERO                             │ Stack: [[![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], 0x0, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], ...+11] # gas: 3 (total: 2481+)
-0000034a: ISZERO                             │ Stack: [[![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], 0x0, ...+12] # gas: 3 (total: 2484+)
-0000034b: SWAP1                              │ Stack: [[![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], 0x0, ...+12] # gas: 3 (total: 2487+)
-0000034c: POP                                │ Stack: [[![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], 0x0, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], ...+11] # gas: 2 (total: 2489+)
-0000034d: SWAP2                              │ Stack: [0x0, [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], ...+11] # gas: 3 (total: 2492+)
-0000034e: SWAP1                              │ Stack: [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], 0x0, [![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], ...+11] # gas: 3 (total: 2495+)
-0000034f: POP                                │ Stack: [0x0, [![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], ...+10] # gas: 2 (total: 2497+)
-00000350: JUMP                               │ Stack: [[![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], ...+9] # gas: 8 (total: 2505+)
-00000351: JUMPDEST                           │ Stack: [[![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], ...+9] # gas: 1 (total: 2506+)
-00000352: PUSH2 0x035a                       │ Stack: [0x035a, [![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], ...+10] # gas: 3 (total: 2509+)
-00000355: DUP2                               │ Stack: [[![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x035a, [![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], ...+11] # gas: 3 (total: 2512+)
-00000356: PUSH2 0x0346                       │ Stack: [0x0346, [![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x035a, [![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+12] # gas: 3 (total: 2515+)
-00000359: JUMP                               │ Stack: [[![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x035a, [![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], ...+11] # gas: 8 (total: 2523+)
-0000035a: JUMPDEST                           │ Stack: [[![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x035a, [![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], ...+11] # gas: 1 (total: 2524+)
-0000035b: DUP3                               │ Stack: [[![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x035a, [![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+12] # gas: 3 (total: 2527+)
-0000035c: MSTORE                             │ Stack: [0x035a, [![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], ...+10] # gas: 3 (total: 2530+)
-0000035d: POP                                │ Stack: [[![![~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], ...+9] # gas: 2 (total: 2532+)
-0000035e: POP                                │ Stack: [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+8] # gas: 2 (total: 2534+)
-0000035f: JUMP                               │ Stack: [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0x0100, ...+7] # gas: 8 (total: 2542+)
-00000360: JUMPDEST                           │ Stack: [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, 0x0100, ...+7] # gas: 1 (total: 2543+)
-00000361: PUSH0                              │ Stack: [0x0, [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], 0xffffffffffffffffffffffffffffffffffffffff, ...+8] # gas: 2 (total: 2545+)
-00000362: PUSH1 0x20                         │ Stack: [0x20, 0x0, [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff], ...+9] # gas: 3 (total: 2548+)
-00000364: DUP3                               │ Stack: [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], 0x20, 0x0, [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], ...+10] # gas: 3 (total: 2551+)
-00000365: ADD                                │ Stack: [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], 0x20, 0x0, ...+11] # gas: 3 (total: 2554+)
-00000366: SWAP1                              │ Stack: [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x20, 0x0, ...+11] # gas: 3 (total: 2557+)
-00000367: POP                                │ Stack: [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x20, 0x0, [[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]], ...+10] # gas: 2 (total: 2559+)
-00000368: PUSH2 0x0373                       │ Stack: [0x0373, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x20, 0x0, ...+11] # gas: 3 (total: 2562+)
-0000036b: PUSH0                              │ Stack: [0x0, 0x0373, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x20, ...+12] # gas: 2 (total: 2564+)
-0000036c: DUP4                               │ Stack: [0x20, 0x0, 0x0373, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+13] # gas: 3 (total: 2567+)
-0000036d: ADD                                │ Stack: [[0x20+0x20], 0x20, 0x0, 0x0373, ...+14] # gas: 3 (total: 2570+)
-0000036e: DUP5                               │ Stack: [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [0x20+0x20], 0x20, 0x0, ...+15] # gas: 3 (total: 2573+)
-0000036f: PUSH2 0x0351                       │ Stack: [0x0351, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [0x20+0x20], 0x20, ...+16] # gas: 3 (total: 2576+)
-00000372: JUMP                               │ Stack: [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [0x20+0x20], 0x20, 0x0, ...+15] # gas: 8 (total: 2584+)
-00000373: JUMPDEST                           │ Stack: [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [0x20+0x20], 0x20, 0x0, ...+15] # gas: 1 (total: 2585+)
-00000374: SWAP3                              │ Stack: [0x0, [0x20+0x20], 0x20, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+15] # gas: 3 (total: 2588+)
-00000375: SWAP2                              │ Stack: [0x20, [0x20+0x20], 0x0, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+15] # gas: 3 (total: 2591+)
-00000376: POP                                │ Stack: [[0x20+0x20], 0x0, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x0373, ...+14] # gas: 2 (total: 2593+)
-00000377: POP                                │ Stack: [0x0, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x0373, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+13] # gas: 2 (total: 2595+)
-00000378: JUMP                               │ Stack: [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x0373, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x20, ...+12] # gas: 8 (total: 2603+)
-00000379: JUMPDEST                           │ Stack: [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x0373, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x20, ...+12] # gas: 1 (total: 2604+)
-0000037a: PUSH0                              │ Stack: [0x0, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x0373, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+13] # gas: 2 (total: 2606+)
-0000037b: PUSH20 0xffffffffffffffffffffffffffffffffffffffff │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, 0x0, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x0373, ...+14] # gas: 3 (total: 2609+)
-00000390: DUP3                               │ Stack: [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0xffffffffffffffffffffffffffffffffffffffff, 0x0, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+15] # gas: 3 (total: 2612+)
-00000391: AND                                │ Stack: [[[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0xffffffffffffffffffffffffffffffffffffffff, 0x0, ...+16] # gas: 3 (total: 2615+)
-00000392: SWAP1                              │ Stack: [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], 0xffffffffffffffffffffffffffffffffffffffff, 0x0, ...+16] # gas: 3 (total: 2618+)
-00000393: POP                                │ Stack: [[[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], 0xffffffffffffffffffffffffffffffffffffffff, 0x0, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+15] # gas: 2 (total: 2620+)
-00000394: SWAP2                              │ Stack: [0x0, 0xffffffffffffffffffffffffffffffffffffffff, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+15] # gas: 3 (total: 2623+)
-00000395: SWAP1                              │ Stack: [0xffffffffffffffffffffffffffffffffffffffff, 0x0, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+15] # gas: 3 (total: 2626+)
-00000396: POP                                │ Stack: [0x0, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x0373, ...+14] # gas: 2 (total: 2628+)
-00000397: JUMP                               │ Stack: [[[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x0373, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+13] # gas: 8 (total: 2636+)
-00000398: JUMPDEST                           │ Stack: [[[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x0373, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+13] # gas: 1 (total: 2637+)
-00000399: PUSH0                              │ Stack: [0x0, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x0373, ...+14] # gas: 2 (total: 2639+)
-0000039a: PUSH2 0x03a2                       │ Stack: [0x03a2, 0x0, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+15] # gas: 3 (total: 2642+)
-0000039d: DUP3                               │ Stack: [[[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], 0x03a2, 0x0, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], ...+16] # gas: 3 (total: 2645+)
-0000039e: PUSH2 0x0379                       │ Stack: [0x0379, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], 0x03a2, 0x0, ...+17] # gas: 3 (total: 2648+)
-000003a1: JUMP                               │ Stack: [[[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], 0x03a2, 0x0, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], ...+16] # gas: 8 (total: 2656+)
-000003a2: JUMPDEST                           │ Stack: [[[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], 0x03a2, 0x0, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], ...+16] # gas: 1 (total: 2657+)
-000003a3: SWAP1                              │ Stack: [0x03a2, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], 0x0, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], ...+16] # gas: 3 (total: 2660+)
-000003a4: POP                                │ Stack: [[[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], 0x0, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+15] # gas: 2 (total: 2662+)
-000003a5: SWAP2                              │ Stack: [[[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], 0x0, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+15] # gas: 3 (total: 2665+)
-000003a6: SWAP1                              │ Stack: [0x0, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+15] # gas: 3 (total: 2668+)
-000003a7: POP                                │ Stack: [[[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x0373, ...+14] # gas: 2 (total: 2670+)
-000003a8: JUMP                               │ Stack: [[[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x0373, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+13] # gas: 8 (total: 2678+)
-000003a9: JUMPDEST                           │ Stack: [[[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x0373, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+13] # gas: 1 (total: 2679+)
-000003aa: PUSH2 0x03b2                       │ Stack: [0x03b2, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x0373, ...+14] # gas: 3 (total: 2682+)
-000003ad: DUP2                               │ Stack: [[[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], 0x03b2, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+15] # gas: 3 (total: 2685+)
-000003ae: PUSH2 0x0398                       │ Stack: [0x0398, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], 0x03b2, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], ...+16] # gas: 3 (total: 2688+)
-000003b1: JUMP                               │ Stack: [[[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], 0x03b2, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+15] # gas: 8 (total: 2696+)
-000003b2: JUMPDEST                           │ Stack: [[[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], 0x03b2, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+15] # gas: 1 (total: 2697+)
-000003b3: DUP3                               │ Stack: [[[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], 0x03b2, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], ...+16] # gas: 3 (total: 2700+)
-000003b4: MSTORE                             │ Stack: [0x03b2, [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x0373, ...+14] # gas: 3 (total: 2703+)
-000003b5: POP                                │ Stack: [[[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]&[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]]], [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x0373, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+13] # gas: 2 (total: 2705+)
-000003b6: POP                                │ Stack: [[[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x0373, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x20, ...+12] # gas: 2 (total: 2707+)
-000003b7: JUMP                               │ Stack: [0x0373, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x20, 0x0, ...+11] # gas: 8 (total: 2715+)
-000003b8: JUMPDEST                           │ Stack: [0x0373, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x20, 0x0, ...+11] # gas: 1 (total: 2716+)
-000003b9: PUSH0                              │ Stack: [0x0, 0x0373, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], 0x20, ...+12] # gas: 2 (total: 2718+)
-000003ba: PUSH1 0x20                         │ Stack: [0x20, 0x0, 0x0373, [[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]+[[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]&[~[0xffffffffffffffffffffffffffffffffffffffff*0xffffffffffffffffffffffffffffffffffffffff]]]], ...+13] # gas: 3 (total: 2721+)
-000003bc: DUP3                               │ Stack: [0x0373, 0x20, 0x0, 0x0373, ...+14] # gas: 3 (total: 2724+)
-000003bd: ADD                                │ Stack: [[0x0373+0x0373], 0x0373, 0x20, 0x0, ...+15] # gas: 3 (total: 2727+)
-000003be: SWAP1                              │ Stack: [0x0373, [0x0373+0x0373], 0x20, 0x0, ...+15] # gas: 3 (total: 2730+)
-000003bf: POP                                │ Stack: [[0x0373+0x0373], 0x20, 0x0, 0x0373, ...+14] # gas: 2 (total: 2732+)
-000003c0: PUSH2 0x03cb                       │ Stack: [0x03cb, [0x0373+0x0373], 0x20, 0x0, ...+15] # gas: 3 (total: 2735+)
-000003c3: PUSH0                              │ Stack: [0x0, 0x03cb, [0x0373+0x0373], 0x20, ...+16] # gas: 2 (total: 2737+)
-000003c4: DUP4                               │ Stack: [0x20, 0x0, 0x03cb, [0x0373+0x0373], ...+17] # gas: 3 (total: 2740+)
-000003c5: ADD                                │ Stack: [[0x20+0x20], 0x20, 0x0, 0x03cb, ...+18] # gas: 3 (total: 2743+)
-000003c6: DUP5                               │ Stack: [[0x0373+0x0373], [0x20+0x20], 0x20, 0x0, ...+19] # gas: 3 (total: 2746+)
-000003c7: PUSH2 0x03a9                       │ Stack: [0x03a9, [0x0373+0x0373], [0x20+0x20], 0x20, ...+20] # gas: 3 (total: 2749+)
-000003ca: JUMP                               │ Stack: [[0x0373+0x0373], [0x20+0x20], 0x20, 0x0, ...+19] # gas: 8 (total: 2757+)
-000003cb: JUMPDEST                           │ Stack: [[0x0373+0x0373], [0x20+0x20], 0x20, 0x0, ...+19] # gas: 1 (total: 2758+)
-000003cc: SWAP3                              │ Stack: [0x0, [0x20+0x20], 0x20, [0x0373+0x0373], ...+19] # gas: 3 (total: 2761+)
-000003cd: SWAP2                              │ Stack: [0x20, [0x20+0x20], 0x0, [0x0373+0x0373], ...+19] # gas: 3 (total: 2764+)
-000003ce: POP                                │ Stack: [[0x20+0x20], 0x0, [0x0373+0x0373], 0x03cb, ...+18] # gas: 2 (total: 2766+)
-000003cf: POP                                │ Stack: [0x0, [0x0373+0x0373], 0x03cb, [0x0373+0x0373], ...+17] # gas: 2 (total: 2768+)
-000003d0: JUMP                               │ Stack: [[0x0373+0x0373], 0x03cb, [0x0373+0x0373], 0x20, ...+16] # gas: 8 (total: 2776+)
-000003d1: JUMPDEST                           │ Stack: [[0x0373+0x0373], 0x03cb, [0x0373+0x0373], 0x20, ...+16] # gas: 1 (total: 2777+)
-000003d2: PUSH0                              │ Stack: [0x0, [0x0373+0x0373], 0x03cb, [0x0373+0x0373], ...+17] # gas: 2 (total: 2779+)
-000003d3: PUSH0                              │ Stack: [0x0, 0x0, [0x0373+0x0373], 0x03cb, ...+18] # gas: 2 (total: 2781+)
-000003d4: REVERT                             │ Stack: [] # gas: 0 (total: 2781+)
-000003d5: JUMPDEST                           │ Stack: [] # gas: 1 (total: 2782+)
-000003d6: PUSH2 0x03de                       │ Stack: [0x03de] # gas: 3 (total: 2785+)
-000003d9: DUP2                               │ Stack: [?, 0x03de] # gas: 3 (total: 2788+)
-000003da: PUSH2 0x0398                       │ Stack: [0x0398, ?, 0x03de] # gas: 3 (total: 2791+)
-000003dd: JUMP                               │ Stack: [?, 0x03de] # gas: 8 (total: 2799+)
-000003de: JUMPDEST                           │ Stack: [?, 0x03de] # gas: 1 (total: 2800+)
-000003df: DUP2                               │ Stack: [0x03de, ?, 0x03de] # gas: 3 (total: 2803+)
-000003e0: EQ                                 │ Stack: [[cmp], 0x03de, ?, 0x03de] # gas: 3 (total: 2806+)
-000003e1: PUSH2 0x03e8                       │ Stack: [0x03e8, [cmp], 0x03de, ?, ...+1] # gas: 3 (total: 2809+)
-000003e4: JUMPI                              │ Stack: [0x03de, ?, 0x03de] # gas: 10 (total: 2819+)
-000003e5: PUSH0                              │ Stack: [0x0, 0x03de, ?, 0x03de] # gas: 2 (total: 2821+)
-000003e6: PUSH0                              │ Stack: [0x0, 0x0, 0x03de, ?, ...+1] # gas: 2 (total: 2823+)
-000003e7: REVERT                             │ Stack: [] # gas: 0 (total: 2823+)
-000003e8: JUMPDEST                           │ Stack: [] # gas: 1 (total: 2824+)
-000003e9: POP                                │ Stack: [] # gas: 2 (total: 2826+)
-000003ea: JUMP                               │ Stack: [] # gas: 8 (total: 2834+)
-000003eb: JUMPDEST                           │ Stack: [] # gas: 1 (total: 2835+)
-000003ec: PUSH0                              │ Stack: [0x0] # gas: 2 (total: 2837+)
-000003ed: DUP2                               │ Stack: [?, 0x0] # gas: 3 (total: 2840+)
-000003ee: CALLDATALOAD                       │ Stack: [[CD@?], ?, 0x0] # gas: 3 (total: 2843+)
-000003ef: SWAP1                              │ Stack: [?, [CD@?], 0x0] # gas: 3 (total: 2846+)
-000003f0: POP                                │ Stack: [[CD@?], 0x0] # gas: 2 (total: 2848+)
-000003f1: PUSH2 0x03f9                       │ Stack: [0x03f9, [CD@?], 0x0] # gas: 3 (total: 2851+)
-000003f4: DUP2                               │ Stack: [[CD@?], 0x03f9, [CD@?], 0x0] # gas: 3 (total: 2854+)
-000003f5: PUSH2 0x03d5                       │ Stack: [0x03d5, [CD@?], 0x03f9, [CD@?], ...+1] # gas: 3 (total: 2857+)
-000003f8: JUMP                               │ Stack: [[CD@?], 0x03f9, [CD@?], 0x0] # gas: 8 (total: 2865+)
-000003f9: JUMPDEST                           │ Stack: [[CD@?], 0x03f9, [CD@?], 0x0] # gas: 1 (total: 2866+)
-000003fa: SWAP3                              │ Stack: [0x0, 0x03f9, [CD@?], [CD@?]] # gas: 3 (total: 2869+)
-000003fb: SWAP2                              │ Stack: [[CD@?], 0x03f9, 0x0, [CD@?]] # gas: 3 (total: 2872+)
-000003fc: POP                                │ Stack: [0x03f9, 0x0, [CD@?]] # gas: 2 (total: 2874+)
-000003fd: POP                                │ Stack: [0x0, [CD@?]] # gas: 2 (total: 2876+)
-000003fe: JUMP                               │ Stack: [[CD@?]] # gas: 8 (total: 2884+)
-000003ff: JUMPDEST                           │ Stack: [[CD@?]] # gas: 1 (total: 2885+)
-00000400: PUSH0                              │ Stack: [0x0, [CD@?]] # gas: 2 (total: 2887+)
-00000401: PUSH1 0x20                         │ Stack: [0x20, 0x0, [CD@?]] # gas: 3 (total: 2890+)
-00000403: DUP3                               │ Stack: [[CD@?], 0x20, 0x0, [CD@?]] # gas: 3 (total: 2893+)
-00000404: DUP5                               │ Stack: [?, [CD@?], 0x20, 0x0, ...+1] # gas: 3 (total: 2896+)
-00000405: SUB                                │ Stack: [[?-?], ?, [CD@?], 0x20, ...+2] # gas: 3 (total: 2899+)
-00000406: SLT                                │ Stack: [[cmp], [?-?], ?, [CD@?], ...+3] # gas: 3 (total: 2902+)
-00000407: ISZERO                             │ Stack: [[![cmp]], [cmp], [?-?], ?, ...+4] # gas: 3 (total: 2905+)
-00000408: PUSH2 0x0414                       │ Stack: [0x0414, [![cmp]], [cmp], [?-?], ...+5] # gas: 3 (total: 2908+)
-0000040b: JUMPI                              │ Stack: [[cmp], [?-?], ?, [CD@?], ...+3] # gas: 10 (total: 2918+)
-0000040c: PUSH2 0x0413                       │ Stack: [0x0413, [cmp], [?-?], ?, ...+4] # gas: 3 (total: 2921+)
-0000040f: PUSH2 0x03d1                       │ Stack: [0x03d1, 0x0413, [cmp], [?-?], ...+5] # gas: 3 (total: 2924+)
-00000412: JUMP                               │ Stack: [0x0413, [cmp], [?-?], ?, ...+4] # gas: 8 (total: 2932+)
-00000413: JUMPDEST                           │ Stack: [0x0413, [cmp], [?-?], ?, ...+4] # gas: 1 (total: 2933+)
-00000414: JUMPDEST                           │ Stack: [0x0413, [cmp], [?-?], ?, ...+4] # gas: 1 (total: 2934+)
-00000415: PUSH0                              │ Stack: [0x0, 0x0413, [cmp], [?-?], ...+5] # gas: 2 (total: 2936+)
-00000416: PUSH2 0x0421                       │ Stack: [0x0421, 0x0, 0x0413, [cmp], ...+6] # gas: 3 (total: 2939+)
-00000419: DUP5                               │ Stack: [[?-?], 0x0421, 0x0, 0x0413, ...+7] # gas: 3 (total: 2942+)
-0000041a: DUP3                               │ Stack: [0x0, [?-?], 0x0421, 0x0, ...+8] # gas: 3 (total: 2945+)
-0000041b: DUP6                               │ Stack: [[cmp], 0x0, [?-?], 0x0421, ...+9] # gas: 3 (total: 2948+)
-0000041c: ADD                                │ Stack: [[[cmp]+[cmp]], [cmp], 0x0, [?-?], ...+10] # gas: 3 (total: 2951+)
-0000041d: PUSH2 0x03eb                       │ Stack: [0x03eb, [[cmp]+[cmp]], [cmp], 0x0, ...+11] # gas: 3 (total: 2954+)
-00000420: JUMP                               │ Stack: [[[cmp]+[cmp]], [cmp], 0x0, [?-?], ...+10] # gas: 8 (total: 2962+)
-00000421: JUMPDEST                           │ Stack: [[[cmp]+[cmp]], [cmp], 0x0, [?-?], ...+10] # gas: 1 (total: 2963+)
-00000422: SWAP2                              │ Stack: [0x0, [cmp], [[cmp]+[cmp]], [?-?], ...+10] # gas: 3 (total: 2966+)
-00000423: POP                                │ Stack: [[cmp], [[cmp]+[cmp]], [?-?], 0x0421, ...+9] # gas: 2 (total: 2968+)
-00000424: POP                                │ Stack: [[[cmp]+[cmp]], [?-?], 0x0421, 0x0, ...+8] # gas: 2 (total: 2970+)
-00000425: SWAP3                              │ Stack: [0x0, [?-?], 0x0421, [[cmp]+[cmp]], ...+8] # gas: 3 (total: 2973+)
-00000426: SWAP2                              │ Stack: [0x0421, [?-?], 0x0, [[cmp]+[cmp]], ...+8] # gas: 3 (total: 2976+)
-00000427: POP                                │ Stack: [[?-?], 0x0, [[cmp]+[cmp]], 0x0413, ...+7] # gas: 2 (total: 2978+)
-00000428: POP                                │ Stack: [0x0, [[cmp]+[cmp]], 0x0413, [cmp], ...+6] # gas: 2 (total: 2980+)
-00000429: JUMP                               │ Stack: [[[cmp]+[cmp]], 0x0413, [cmp], [?-?], ...+5] # gas: 8 (total: 2988+)
-0000042a: JUMPDEST                           │ Stack: [[[cmp]+[cmp]], 0x0413, [cmp], [?-?], ...+5] # gas: 1 (total: 2989+)
-0000042b: PUSH0                              │ Stack: [0x0, [[cmp]+[cmp]], 0x0413, [cmp], ...+6] # gas: 2 (total: 2991+)
-0000042c: DUP3                               │ Stack: [0x0413, 0x0, [[cmp]+[cmp]], 0x0413, ...+7] # gas: 3 (total: 2994+)
-0000042d: DUP3                               │ Stack: [[[cmp]+[cmp]], 0x0413, 0x0, [[cmp]+[cmp]], ...+8] # gas: 3 (total: 2997+)
-0000042e: MSTORE                             │ Stack: [0x0, [[cmp]+[cmp]], 0x0413, [cmp], ...+6] # gas: 3 (total: 3000+)
-0000042f: PUSH1 0x20                         │ Stack: [0x20, 0x0, [[cmp]+[cmp]], 0x0413, ...+7] # gas: 3 (total: 3003+)
-00000431: DUP3                               │ Stack: [[[cmp]+[cmp]], 0x20, 0x0, [[cmp]+[cmp]], ...+8] # gas: 3 (total: 3006+)
-00000432: ADD                                │ Stack: [[[[cmp]+[cmp]]+[[cmp]+[cmp]]], [[cmp]+[cmp]], 0x20, 0x0, ...+9] # gas: 3 (total: 3009+)
-00000433: SWAP1                              │ Stack: [[[cmp]+[cmp]], [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x20, 0x0, ...+9] # gas: 3 (total: 3012+)
-00000434: POP                                │ Stack: [[[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x20, 0x0, [[cmp]+[cmp]], ...+8] # gas: 2 (total: 3014+)
-00000435: SWAP3                              │ Stack: [[[cmp]+[cmp]], 0x20, 0x0, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], ...+8] # gas: 3 (total: 3017+)
-00000436: SWAP2                              │ Stack: [0x0, 0x20, [[cmp]+[cmp]], [[[cmp]+[cmp]]+[[cmp]+[cmp]]], ...+8] # gas: 3 (total: 3020+)
-00000437: POP                                │ Stack: [0x20, [[cmp]+[cmp]], [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0413, ...+7] # gas: 2 (total: 3022+)
-00000438: POP                                │ Stack: [[[cmp]+[cmp]], [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0413, [cmp], ...+6] # gas: 2 (total: 3024+)
-00000439: JUMP                               │ Stack: [[[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0413, [cmp], [?-?], ...+5] # gas: 8 (total: 3032+)
-0000043a: JUMPDEST                           │ Stack: [[[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0413, [cmp], [?-?], ...+5] # gas: 1 (total: 3033+)
-0000043b: PUSH32 0x5265656e7472616e742063616c6c000000000000000000000000000000000000 │ Stack: [0x5265656e7472616e742063616c6c000000000000000000000000000000000000, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0413, [cmp], ...+6] # gas: 3 (total: 3036+)
-0000045c: PUSH0                              │ Stack: [0x0, 0x5265656e7472616e742063616c6c000000000000000000000000000000000000, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0413, ...+7] # gas: 2 (total: 3038+)
-0000045d: DUP3                               │ Stack: [[[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0, 0x5265656e7472616e742063616c6c000000000000000000000000000000000000, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], ...+8] # gas: 3 (total: 3041+)
-0000045e: ADD                                │ Stack: [[[[[cmp]+[cmp]]+[[cmp]+[cmp]]]+[[[cmp]+[cmp]]+[[cmp]+[cmp]]]], [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0, 0x5265656e7472616e742063616c6c000000000000000000000000000000000000, ...+9] # gas: 3 (total: 3044+)
-0000045f: MSTORE                             │ Stack: [0x0, 0x5265656e7472616e742063616c6c000000000000000000000000000000000000, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0413, ...+7] # gas: 3 (total: 3047+)
-00000460: POP                                │ Stack: [0x5265656e7472616e742063616c6c000000000000000000000000000000000000, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0413, [cmp], ...+6] # gas: 2 (total: 3049+)
-00000461: JUMP                               │ Stack: [[[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0413, [cmp], [?-?], ...+5] # gas: 8 (total: 3057+)
-00000462: JUMPDEST                           │ Stack: [[[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0413, [cmp], [?-?], ...+5] # gas: 1 (total: 3058+)
-00000463: PUSH0                              │ Stack: [0x0, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0413, [cmp], ...+6] # gas: 2 (total: 3060+)
-00000464: PUSH2 0x046e                       │ Stack: [0x046e, 0x0, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0413, ...+7] # gas: 3 (total: 3063+)
-00000467: PUSH1 0x0e                         │ Stack: [0x0e, 0x046e, 0x0, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], ...+8] # gas: 3 (total: 3066+)
-00000469: DUP4                               │ Stack: [[[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0e, 0x046e, 0x0, ...+9] # gas: 3 (total: 3069+)
-0000046a: PUSH2 0x042a                       │ Stack: [0x042a, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0e, 0x046e, ...+10] # gas: 3 (total: 3072+)
-0000046d: JUMP                               │ Stack: [[[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0e, 0x046e, 0x0, ...+9] # gas: 8 (total: 3080+)
-0000046e: JUMPDEST                           │ Stack: [[[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0e, 0x046e, 0x0, ...+9] # gas: 1 (total: 3081+)
-0000046f: SWAP2                              │ Stack: [0x046e, 0x0e, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0, ...+9] # gas: 3 (total: 3084+)
-00000470: POP                                │ Stack: [0x0e, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], ...+8] # gas: 2 (total: 3086+)
-00000471: PUSH2 0x0479                       │ Stack: [0x0479, 0x0e, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0, ...+9] # gas: 3 (total: 3089+)
-00000474: DUP3                               │ Stack: [[[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0479, 0x0e, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], ...+10] # gas: 3 (total: 3092+)
-00000475: PUSH2 0x043a                       │ Stack: [0x043a, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0479, 0x0e, ...+11] # gas: 3 (total: 3095+)
-00000478: JUMP                               │ Stack: [[[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0479, 0x0e, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], ...+10] # gas: 8 (total: 3103+)
-00000479: JUMPDEST                           │ Stack: [[[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0479, 0x0e, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], ...+10] # gas: 1 (total: 3104+)
-0000047a: PUSH1 0x20                         │ Stack: [0x20, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0479, 0x0e, ...+11] # gas: 3 (total: 3107+)
-0000047c: DUP3                               │ Stack: [0x0479, 0x20, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0479, ...+12] # gas: 3 (total: 3110+)
-0000047d: ADD                                │ Stack: [[0x0479+0x0479], 0x0479, 0x20, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], ...+13] # gas: 3 (total: 3113+)
-0000047e: SWAP1                              │ Stack: [0x0479, [0x0479+0x0479], 0x20, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], ...+13] # gas: 3 (total: 3116+)
-0000047f: POP                                │ Stack: [[0x0479+0x0479], 0x20, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x0479, ...+12] # gas: 2 (total: 3118+)
-00000480: SWAP2                              │ Stack: [[[[cmp]+[cmp]]+[[cmp]+[cmp]]], 0x20, [0x0479+0x0479], 0x0479, ...+12] # gas: 3 (total: 3121+)
-00000481: SWAP1                              │ Stack: [0x20, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], [0x0479+0x0479], 0x0479, ...+12] # gas: 3 (total: 3124+)
-00000482: POP                                │ Stack: [[[[cmp]+[cmp]]+[[cmp]+[cmp]]], [0x0479+0x0479], 0x0479, 0x0e, ...+11] # gas: 2 (total: 3126+)
-00000483: JUMP                               │ Stack: [[0x0479+0x0479], 0x0479, 0x0e, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], ...+10] # gas: 8 (total: 3134+)
-00000484: JUMPDEST                           │ Stack: [[0x0479+0x0479], 0x0479, 0x0e, [[[cmp]+[cmp]]+[[cmp]+[cmp]]], ...+10] # gas: 1 (total: 3135+)
-00000485: PUSH0                              │ Stack: [0x0, [0x0479+0x0479], 0x0479, 0x0e, ...+11] # gas: 2 (total: 3137+)
-00000486: PUSH1 0x20                         │ Stack: [0x20, 0x0, [0x0479+0x0479], 0x0479, ...+12] # gas: 3 (total: 3140+)
-00000488: DUP3                               │ Stack: [[0x0479+0x0479], 0x20, 0x0, [0x0479+0x0479], ...+13] # gas: 3 (total: 3143+)
-00000489: ADD                                │ Stack: [[[0x0479+0x0479]+[0x0479+0x0479]], [0x0479+0x0479], 0x20, 0x0, ...+14] # gas: 3 (total: 3146+)
-0000048a: SWAP1                              │ Stack: [[0x0479+0x0479], [[0x0479+0x0479]+[0x0479+0x0479]], 0x20, 0x0, ...+14] # gas: 3 (total: 3149+)
-0000048b: POP                                │ Stack: [[[0x0479+0x0479]+[0x0479+0x0479]], 0x20, 0x0, [0x0479+0x0479], ...+13] # gas: 2 (total: 3151+)
-0000048c: DUP2                               │ Stack: [0x20, [[0x0479+0x0479]+[0x0479+0x0479]], 0x20, 0x0, ...+14] # gas: 3 (total: 3154+)
-0000048d: DUP2                               │ Stack: [[[0x0479+0x0479]+[0x0479+0x0479]], 0x20, [[0x0479+0x0479]+[0x0479+0x0479]], 0x20, ...+15] # gas: 3 (total: 3157+)
-0000048e: SUB                                │ Stack: [[[[0x0479+0x0479]+[0x0479+0x0479]]-[[0x0479+0x0479]+[0x0479+0x0479]]], [[0x0479+0x0479]+[0x0479+0x0479]], 0x20, [[0x0479+0x0479]+[0x0479+0x0479]], ...+16] # gas: 3 (total: 3160+)
-0000048f: PUSH0                              │ Stack: [0x0, [[[0x0479+0x0479]+[0x0479+0x0479]]-[[0x0479+0x0479]+[0x0479+0x0479]]], [[0x0479+0x0479]+[0x0479+0x0479]], 0x20, ...+17] # gas: 2 (total: 3162+)
-00000490: DUP4                               │ Stack: [0x20, 0x0, [[[0x0479+0x0479]+[0x0479+0x0479]]-[[0x0479+0x0479]+[0x0479+0x0479]]], [[0x0479+0x0479]+[0x0479+0x0479]], ...+18] # gas: 3 (total: 3165+)
-00000491: ADD                                │ Stack: [[0x20+0x20], 0x20, 0x0, [[[0x0479+0x0479]+[0x0479+0x0479]]-[[0x0479+0x0479]+[0x0479+0x0479]]], ...+19] # gas: 3 (total: 3168+)
-00000492: MSTORE                             │ Stack: [0x0, [[[0x0479+0x0479]+[0x0479+0x0479]]-[[0x0479+0x0479]+[0x0479+0x0479]]], [[0x0479+0x0479]+[0x0479+0x0479]], 0x20, ...+17] # gas: 3 (total: 3171+)
-00000493: PUSH2 0x049b                       │ Stack: [0x049b, 0x0, [[[0x0479+0x0479]+[0x0479+0x0479]]-[[0x0479+0x0479]+[0x0479+0x0479]]], [[0x0479+0x0479]+[0x0479+0x0479]], ...+18] # gas: 3 (total: 3174+)
-00000496: DUP2                               │ Stack: [0x0, 0x049b, 0x0, [[[0x0479+0x0479]+[0x0479+0x0479]]-[[0x0479+0x0479]+[0x0479+0x0479]]], ...+19] # gas: 3 (total: 3177+)
-00000497: PUSH2 0x0462                       │ Stack: [0x0462, 0x0, 0x049b, 0x0, ...+20] # gas: 3 (total: 3180+)
-0000049a: JUMP                               │ Stack: [0x0, 0x049b, 0x0, [[[0x0479+0x0479]+[0x0479+0x0479]]-[[0x0479+0x0479]+[0x0479+0x0479]]], ...+19] # gas: 8 (total: 3188+)
-0000049b: JUMPDEST                           │ Stack: [0x0, 0x049b, 0x0, [[[0x0479+0x0479]+[0x0479+0x0479]]-[[0x0479+0x0479]+[0x0479+0x0479]]], ...+19] # gas: 1 (total: 3189+)
-0000049c: SWAP1                              │ Stack: [0x049b, 0x0, 0x0, [[[0x0479+0x0479]+[0x0479+0x0479]]-[[0x0479+0x0479]+[0x0479+0x0479]]], ...+19] # gas: 3 (total: 3192+)
-0000049d: POP                                │ Stack: [0x0, 0x0, [[[0x0479+0x0479]+[0x0479+0x0479]]-[[0x0479+0x0479]+[0x0479+0x0479]]], [[0x0479+0x0479]+[0x0479+0x0479]], ...+18] # gas: 2 (total: 3194+)
-0000049e: SWAP2                              │ Stack: [[[[0x0479+0x0479]+[0x0479+0x0479]]-[[0x0479+0x0479]+[0x0479+0x0479]]], 0x0, 0x0, [[0x0479+0x0479]+[0x0479+0x0479]], ...+18] # gas: 3 (total: 3197+)
-0000049f: SWAP1                              │ Stack: [0x0, [[[0x0479+0x0479]+[0x0479+0x0479]]-[[0x0479+0x0479]+[0x0479+0x0479]]], 0x0, [[0x0479+0x0479]+[0x0479+0x0479]], ...+18] # gas: 3 (total: 3200+)
-000004a0: POP                                │ Stack: [[[[0x0479+0x0479]+[0x0479+0x0479]]-[[0x0479+0x0479]+[0x0479+0x0479]]], 0x0, [[0x0479+0x0479]+[0x0479+0x0479]], 0x20, ...+17] # gas: 2 (total: 3202+)
-000004a1: JUMP                               │ Stack: [0x0, [[0x0479+0x0479]+[0x0479+0x0479]], 0x20, [[0x0479+0x0479]+[0x0479+0x0479]], ...+16] # gas: 8 (total: 3210+)
-000004a2: JUMPDEST                           │ Stack: [0x0, [[0x0479+0x0479]+[0x0479+0x0479]], 0x20, [[0x0479+0x0479]+[0x0479+0x0479]], ...+16] # gas: 1 (total: 3211+)
-000004a3: PUSH32 0x4e6f74206f776e65720000000000000000000000000000000000000000000000 │ Stack: [0x4e6f74206f776e65720000000000000000000000000000000000000000000000, 0x0, [[0x0479+0x0479]+[0x0479+0x0479]], 0x20, ...+17] # gas: 3 (total: 3214+)
-000004c4: PUSH0                              │ Stack: [0x0, 0x4e6f74206f776e65720000000000000000000000000000000000000000000000, 0x0, [[0x0479+0x0479]+[0x0479+0x0479]], ...+18] # gas: 2 (total: 3216+)
-000004c5: DUP3                               │ Stack: [0x0, 0x0, 0x4e6f74206f776e65720000000000000000000000000000000000000000000000, 0x0, ...+19] # gas: 3 (total: 3219+)
-000004c6: ADD                                │ Stack: [[0x0+0x0], 0x0, 0x0, 0x4e6f74206f776e65720000000000000000000000000000000000000000000000, ...+20] # gas: 3 (total: 3222+)
-000004c7: MSTORE                             │ Stack: [0x0, 0x4e6f74206f776e65720000000000000000000000000000000000000000000000, 0x0, [[0x0479+0x0479]+[0x0479+0x0479]], ...+18] # gas: 3 (total: 3225+)
-000004c8: POP                                │ Stack: [0x4e6f74206f776e65720000000000000000000000000000000000000000000000, 0x0, [[0x0479+0x0479]+[0x0479+0x0479]], 0x20, ...+17] # gas: 2 (total: 3227+)
-000004c9: JUMP                               │ Stack: [0x0, [[0x0479+0x0479]+[0x0479+0x0479]], 0x20, [[0x0479+0x0479]+[0x0479+0x0479]], ...+16] # gas: 8 (total: 3235+)
-000004ca: JUMPDEST                           │ Stack: [0x0, [[0x0479+0x0479]+[0x0479+0x0479]], 0x20, [[0x0479+0x0479]+[0x0479+0x0479]], ...+16] # gas: 1 (total: 3236+)
-000004cb: PUSH0                              │ Stack: [0x0, 0x0, [[0x0479+0x0479]+[0x0479+0x0479]], 0x20, ...+17] # gas: 2 (total: 3238+)
-000004cc: PUSH2 0x04d6                       │ Stack: [0x04d6, 0x0, 0x0, [[0x0479+0x0479]+[0x0479+0x0479]], ...+18] # gas: 3 (total: 3241+)
-000004cf: PUSH1 0x09                         │ Stack: [0x09, 0x04d6, 0x0, 0x0, ...+19] # gas: 3 (total: 3244+)
-000004d1: DUP4                               │ Stack: [0x0, 0x09, 0x04d6, 0x0, ...+20] # gas: 3 (total: 3247+)
-000004d2: PUSH2 0x042a                       │ Stack: [0x042a, 0x0, 0x09, 0x04d6, ...+21] # gas: 3 (total: 3250+)
-000004d5: JUMP                               │ Stack: [0x0, 0x09, 0x04d6, 0x0, ...+20] # gas: 8 (total: 3258+)
-000004d6: JUMPDEST                           │ Stack: [0x0, 0x09, 0x04d6, 0x0, ...+20] # gas: 1 (total: 3259+)
-000004d7: SWAP2                              │ Stack: [0x04d6, 0x09, 0x0, 0x0, ...+20] # gas: 3 (total: 3262+)
-000004d8: POP                                │ Stack: [0x09, 0x0, 0x0, 0x0, ...+19] # gas: 2 (total: 3264+)
-000004d9: PUSH2 0x04e1                       │ Stack: [0x04e1, 0x09, 0x0, 0x0, ...+20] # gas: 3 (total: 3267+)
-000004dc: DUP3                               │ Stack: [0x0, 0x04e1, 0x09, 0x0, ...+21] # gas: 3 (total: 3270+)
-000004dd: PUSH2 0x04a2                       │ Stack: [0x04a2, 0x0, 0x04e1, 0x09, ...+22] # gas: 3 (total: 3273+)
-000004e0: JUMP                               │ Stack: [0x0, 0x04e1, 0x09, 0x0, ...+21] # gas: 8 (total: 3281+)
-000004e1: JUMPDEST                           │ Stack: [0x0, 0x04e1, 0x09, 0x0, ...+21] # gas: 1 (total: 3282+)
-000004e2: PUSH1 0x20                         │ Stack: [0x20, 0x0, 0x04e1, 0x09, ...+22] # gas: 3 (total: 3285+)
-000004e4: DUP3                               │ Stack: [0x04e1, 0x20, 0x0, 0x04e1, ...+23] # gas: 3 (total: 3288+)
-000004e5: ADD                                │ Stack: [[0x04e1+0x04e1], 0x04e1, 0x20, 0x0, ...+24] # gas: 3 (total: 3291+)
-000004e6: SWAP1                              │ Stack: [0x04e1, [0x04e1+0x04e1], 0x20, 0x0, ...+24] # gas: 3 (total: 3294+)
-000004e7: POP                                │ Stack: [[0x04e1+0x04e1], 0x20, 0x0, 0x04e1, ...+23] # gas: 2 (total: 3296+)
-000004e8: SWAP2                              │ Stack: [0x0, 0x20, [0x04e1+0x04e1], 0x04e1, ...+23] # gas: 3 (total: 3299+)
-000004e9: SWAP1                              │ Stack: [0x20, 0x0, [0x04e1+0x04e1], 0x04e1, ...+23] # gas: 3 (total: 3302+)
-000004ea: POP                                │ Stack: [0x0, [0x04e1+0x04e1], 0x04e1, 0x09, ...+22] # gas: 2 (total: 3304+)
-000004eb: JUMP                               │ Stack: [[0x04e1+0x04e1], 0x04e1, 0x09, 0x0, ...+21] # gas: 8 (total: 3312+)
-000004ec: JUMPDEST                           │ Stack: [[0x04e1+0x04e1], 0x04e1, 0x09, 0x0, ...+21] # gas: 1 (total: 3313+)
-000004ed: PUSH0                              │ Stack: [0x0, [0x04e1+0x04e1], 0x04e1, 0x09, ...+22] # gas: 2 (total: 3315+)
-000004ee: PUSH1 0x20                         │ Stack: [0x20, 0x0, [0x04e1+0x04e1], 0x04e1, ...+23] # gas: 3 (total: 3318+)
-000004f0: DUP3                               │ Stack: [[0x04e1+0x04e1], 0x20, 0x0, [0x04e1+0x04e1], ...+24] # gas: 3 (total: 3321+)
-000004f1: ADD                                │ Stack: [[[0x04e1+0x04e1]+[0x04e1+0x04e1]], [0x04e1+0x04e1], 0x20, 0x0, ...+25] # gas: 3 (total: 3324+)
-000004f2: SWAP1                              │ Stack: [[0x04e1+0x04e1], [[0x04e1+0x04e1]+[0x04e1+0x04e1]], 0x20, 0x0, ...+25] # gas: 3 (total: 3327+)
-000004f3: POP                                │ Stack: [[[0x04e1+0x04e1]+[0x04e1+0x04e1]], 0x20, 0x0, [0x04e1+0x04e1], ...+24] # gas: 2 (total: 3329+)
-000004f4: DUP2                               │ Stack: [0x20, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], 0x20, 0x0, ...+25] # gas: 3 (total: 3332+)
-000004f5: DUP2                               │ Stack: [[[0x04e1+0x04e1]+[0x04e1+0x04e1]], 0x20, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], 0x20, ...+26] # gas: 3 (total: 3335+)
-000004f6: SUB                                │ Stack: [[[[0x04e1+0x04e1]+[0x04e1+0x04e1]]-[[0x04e1+0x04e1]+[0x04e1+0x04e1]]], [[0x04e1+0x04e1]+[0x04e1+0x04e1]], 0x20, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], ...+27] # gas: 3 (total: 3338+)
-000004f7: PUSH0                              │ Stack: [0x0, [[[0x04e1+0x04e1]+[0x04e1+0x04e1]]-[[0x04e1+0x04e1]+[0x04e1+0x04e1]]], [[0x04e1+0x04e1]+[0x04e1+0x04e1]], 0x20, ...+28] # gas: 2 (total: 3340+)
-000004f8: DUP4                               │ Stack: [0x20, 0x0, [[[0x04e1+0x04e1]+[0x04e1+0x04e1]]-[[0x04e1+0x04e1]+[0x04e1+0x04e1]]], [[0x04e1+0x04e1]+[0x04e1+0x04e1]], ...+29] # gas: 3 (total: 3343+)
-000004f9: ADD                                │ Stack: [[0x20+0x20], 0x20, 0x0, [[[0x04e1+0x04e1]+[0x04e1+0x04e1]]-[[0x04e1+0x04e1]+[0x04e1+0x04e1]]], ...+30] # gas: 3 (total: 3346+)
-000004fa: MSTORE                             │ Stack: [0x0, [[[0x04e1+0x04e1]+[0x04e1+0x04e1]]-[[0x04e1+0x04e1]+[0x04e1+0x04e1]]], [[0x04e1+0x04e1]+[0x04e1+0x04e1]], 0x20, ...+28] # gas: 3 (total: 3349+)
-000004fb: PUSH2 0x0503                       │ Stack: [0x0503, 0x0, [[[0x04e1+0x04e1]+[0x04e1+0x04e1]]-[[0x04e1+0x04e1]+[0x04e1+0x04e1]]], [[0x04e1+0x04e1]+[0x04e1+0x04e1]], ...+29] # gas: 3 (total: 3352+)
-000004fe: DUP2                               │ Stack: [0x0, 0x0503, 0x0, [[[0x04e1+0x04e1]+[0x04e1+0x04e1]]-[[0x04e1+0x04e1]+[0x04e1+0x04e1]]], ...+30] # gas: 3 (total: 3355+)
-000004ff: PUSH2 0x04ca                       │ Stack: [0x04ca, 0x0, 0x0503, 0x0, ...+31] # gas: 3 (total: 3358+)
-00000502: JUMP                               │ Stack: [0x0, 0x0503, 0x0, [[[0x04e1+0x04e1]+[0x04e1+0x04e1]]-[[0x04e1+0x04e1]+[0x04e1+0x04e1]]], ...+30] # gas: 8 (total: 3366+)
-00000503: JUMPDEST                           │ Stack: [0x0, 0x0503, 0x0, [[[0x04e1+0x04e1]+[0x04e1+0x04e1]]-[[0x04e1+0x04e1]+[0x04e1+0x04e1]]], ...+30] # gas: 1 (total: 3367+)
-00000504: SWAP1                              │ Stack: [0x0503, 0x0, 0x0, [[[0x04e1+0x04e1]+[0x04e1+0x04e1]]-[[0x04e1+0x04e1]+[0x04e1+0x04e1]]], ...+30] # gas: 3 (total: 3370+)
-00000505: POP                                │ Stack: [0x0, 0x0, [[[0x04e1+0x04e1]+[0x04e1+0x04e1]]-[[0x04e1+0x04e1]+[0x04e1+0x04e1]]], [[0x04e1+0x04e1]+[0x04e1+0x04e1]], ...+29] # gas: 2 (total: 3372+)
-00000506: SWAP2                              │ Stack: [[[[0x04e1+0x04e1]+[0x04e1+0x04e1]]-[[0x04e1+0x04e1]+[0x04e1+0x04e1]]], 0x0, 0x0, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], ...+29] # gas: 3 (total: 3375+)
-00000507: SWAP1                              │ Stack: [0x0, [[[0x04e1+0x04e1]+[0x04e1+0x04e1]]-[[0x04e1+0x04e1]+[0x04e1+0x04e1]]], 0x0, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], ...+29] # gas: 3 (total: 3378+)
-00000508: POP                                │ Stack: [[[[0x04e1+0x04e1]+[0x04e1+0x04e1]]-[[0x04e1+0x04e1]+[0x04e1+0x04e1]]], 0x0, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], 0x20, ...+28] # gas: 2 (total: 3380+)
-00000509: JUMP                               │ Stack: [0x0, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], 0x20, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], ...+27] # gas: 8 (total: 3388+)
-0000050a: JUMPDEST                           │ Stack: [0x0, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], 0x20, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], ...+27] # gas: 1 (total: 3389+)
-0000050b: PUSH32 0x5a65726f20616464726573730000000000000000000000000000000000000000 │ Stack: [0x5a65726f20616464726573730000000000000000000000000000000000000000, 0x0, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], 0x20, ...+28] # gas: 3 (total: 3392+)
-0000052c: PUSH0                              │ Stack: [0x0, 0x5a65726f20616464726573730000000000000000000000000000000000000000, 0x0, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], ...+29] # gas: 2 (total: 3394+)
-0000052d: DUP3                               │ Stack: [0x0, 0x0, 0x5a65726f20616464726573730000000000000000000000000000000000000000, 0x0, ...+30] # gas: 3 (total: 3397+)
-0000052e: ADD                                │ Stack: [[0x0+0x0], 0x0, 0x0, 0x5a65726f20616464726573730000000000000000000000000000000000000000, ...+31] # gas: 3 (total: 3400+)
-0000052f: MSTORE                             │ Stack: [0x0, 0x5a65726f20616464726573730000000000000000000000000000000000000000, 0x0, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], ...+29] # gas: 3 (total: 3403+)
-00000530: POP                                │ Stack: [0x5a65726f20616464726573730000000000000000000000000000000000000000, 0x0, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], 0x20, ...+28] # gas: 2 (total: 3405+)
-00000531: JUMP                               │ Stack: [0x0, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], 0x20, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], ...+27] # gas: 8 (total: 3413+)
-00000532: JUMPDEST                           │ Stack: [0x0, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], 0x20, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], ...+27] # gas: 1 (total: 3414+)
-00000533: PUSH0                              │ Stack: [0x0, 0x0, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], 0x20, ...+28] # gas: 2 (total: 3416+)
-00000534: PUSH2 0x053e                       │ Stack: [0x053e, 0x0, 0x0, [[0x04e1+0x04e1]+[0x04e1+0x04e1]], ...+29] # gas: 3 (total: 3419+)
-00000537: PUSH1 0x0c                         │ Stack: [0x0c, 0x053e, 0x0, 0x0, ...+30] # gas: 3 (total: 3422+)
-00000539: DUP4                               │ Stack: [0x0, 0x0c, 0x053e, 0x0, ...+31] # gas: 3 (total: 3425+)
-0000053a: PUSH2 0x042a                       │ Stack: [0x042a, 0x0, 0x0c, 0x053e, ...+32] # gas: 3 (total: 3428+)
-0000053d: JUMP                               │ Stack: [0x0, 0x0c, 0x053e, 0x0, ...+31] # gas: 8 (total: 3436+)
-0000053e: JUMPDEST                           │ Stack: [0x0, 0x0c, 0x053e, 0x0, ...+31] # gas: 1 (total: 3437+)
-0000053f: SWAP2                              │ Stack: [0x053e, 0x0c, 0x0, 0x0, ...+31] # gas: 3 (total: 3440+)
-00000540: POP                                │ Stack: [0x0c, 0x0, 0x0, 0x0, ...+30] # gas: 2 (total: 3442+)
-00000541: PUSH2 0x0549                       │ Stack: [0x0549, 0x0c, 0x0, 0x0, ...+31] # gas: 3 (total: 3445+)
-00000544: DUP3                               │ Stack: [0x0, 0x0549, 0x0c, 0x0, ...+32] # gas: 3 (total: 3448+)
-00000545: PUSH2 0x050a                       │ Stack: [0x050a, 0x0, 0x0549, 0x0c, ...+33] # gas: 3 (total: 3451+)
-00000548: JUMP                               │ Stack: [0x0, 0x0549, 0x0c, 0x0, ...+32] # gas: 8 (total: 3459+)
-00000549: JUMPDEST                           │ Stack: [0x0, 0x0549, 0x0c, 0x0, ...+32] # gas: 1 (total: 3460+)
-0000054a: PUSH1 0x20                         │ Stack: [0x20, 0x0, 0x0549, 0x0c, ...+33] # gas: 3 (total: 3463+)
-0000054c: DUP3                               │ Stack: [0x0549, 0x20, 0x0, 0x0549, ...+34] # gas: 3 (total: 3466+)
-0000054d: ADD                                │ Stack: [[0x0549+0x0549], 0x0549, 0x20, 0x0, ...+35] # gas: 3 (total: 3469+)
-0000054e: SWAP1                              │ Stack: [0x0549, [0x0549+0x0549], 0x20, 0x0, ...+35] # gas: 3 (total: 3472+)
-0000054f: POP                                │ Stack: [[0x0549+0x0549], 0x20, 0x0, 0x0549, ...+34] # gas: 2 (total: 3474+)
-00000550: SWAP2                              │ Stack: [0x0, 0x20, [0x0549+0x0549], 0x0549, ...+34] # gas: 3 (total: 3477+)
-00000551: SWAP1                              │ Stack: [0x20, 0x0, [0x0549+0x0549], 0x0549, ...+34] # gas: 3 (total: 3480+)
-00000552: POP                                │ Stack: [0x0, [0x0549+0x0549], 0x0549, 0x0c, ...+33] # gas: 2 (total: 3482+)
-00000553: JUMP                               │ Stack: [[0x0549+0x0549], 0x0549, 0x0c, 0x0, ...+32] # gas: 8 (total: 3490+)
-00000554: JUMPDEST                           │ Stack: [[0x0549+0x0549], 0x0549, 0x0c, 0x0, ...+32] # gas: 1 (total: 3491+)
-00000555: PUSH0                              │ Stack: [0x0, [0x0549+0x0549], 0x0549, 0x0c, ...+33] # gas: 2 (total: 3493+)
-00000556: PUSH1 0x20                         │ Stack: [0x20, 0x0, [0x0549+0x0549], 0x0549, ...+34] # gas: 3 (total: 3496+)
-00000558: DUP3                               │ Stack: [[0x0549+0x0549], 0x20, 0x0, [0x0549+0x0549], ...+35] # gas: 3 (total: 3499+)
-00000559: ADD                                │ Stack: [[[0x0549+0x0549]+[0x0549+0x0549]], [0x0549+0x0549], 0x20, 0x0, ...+36] # gas: 3 (total: 3502+)
-0000055a: SWAP1                              │ Stack: [[0x0549+0x0549], [[0x0549+0x0549]+[0x0549+0x0549]], 0x20, 0x0, ...+36] # gas: 3 (total: 3505+)
-0000055b: POP                                │ Stack: [[[0x0549+0x0549]+[0x0549+0x0549]], 0x20, 0x0, [0x0549+0x0549], ...+35] # gas: 2 (total: 3507+)
-0000055c: DUP2                               │ Stack: [0x20, [[0x0549+0x0549]+[0x0549+0x0549]], 0x20, 0x0, ...+36] # gas: 3 (total: 3510+)
-0000055d: DUP2                               │ Stack: [[[0x0549+0x0549]+[0x0549+0x0549]], 0x20, [[0x0549+0x0549]+[0x0549+0x0549]], 0x20, ...+37] # gas: 3 (total: 3513+)
-0000055e: SUB                                │ Stack: [[[[0x0549+0x0549]+[0x0549+0x0549]]-[[0x0549+0x0549]+[0x0549+0x0549]]], [[0x0549+0x0549]+[0x0549+0x0549]], 0x20, [[0x0549+0x0549]+[0x0549+0x0549]], ...+38] # gas: 3 (total: 3516+)
-0000055f: PUSH0                              │ Stack: [0x0, [[[0x0549+0x0549]+[0x0549+0x0549]]-[[0x0549+0x0549]+[0x0549+0x0549]]], [[0x0549+0x0549]+[0x0549+0x0549]], 0x20, ...+39] # gas: 2 (total: 3518+)
-00000560: DUP4                               │ Stack: [0x20, 0x0, [[[0x0549+0x0549]+[0x0549+0x0549]]-[[0x0549+0x0549]+[0x0549+0x0549]]], [[0x0549+0x0549]+[0x0549+0x0549]], ...+40] # gas: 3 (total: 3521+)
-00000561: ADD                                │ Stack: [[0x20+0x20], 0x20, 0x0, [[[0x0549+0x0549]+[0x0549+0x0549]]-[[0x0549+0x0549]+[0x0549+0x0549]]], ...+41] # gas: 3 (total: 3524+)
-00000562: MSTORE                             │ Stack: [0x0, [[[0x0549+0x0549]+[0x0549+0x0549]]-[[0x0549+0x0549]+[0x0549+0x0549]]], [[0x0549+0x0549]+[0x0549+0x0549]], 0x20, ...+39] # gas: 3 (total: 3527+)
-00000563: PUSH2 0x056b                       │ Stack: [0x056b, 0x0, [[[0x0549+0x0549]+[0x0549+0x0549]]-[[0x0549+0x0549]+[0x0549+0x0549]]], [[0x0549+0x0549]+[0x0549+0x0549]], ...+40] # gas: 3 (total: 3530+)
-00000566: DUP2                               │ Stack: [0x0, 0x056b, 0x0, [[[0x0549+0x0549]+[0x0549+0x0549]]-[[0x0549+0x0549]+[0x0549+0x0549]]], ...+41] # gas: 3 (total: 3533+)
-00000567: PUSH2 0x0532                       │ Stack: [0x0532, 0x0, 0x056b, 0x0, ...+42] # gas: 3 (total: 3536+)
-0000056a: JUMP                               │ Stack: [0x0, 0x056b, 0x0, [[[0x0549+0x0549]+[0x0549+0x0549]]-[[0x0549+0x0549]+[0x0549+0x0549]]], ...+41] # gas: 8 (total: 3544+)
-0000056b: JUMPDEST                           │ Stack: [0x0, 0x056b, 0x0, [[[0x0549+0x0549]+[0x0549+0x0549]]-[[0x0549+0x0549]+[0x0549+0x0549]]], ...+41] # gas: 1 (total: 3545+)
-0000056c: SWAP1                              │ Stack: [0x056b, 0x0, 0x0, [[[0x0549+0x0549]+[0x0549+0x0549]]-[[0x0549+0x0549]+[0x0549+0x0549]]], ...+41] # gas: 3 (total: 3548+)
-0000056d: POP                                │ Stack: [0x0, 0x0, [[[0x0549+0x0549]+[0x0549+0x0549]]-[[0x0549+0x0549]+[0x0549+0x0549]]], [[0x0549+0x0549]+[0x0549+0x0549]], ...+40] # gas: 2 (total: 3550+)
-0000056e: SWAP2                              │ Stack: [[[[0x0549+0x0549]+[0x0549+0x0549]]-[[0x0549+0x0549]+[0x0549+0x0549]]], 0x0, 0x0, [[0x0549+0x0549]+[0x0549+0x0549]], ...+40] # gas: 3 (total: 3553+)
-0000056f: SWAP1                              │ Stack: [0x0, [[[0x0549+0x0549]+[0x0549+0x0549]]-[[0x0549+0x0549]+[0x0549+0x0549]]], 0x0, [[0x0549+0x0549]+[0x0549+0x0549]], ...+40] # gas: 3 (total: 3556+)
-00000570: POP                                │ Stack: [[[[0x0549+0x0549]+[0x0549+0x0549]]-[[0x0549+0x0549]+[0x0549+0x0549]]], 0x0, [[0x0549+0x0549]+[0x0549+0x0549]], 0x20, ...+39] # gas: 2 (total: 3558+)
-00000571: JUMP                               │ Stack: [0x0, [[0x0549+0x0549]+[0x0549+0x0549]], 0x20, [[0x0549+0x0549]+[0x0549+0x0549]], ...+38] # gas: 8 (total: 3566+)
+0000004e: JUMPDEST # === protectedFunction() ===
+0000004f: PUSH2 0x0056
+00000052: PUSH2 0x00c4
+00000055: JUMP
+00000056: JUMPDEST
+00000057: PUSH1 0x40
+00000059: MLOAD
+0000005a: PUSH2 0x0063
+0000005d: SWAP2
+0000005e: SWAP1
+0000005f: PUSH2 0x0360
+00000062: JUMP
+00000063: JUMPDEST
+00000064: PUSH1 0x40
+00000066: MLOAD
+00000067: DUP1
+00000068: SWAP2
+00000069: SUB
+0000006a: SWAP1
+0000006b: RETURN
+0000006c: JUMPDEST # === restrictedFunction() ===
+0000006d: PUSH2 0x0074
+00000070: PUSH2 0x014e
+00000073: JUMP
+00000074: JUMPDEST
+00000075: PUSH1 0x40
+00000077: MLOAD
+00000078: PUSH2 0x0081
+0000007b: SWAP2
+0000007c: SWAP1
+0000007d: PUSH2 0x0360
+00000080: JUMP
+00000081: JUMPDEST
+00000082: PUSH1 0x40
+00000084: MLOAD
+00000085: DUP1
+00000086: SWAP2
+00000087: SUB
+00000088: SWAP1
+00000089: RETURN
+0000008a: JUMPDEST # === owner() ===
+0000008b: PUSH2 0x0092
+0000008e: PUSH2 0x01e4
+00000091: JUMP
+00000092: JUMPDEST
+00000093: PUSH1 0x40
+00000095: MLOAD
+00000096: PUSH2 0x009f
+00000099: SWAP2
+0000009a: SWAP1
+0000009b: PUSH2 0x03b8
+0000009e: JUMP
+0000009f: JUMPDEST
+000000a0: PUSH1 0x40
+000000a2: MLOAD
+000000a3: DUP1
+000000a4: SWAP2
+000000a5: SUB
+000000a6: SWAP1
+000000a7: RETURN
+000000a8: JUMPDEST # === transferOwnership(address) ===
+000000a9: PUSH2 0x00c2
+000000ac: PUSH1 0x04
+000000ae: DUP1
+000000af: CALLDATASIZE
+000000b0: SUB
+000000b1: DUP2
+000000b2: ADD
+000000b3: SWAP1
+000000b4: PUSH2 0x00bd
+000000b7: SWAP2
+000000b8: SWAP1
+000000b9: PUSH2 0x03ff
+000000bc: JUMP
+000000bd: JUMPDEST
+000000be: PUSH2 0x0208
+000000c1: JUMP
+000000c2: JUMPDEST
+000000c3: STOP
+000000c4: JUMPDEST
+000000c5: PUSH0
+000000c6: PUSH0
+000000c7: PUSH1 0x14
+000000c9: SWAP1
+000000ca: SLOAD
+000000cb: SWAP1
+000000cc: PUSH2 0x0100
+000000cf: EXP
+000000d0: SWAP1
+000000d1: DIV
+000000d2: PUSH1 0xff
+000000d4: AND
+000000d5: ISZERO
+000000d6: PUSH2 0x0114
+000000d9: JUMPI
+000000da: PUSH1 0x40
+000000dc: MLOAD
+000000dd: PUSH32 0x08c379a000000000000000000000000000000000000000000000000000000000
+000000fe: DUP2
+000000ff: MSTORE
+00000100: PUSH1 0x04
+00000102: ADD
+00000103: PUSH2 0x010b
+00000106: SWAP1
+00000107: PUSH2 0x0484
+0000010a: JUMP
+0000010b: JUMPDEST
+0000010c: PUSH1 0x40
+0000010e: MLOAD
+0000010f: DUP1
+00000110: SWAP2
+00000111: SUB
+00000112: SWAP1
+00000113: REVERT
+00000114: JUMPDEST
+00000115: PUSH1 0x01
+00000117: PUSH0
+00000118: PUSH1 0x14
+0000011a: PUSH2 0x0100
+0000011d: EXP
+0000011e: DUP2
+0000011f: SLOAD
+00000120: DUP2
+00000121: PUSH1 0xff
+00000123: MUL
+00000124: NOT
+00000125: AND
+00000126: SWAP1
+00000127: DUP4
+00000128: ISZERO
+00000129: ISZERO
+0000012a: MUL
+0000012b: OR
+0000012c: SWAP1
+0000012d: SSTORE
+0000012e: POP
+0000012f: PUSH1 0x01
+00000131: SWAP1
+00000132: POP
+00000133: PUSH0
+00000134: PUSH0
+00000135: PUSH1 0x14
+00000137: PUSH2 0x0100
+0000013a: EXP
+0000013b: DUP2
+0000013c: SLOAD
+0000013d: DUP2
+0000013e: PUSH1 0xff
+00000140: MUL
+00000141: NOT
+00000142: AND
+00000143: SWAP1
+00000144: DUP4
+00000145: ISZERO
+00000146: ISZERO
+00000147: MUL
+00000148: OR
+00000149: SWAP1
+0000014a: SSTORE
+0000014b: POP
+0000014c: SWAP1
+0000014d: JUMP
+0000014e: JUMPDEST
+0000014f: PUSH0
+00000150: PUSH0
+00000151: PUSH0
+00000152: SWAP1
+00000153: SLOAD
+00000154: SWAP1
+00000155: PUSH2 0x0100
+00000158: EXP
+00000159: SWAP1
+0000015a: DIV
+0000015b: PUSH20 0xffffffffffffffffffffffffffffffffffffffff
+00000170: AND
+00000171: PUSH20 0xffffffffffffffffffffffffffffffffffffffff
+00000186: AND
+00000187: CALLER
+00000188: PUSH20 0xffffffffffffffffffffffffffffffffffffffff
+0000019d: AND
+0000019e: EQ
+0000019f: PUSH2 0x01dd
+000001a2: JUMPI
+000001a3: PUSH1 0x40
+000001a5: MLOAD
+000001a6: PUSH32 0x08c379a000000000000000000000000000000000000000000000000000000000
+000001c7: DUP2
+000001c8: MSTORE
+000001c9: PUSH1 0x04
+000001cb: ADD
+000001cc: PUSH2 0x01d4
+000001cf: SWAP1
+000001d0: PUSH2 0x04ec
+000001d3: JUMP
+000001d4: JUMPDEST
+000001d5: PUSH1 0x40
+000001d7: MLOAD
+000001d8: DUP1
+000001d9: SWAP2
+000001da: SUB
+000001db: SWAP1
+000001dc: REVERT
+000001dd: JUMPDEST
+000001de: PUSH1 0x01
+000001e0: SWAP1
+000001e1: POP
+000001e2: SWAP1
+000001e3: JUMP
+000001e4: JUMPDEST
+000001e5: PUSH0
+000001e6: PUSH0
+000001e7: SWAP1
+000001e8: SLOAD
+000001e9: SWAP1
+000001ea: PUSH2 0x0100
+000001ed: EXP
+000001ee: SWAP1
+000001ef: DIV
+000001f0: PUSH20 0xffffffffffffffffffffffffffffffffffffffff
+00000205: AND
+00000206: DUP2
+00000207: JUMP
+00000208: JUMPDEST
+00000209: PUSH0
+0000020a: PUSH0
+0000020b: SWAP1
+0000020c: SLOAD
+0000020d: SWAP1
+0000020e: PUSH2 0x0100
+00000211: EXP
+00000212: SWAP1
+00000213: DIV
+00000214: PUSH20 0xffffffffffffffffffffffffffffffffffffffff
+00000229: AND
+0000022a: PUSH20 0xffffffffffffffffffffffffffffffffffffffff
+0000023f: AND
+00000240: CALLER
+00000241: PUSH20 0xffffffffffffffffffffffffffffffffffffffff
+00000256: AND
+00000257: EQ
+00000258: PUSH2 0x0296
+0000025b: JUMPI
+0000025c: PUSH1 0x40
+0000025e: MLOAD
+0000025f: PUSH32 0x08c379a000000000000000000000000000000000000000000000000000000000
+00000280: DUP2
+00000281: MSTORE
+00000282: PUSH1 0x04
+00000284: ADD
+00000285: PUSH2 0x028d
+00000288: SWAP1
+00000289: PUSH2 0x04ec
+0000028c: JUMP
+0000028d: JUMPDEST
+0000028e: PUSH1 0x40
+00000290: MLOAD
+00000291: DUP1
+00000292: SWAP2
+00000293: SUB
+00000294: SWAP1
+00000295: REVERT
+00000296: JUMPDEST
+00000297: PUSH0
+00000298: PUSH20 0xffffffffffffffffffffffffffffffffffffffff
+000002ad: AND
+000002ae: DUP2
+000002af: PUSH20 0xffffffffffffffffffffffffffffffffffffffff
+000002c4: AND
+000002c5: SUB
+000002c6: PUSH2 0x0304
+000002c9: JUMPI
+000002ca: PUSH1 0x40
+000002cc: MLOAD
+000002cd: PUSH32 0x08c379a000000000000000000000000000000000000000000000000000000000
+000002ee: DUP2
+000002ef: MSTORE
+000002f0: PUSH1 0x04
+000002f2: ADD
+000002f3: PUSH2 0x02fb
+000002f6: SWAP1
+000002f7: PUSH2 0x0554
+000002fa: JUMP
+000002fb: JUMPDEST
+000002fc: PUSH1 0x40
+000002fe: MLOAD
+000002ff: DUP1
+00000300: SWAP2
+00000301: SUB
+00000302: SWAP1
+00000303: REVERT
+00000304: JUMPDEST
+00000305: DUP1
+00000306: PUSH0
+00000307: PUSH0
+00000308: PUSH2 0x0100
+0000030b: EXP
+0000030c: DUP2
+0000030d: SLOAD
+0000030e: DUP2
+0000030f: PUSH20 0xffffffffffffffffffffffffffffffffffffffff
+00000324: MUL
+00000325: NOT
+00000326: AND
+00000327: SWAP1
+00000328: DUP4
+00000329: PUSH20 0xffffffffffffffffffffffffffffffffffffffff
+0000033e: AND
+0000033f: MUL
+00000340: OR
+00000341: SWAP1
+00000342: SSTORE
+00000343: POP
+00000344: POP
+00000345: JUMP
+00000346: JUMPDEST
+00000347: PUSH0
+00000348: DUP2
+00000349: ISZERO
+0000034a: ISZERO
+0000034b: SWAP1
+0000034c: POP
+0000034d: SWAP2
+0000034e: SWAP1
+0000034f: POP
+00000350: JUMP
+00000351: JUMPDEST
+00000352: PUSH2 0x035a
+00000355: DUP2
+00000356: PUSH2 0x0346
+00000359: JUMP
+0000035a: JUMPDEST
+0000035b: DUP3
+0000035c: MSTORE
+0000035d: POP
+0000035e: POP
+0000035f: JUMP
+00000360: JUMPDEST
+00000361: PUSH0
+00000362: PUSH1 0x20
+00000364: DUP3
+00000365: ADD
+00000366: SWAP1
+00000367: POP
+00000368: PUSH2 0x0373
+0000036b: PUSH0
+0000036c: DUP4
+0000036d: ADD
+0000036e: DUP5
+0000036f: PUSH2 0x0351
+00000372: JUMP
+00000373: JUMPDEST
+00000374: SWAP3
+00000375: SWAP2
+00000376: POP
+00000377: POP
+00000378: JUMP
+00000379: JUMPDEST
+0000037a: PUSH0
+0000037b: PUSH20 0xffffffffffffffffffffffffffffffffffffffff
+00000390: DUP3
+00000391: AND
+00000392: SWAP1
+00000393: POP
+00000394: SWAP2
+00000395: SWAP1
+00000396: POP
+00000397: JUMP
+00000398: JUMPDEST
+00000399: PUSH0
+0000039a: PUSH2 0x03a2
+0000039d: DUP3
+0000039e: PUSH2 0x0379
+000003a1: JUMP
+000003a2: JUMPDEST
+000003a3: SWAP1
+000003a4: POP
+000003a5: SWAP2
+000003a6: SWAP1
+000003a7: POP
+000003a8: JUMP
+000003a9: JUMPDEST
+000003aa: PUSH2 0x03b2
+000003ad: DUP2
+000003ae: PUSH2 0x0398
+000003b1: JUMP
+000003b2: JUMPDEST
+000003b3: DUP3
+000003b4: MSTORE
+000003b5: POP
+000003b6: POP
+000003b7: JUMP
+000003b8: JUMPDEST
+000003b9: PUSH0
+000003ba: PUSH1 0x20
+000003bc: DUP3
+000003bd: ADD
+000003be: SWAP1
+000003bf: POP
+000003c0: PUSH2 0x03cb
+000003c3: PUSH0
+000003c4: DUP4
+000003c5: ADD
+000003c6: DUP5
+000003c7: PUSH2 0x03a9
+000003ca: JUMP
+000003cb: JUMPDEST
+000003cc: SWAP3
+000003cd: SWAP2
+000003ce: POP
+000003cf: POP
+000003d0: JUMP
+000003d1: JUMPDEST
+000003d2: PUSH0
+000003d3: PUSH0
+000003d4: REVERT
+000003d5: JUMPDEST
+000003d6: PUSH2 0x03de
+000003d9: DUP2
+000003da: PUSH2 0x0398
+000003dd: JUMP
+000003de: JUMPDEST
+000003df: DUP2
+000003e0: EQ
+000003e1: PUSH2 0x03e8
+000003e4: JUMPI
+000003e5: PUSH0
+000003e6: PUSH0
+000003e7: REVERT
+000003e8: JUMPDEST
+000003e9: POP
+000003ea: JUMP
+000003eb: JUMPDEST
+000003ec: PUSH0
+000003ed: DUP2
+000003ee: CALLDATALOAD
+000003ef: SWAP1
+000003f0: POP
+000003f1: PUSH2 0x03f9
+000003f4: DUP2
+000003f5: PUSH2 0x03d5
+000003f8: JUMP
+000003f9: JUMPDEST
+000003fa: SWAP3
+000003fb: SWAP2
+000003fc: POP
+000003fd: POP
+000003fe: JUMP
+000003ff: JUMPDEST
+00000400: PUSH0
+00000401: PUSH1 0x20
+00000403: DUP3
+00000404: DUP5
+00000405: SUB
+00000406: SLT
+00000407: ISZERO
+00000408: PUSH2 0x0414
+0000040b: JUMPI
+0000040c: PUSH2 0x0413
+0000040f: PUSH2 0x03d1
+00000412: JUMP
+00000413: JUMPDEST
+00000414: JUMPDEST
+00000415: PUSH0
+00000416: PUSH2 0x0421
+00000419: DUP5
+0000041a: DUP3
+0000041b: DUP6
+0000041c: ADD
+0000041d: PUSH2 0x03eb
+00000420: JUMP
+00000421: JUMPDEST
+00000422: SWAP2
+00000423: POP
+00000424: POP
+00000425: SWAP3
+00000426: SWAP2
+00000427: POP
+00000428: POP
+00000429: JUMP
+0000042a: JUMPDEST
+0000042b: PUSH0
+0000042c: DUP3
+0000042d: DUP3
+0000042e: MSTORE
+0000042f: PUSH1 0x20
+00000431: DUP3
+00000432: ADD
+00000433: SWAP1
+00000434: POP
+00000435: SWAP3
+00000436: SWAP2
+00000437: POP
+00000438: POP
+00000439: JUMP
+0000043a: JUMPDEST
+0000043b: PUSH32 0x5265656e7472616e742063616c6c000000000000000000000000000000000000
+0000045c: PUSH0
+0000045d: DUP3
+0000045e: ADD
+0000045f: MSTORE
+00000460: POP
+00000461: JUMP
+00000462: JUMPDEST
+00000463: PUSH0
+00000464: PUSH2 0x046e
+00000467: PUSH1 0x0e
+00000469: DUP4
+0000046a: PUSH2 0x042a
+0000046d: JUMP
+0000046e: JUMPDEST
+0000046f: SWAP2
+00000470: POP
+00000471: PUSH2 0x0479
+00000474: DUP3
+00000475: PUSH2 0x043a
+00000478: JUMP
+00000479: JUMPDEST
+0000047a: PUSH1 0x20
+0000047c: DUP3
+0000047d: ADD
+0000047e: SWAP1
+0000047f: POP
+00000480: SWAP2
+00000481: SWAP1
+00000482: POP
+00000483: JUMP
+00000484: JUMPDEST
+00000485: PUSH0
+00000486: PUSH1 0x20
+00000488: DUP3
+00000489: ADD
+0000048a: SWAP1
+0000048b: POP
+0000048c: DUP2
+0000048d: DUP2
+0000048e: SUB
+0000048f: PUSH0
+00000490: DUP4
+00000491: ADD
+00000492: MSTORE
+00000493: PUSH2 0x049b
+00000496: DUP2
+00000497: PUSH2 0x0462
+0000049a: JUMP
+0000049b: JUMPDEST
+0000049c: SWAP1
+0000049d: POP
+0000049e: SWAP2
+0000049f: SWAP1
+000004a0: POP
+000004a1: JUMP
+000004a2: JUMPDEST
+000004a3: PUSH32 0x4e6f74206f776e65720000000000000000000000000000000000000000000000
+000004c4: PUSH0
+000004c5: DUP3
+000004c6: ADD
+000004c7: MSTORE
+000004c8: POP
+000004c9: JUMP
+000004ca: JUMPDEST
+000004cb: PUSH0
+000004cc: PUSH2 0x04d6
+000004cf: PUSH1 0x09
+000004d1: DUP4
+000004d2: PUSH2 0x042a
+000004d5: JUMP
+000004d6: JUMPDEST
+000004d7: SWAP2
+000004d8: POP
+000004d9: PUSH2 0x04e1
+000004dc: DUP3
+000004dd: PUSH2 0x04a2
+000004e0: JUMP
+000004e1: JUMPDEST
+000004e2: PUSH1 0x20
+000004e4: DUP3
+000004e5: ADD
+000004e6: SWAP1
+000004e7: POP
+000004e8: SWAP2
+000004e9: SWAP1
+000004ea: POP
+000004eb: JUMP
+000004ec: JUMPDEST
+000004ed: PUSH0
+000004ee: PUSH1 0x20
+000004f0: DUP3
+000004f1: ADD
+000004f2: SWAP1
+000004f3: POP
+000004f4: DUP2
+000004f5: DUP2
+000004f6: SUB
+000004f7: PUSH0
+000004f8: DUP4
+000004f9: ADD
+000004fa: MSTORE
+000004fb: PUSH2 0x0503
+000004fe: DUP2
+000004ff: PUSH2 0x04ca
+00000502: JUMP
+00000503: JUMPDEST
+00000504: SWAP1
+00000505: POP
+00000506: SWAP2
+00000507: SWAP1
+00000508: POP
+00000509: JUMP
+0000050a: JUMPDEST
+0000050b: PUSH32 0x5a65726f20616464726573730000000000000000000000000000000000000000
+0000052c: PUSH0
+0000052d: DUP3
+0000052e: ADD
+0000052f: MSTORE
+00000530: POP
+00000531: JUMP
+00000532: JUMPDEST
+00000533: PUSH0
+00000534: PUSH2 0x053e
+00000537: PUSH1 0x0c
+00000539: DUP4
+0000053a: PUSH2 0x042a
+0000053d: JUMP
+0000053e: JUMPDEST
+0000053f: SWAP2
+00000540: POP
+00000541: PUSH2 0x0549
+00000544: DUP3
+00000545: PUSH2 0x050a
+00000548: JUMP
+00000549: JUMPDEST
+0000054a: PUSH1 0x20
+0000054c: DUP3
+0000054d: ADD
+0000054e: SWAP1
+0000054f: POP
+00000550: SWAP2
+00000551: SWAP1
+00000552: POP
+00000553: JUMP
+00000554: JUMPDEST
+00000555: PUSH0
+00000556: PUSH1 0x20
+00000558: DUP3
+00000559: ADD
+0000055a: SWAP1
+0000055b: POP
+0000055c: DUP2
+0000055d: DUP2
+0000055e: SUB
+0000055f: PUSH0
+00000560: DUP4
+00000561: ADD
+00000562: MSTORE
+00000563: PUSH2 0x056b
+00000566: DUP2
+00000567: PUSH2 0x0532
+0000056a: JUMP
+0000056b: JUMPDEST
+0000056c: SWAP1
+0000056d: POP
+0000056e: SWAP2
+0000056f: SWAP1
+00000570: POP
+00000571: JUMP
 
 ╔════════════════════════════════════════════════════════════════╗
 ║                         METADATA                               ║
 ║                    (CBOR Encoded Data)                         ║
 ╚════════════════════════════════════════════════════════════════╝
 
-00000572: INVALID                            │ Stack: [] # gas: 0 (total: 3566+)
-00000573: LOG2                               │ Stack: [] # gas: 1125 (base + dynamic) (total: 4691+)
-00000574: PUSH5 0x6970667358                 │ Stack: [0x6970667358] # gas: 3 (total: 4694+)
-0000057a: INVALID                            │ Stack: [] # gas: 0 (total: 4694+)
-0000057b: SLT                                │ Stack: [[cmp]] # gas: 3 (total: 4697+)
-0000057c: KECCAK256                          │ Stack: [[KECCAK]] # gas: 30 (base + dynamic) (total: 4727+) # mapping/array slot computation
-0000057d: RETURNDATALOAD                     │ Stack: [[KECCAK]] # gas: ? (total: 4727+)
-0000057e: CREATE                             │ Stack: [[CREATE]] # gas: 32000 (total: 36727+)
-0000057f: DUP3                               │ Stack: [?, [CREATE]] # gas: 3 (total: 36730+)
-00000580: INVALID                            │ Stack: [] # gas: 0 (total: 36730+)
-00000581: POP                                │ Stack: [] # gas: 2 (total: 36732+)
-00000582: INVALID                            │ Stack: [] # gas: 0 (total: 36732+)
-00000583: INVALID                            │ Stack: [] # gas: 0 (total: 36732+)
-00000584: PUSH0                              │ Stack: [0x0] # gas: 2 (total: 36734+)
-00000585: INVALID                            │ Stack: [] # gas: 0 (total: 36734+)
-00000586: BYTE                               │ Stack: [[arith]] # gas: 3 (total: 36737+)
-00000587: PUSH25 0xd7ef176e94e40104eadce39cf270b65b366ac4918a64736f6c │ Stack: [0xd7ef176e94e40104eadce39cf270b65b366ac4918a64736f6c, [arith]] # gas: 3 (total: 36740+)
-000005a1: PUSH4 0x4300081c                   │ Stack: [0x4300081c, 0xd7ef176e94e40104eadce39cf270b65b366ac4918a64736f6c, [arith]] # gas: 3 (total: 36743+)
-000005a6: STOP                               │ Stack: [] # gas: 0 (total: 36743+)
-000005a7: CALLER                             │ Stack: [[CALLER]] # gas: 2 (total: 36745+)
-
-╔════════════════════════════════════════════════════════════════╗
-║                      MEMORY LAYOUT                             ║
-╚════════════════════════════════════════════════════════════════╝
-
-┌─────────────────────────────────────────┐
-│ 0x00-0x3f: Scratch space                │
-│ 0x40-0x5f: Free memory pointer [128]   │
-│ 0x60-0x7f: Zero slot                    │
-│ 0x80+    : Dynamic allocations          │
-└─────────────────────────────────────────┘
-
-╔════════════════════════════════════════════════════════════════╗
-║                    CONTROL FLOW GRAPH                          ║
-╚════════════════════════════════════════════════════════════════╝
-
-┌────────────────────────────────────────┐
-│ Function: protectedFunction()
-│ Entry: 0x0000004e
-└────────────────────────────────────────┘
-    │
-    ├──[JUMP]──→ [0x000000c4] block
-
-┌────────────────────────────────────────┐
-│ Function: restrictedFunction()
-│ Entry: 0x0000006c
-└────────────────────────────────────────┘
-    │
-    ├──[JUMP]──→ [0x0000014e] block
-
-┌────────────────────────────────────────┐
-│ Function: owner()
-│ Entry: 0x0000008a
-└────────────────────────────────────────┘
-    │
-    ├──[JUMP]──→ [0x000001e4] block
-
-┌────────────────────────────────────────┐
-│ Function: transferOwnership(address)
-│ Entry: 0x000000a8
-└────────────────────────────────────────┘
-    │
-    ├──[JUMP]──→ [0x000003ff] block
-
-┌────────────────────────────────────────┐
-│ Jump Targets (JUMPDEST locations):     │
-└────────────────────────────────────────┘
-  • 0x0000000f
-  • 0x0000004a
-  • 0x0000004e
-  • 0x00000056
-  • 0x00000063
-  • 0x0000006c
-  • 0x00000074
-  • 0x00000081
-  • 0x0000008a
-  • 0x00000092
-  • 0x0000009f
-  • 0x000000a8
-  • 0x000000bd
-  • 0x000000c2
-  • 0x000000c4
-  • 0x0000010b
-  • 0x00000114
-  • 0x0000014e
-  • 0x000001d4
-  • 0x000001dd
-  ... and 47 more
-
+00000572: INVALID
+00000573: LOG2
+00000574: PUSH5 0x6970667358
+0000057a: INVALID
+0000057b: SLT
+0000057c: KECCAK256
+0000057d: RETURNDATALOAD
+0000057e: CREATE
+0000057f: DUP3
+00000580: INVALID
+00000581: POP
+00000582: INVALID
+00000583: INVALID
+00000584: PUSH0
+00000585: INVALID
+00000586: BYTE
+00000587: PUSH25 0xd7ef176e94e40104eadce39cf270b65b366ac4918a64736f6c
+000005a1: PUSH4 0x4300081c
+000005a6: STOP
+000005a7: CALLER

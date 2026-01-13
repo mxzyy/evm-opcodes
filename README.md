@@ -41,8 +41,351 @@ Mini contracts to poke at how Solidity turns into bytecode/opcodes. Run the disa
 **Purpose:** Demonstrasi modifier patterns (access control & reentrancy guard)
 
 **Storage Layout:**
-- Slot 0: `address owner` (20 bytes)
-- Slot 1: `bool locked` (1 byte)
+- Slot 0: `address owner` (20 bytes) + `bool locked` (1 byte) - **PACKED dalam 1 slot!**
+  - `owner` di bytes 0-19 (160 bits)
+  - `locked` di byte 20 (offset 0x14 = 20 dalam decimal)
+
+**IMPORTANT:** Solidity melakukan **storage packing** untuk variables yang muat dalam 1 slot (32 bytes). Address (20 bytes) + bool (1 byte) = 21 bytes < 32 bytes, jadi keduanya di slot 0.
+
+---
+
+### Bytecode Deep Dive: Advanced Contract
+
+#### A. CREATION CODE (Constructor)
+
+```
+Bytecode Size: 1541 bytes (0x605 hex)
+Creation Code: ~91 bytes | Runtime Code: ~1448 bytes
+```
+
+**Step-by-step Constructor Execution:**
+
+```assembly
+00000000: PUSH1 0x80      # Push 128 (free memory pointer start)
+00000002: PUSH1 0x40      # Push 64 (free memory pointer location)
+00000004: MSTORE          # Store 0x80 at memory[0x40] - STANDARD EVM INIT
+
+# === Payable Check ===
+00000005: CALLVALUE       # Get msg.value
+00000006: DUP1            # Duplicate value
+00000007: ISZERO          # Is it zero?
+00000008: PUSH1 0x0e      # Jump destination if zero
+0000000a: JUMPI           # Jump if msg.value == 0
+0000000b: PUSH0           # Otherwise...
+0000000c: PUSH0
+0000000d: REVERT          # REVERT (constructor not payable!)
+
+# === owner = msg.sender ===
+0000000e: JUMPDEST        # Continue here if non-payable check passed
+0000000f: POP             # Clean stack
+00000010: CALLER          # Push msg.sender (deployer address)
+00000011: PUSH0           # Push 0 (slot number untuk owner)
+00000012: PUSH0           # Push 0 (byte offset - owner mulai dari byte 0)
+00000013: PUSH2 0x0100    # Push 256 (2^8)
+00000016: EXP             # 256^0 = 1 (shift amount untuk byte 0)
+```
+
+**Address Masking Logic:**
+```assembly
+0000001a: PUSH20 0xffffffffffffffffffffffffffffffffffffffff  # 20-byte mask
+0000002f: MUL             # Shift mask ke posisi yang benar
+00000030: NOT             # Invert mask (clear bits untuk owner)
+00000031: AND             # Clear old value
+00000034: PUSH20 0xffffffffffffffffffffffffffffffffffffffff  # Mask untuk new value
+00000049: AND             # Mask caller address
+0000004a: MUL             # Shift ke posisi
+0000004b: OR              # Combine dengan existing data
+0000004c: SWAP1
+0000004d: SSTORE          # Store ke slot 0!
+```
+
+**Penjelasan Masking:**
+- EVM storage adalah 32-byte slots
+- Untuk packed variables, harus:
+  1. Load slot lama
+  2. Clear bits yang mau diubah (AND dengan inverted mask)
+  3. Set bits baru (OR dengan shifted value)
+
+---
+
+#### B. RUNTIME CODE - Function Dispatcher
+
+**Preamble (Memory Init & Non-Payable Check):**
+```assembly
+00000000: PUSH1 0x80      # Free memory pointer value
+00000002: PUSH1 0x40      # Free memory pointer location
+00000004: MSTORE          # Initialize: memory[0x40] = 0x80
+
+00000005: CALLVALUE       # msg.value
+00000006-0000000e: ...    # Non-payable check (revert if value > 0)
+```
+
+**Function Selector Extraction:**
+```assembly
+00000011: PUSH1 0x04      # Minimum calldata size
+00000013: CALLDATASIZE    # Actual calldata size
+00000014: LT              # Is calldata < 4 bytes?
+00000015: PUSH2 0x004a    # Jump to fallback if true
+00000018: JUMPI
+
+0000001a: CALLDATALOAD    # Load first 32 bytes of calldata
+0000001b: PUSH1 0xe0      # Push 224 (256-32)
+0000001d: SHR             # Shift right 224 bits = extract first 4 bytes
+```
+
+**Function Selector Table:**
+| Selector | Function | Jump Target |
+|----------|----------|-------------|
+| `0x021e9894` | `protectedFunction()` | `0x004e` |
+| `0x777acf37` | `restrictedFunction()` | `0x006c` |
+| `0x8da5cb5b` | `owner()` | `0x008a` |
+| `0xf2fde38b` | `transferOwnership(address)` | `0x00a8` |
+
+**Selector Calculation:**
+```solidity
+bytes4(keccak256("protectedFunction()")) = 0x021e9894
+bytes4(keccak256("restrictedFunction()")) = 0x777acf37
+bytes4(keccak256("owner()")) = 0x8da5cb5b
+bytes4(keccak256("transferOwnership(address)")) = 0xf2fde38b
+```
+
+---
+
+#### C. MODIFIER IMPLEMENTATION - nonReentrant
+
+**Solidity Code:**
+```solidity
+modifier nonReentrant() {
+    require(!locked, "Reentrant call");
+    locked = true;
+    _;
+    locked = false;
+}
+```
+
+**Bytecode Analysis (protectedFunction @ 0x00c4):**
+
+**Step 1: Check if locked (require(!locked))**
+```assembly
+000000c4: JUMPDEST        # Function entry
+000000c5: PUSH0           # Result placeholder
+000000c6: PUSH0           # Slot 0
+000000c7: PUSH1 0x14      # Offset 20 (0x14) - lokasi bool locked!
+000000c9: SWAP1
+000000ca: SLOAD           # Load slot 0
+000000cb: SWAP1
+000000cc: PUSH2 0x0100    # 256
+000000cf: EXP             # 256^20 = shift 20 bytes
+000000d0: SWAP1
+000000d1: DIV             # Shift right 20 bytes
+000000d2: PUSH1 0xff      # Mask 1 byte
+000000d4: AND             # Extract bool value
+000000d5: ISZERO          # Is locked == false?
+000000d6: PUSH2 0x0114    # Jump if not locked
+000000d9: JUMPI
+# ... revert with "Reentrant call" if locked ...
+```
+
+**Step 2: Set locked = true**
+```assembly
+00000114: JUMPDEST
+00000115: PUSH1 0x01      # true value
+00000117: PUSH0           # Slot 0
+00000118: PUSH1 0x14      # Offset 20
+0000011a: PUSH2 0x0100    # 256
+0000011d: EXP             # 256^20
+# ... masking logic untuk set byte 20 = 1 ...
+0000012d: SSTORE          # Store back ke slot 0
+```
+
+**Step 3: Execute function body (_;)**
+```assembly
+0000012f: PUSH1 0x01      # Return value (true)
+00000131: SWAP1
+00000132: POP
+```
+
+**Step 4: Set locked = false**
+```assembly
+00000133: PUSH0           # false value
+00000134: PUSH0           # Slot 0
+00000135: PUSH1 0x14      # Offset 20
+# ... same masking logic untuk set byte 20 = 0 ...
+00000149: SSTORE          # Store back
+```
+
+**Key Insight:**
+- `locked` disimpan di **byte 20** (offset 0x14) dari slot 0
+- Karena packed dengan `owner`, setiap akses `locked` butuh:
+  - SLOAD slot 0
+  - Shift right 20 bytes (DIV by 256^20)
+  - Mask dengan 0xff
+- Ini **lebih mahal gas** daripada pakai separate slot!
+
+---
+
+#### D. MODIFIER IMPLEMENTATION - onlyOwner
+
+**Solidity Code:**
+```solidity
+modifier onlyOwner() {
+    require(msg.sender == owner, "Not owner");
+    _;
+}
+```
+
+**Bytecode Analysis (restrictedFunction @ 0x014e):**
+
+```assembly
+0000014e: JUMPDEST        # Entry point
+0000014f: PUSH0           # Return value placeholder
+00000150: PUSH0           # Slot 0
+00000151: PUSH0           # Offset 0
+00000152: SWAP1
+00000153: SLOAD           # Load slot 0
+00000154: SWAP1
+00000155: PUSH2 0x0100    # 256
+00000158: EXP             # 256^0 = 1 (no shift needed)
+00000159: SWAP1
+0000015a: DIV             # Shift right 0 bytes
+0000015b: PUSH20 0xfff... # 20-byte address mask
+00000170: AND             # Extract owner address
+
+00000171: PUSH20 0xfff... # Mask untuk comparison
+00000186: AND
+
+00000187: CALLER          # Push msg.sender
+00000188: PUSH20 0xfff... # Mask
+0000019d: AND
+0000019e: EQ              # owner == msg.sender?
+0000019f: PUSH2 0x01dd    # Jump if equal
+000001a2: JUMPI
+
+# === Revert Path ===
+000001a3: PUSH1 0x40      # Free memory pointer
+000001a5: MLOAD
+000001a6: PUSH32 0x08c379a0...  # Error selector for require()
+```
+
+**Error String Storage:**
+```assembly
+000004a2: JUMPDEST
+000004a3: PUSH32 0x4e6f74206f776e6572...  # "Not owner" in hex
+#         N  o  t     o  w  n  e  r
+#         4e 6f 74 20 6f 77 6e 65 72
+```
+
+---
+
+#### E. ERROR MESSAGES IN BYTECODE
+
+Error strings di-embed langsung dalam bytecode:
+
+| Hex | ASCII | Used In |
+|-----|-------|---------|
+| `0x5265656e7472616e742063616c6c` | "Reentrant call" | nonReentrant modifier |
+| `0x4e6f74206f776e6572` | "Not owner" | onlyOwner modifier |
+| `0x5a65726f2061646472657373` | "Zero address" | transferOwnership |
+
+**Error Encoding Format (ABI):**
+```
+0x08c379a0                           # Function selector untuk Error(string)
+0x0000...0020                        # Offset ke string data
+0x0000...000e                        # String length (14 untuk "Reentrant call")
+0x5265656e7472616e742063616c6c00...  # String data (padded to 32 bytes)
+```
+
+---
+
+#### F. transferOwnership DEEP DIVE
+
+**Solidity:**
+```solidity
+function transferOwnership(address newOwner) external onlyOwner {
+    require(newOwner != address(0), "Zero address");
+    owner = newOwner;
+}
+```
+
+**Bytecode @ 0x0208:**
+
+**1. onlyOwner Check (inline - modifier code duplicated)**
+```assembly
+00000208: JUMPDEST
+00000209-00000295: ... # Same onlyOwner logic as restrictedFunction
+```
+
+**2. Zero Address Check**
+```assembly
+00000296: JUMPDEST        # After onlyOwner passed
+00000297: PUSH0           # address(0)
+00000298: PUSH20 0xfff... # Mask
+000002ad: AND
+000002ae: DUP2            # newOwner argument
+000002af: PUSH20 0xfff...
+000002c4: AND
+000002c5: SUB             # newOwner - address(0)
+000002c6: PUSH2 0x0304    # Jump if not zero
+000002c9: JUMPI
+# ... revert with "Zero address" ...
+```
+
+**3. Update Owner**
+```assembly
+00000304: JUMPDEST
+00000305: DUP1            # newOwner
+00000306: PUSH0           # Slot 0
+00000307: PUSH0           # Offset 0
+00000308: PUSH2 0x0100    # 256
+0000030b: EXP             # 256^0 = 1
+# ... masking logic ...
+00000342: SSTORE          # Store newOwner ke slot 0
+```
+
+---
+
+#### G. GAS ANALYSIS
+
+| Operation | Gas Cost |
+|-----------|----------|
+| SLOAD (cold) | 2100 |
+| SLOAD (warm) | 100 |
+| SSTORE (cold, 0→non-0) | 22100 |
+| SSTORE (warm) | 100 |
+| CALLER | 2 |
+| EQ | 3 |
+
+**nonReentrant Modifier Gas Breakdown:**
+- Check locked: SLOAD(100-2100) + DIV + AND + ISZERO = ~105-2105 gas
+- Set locked=true: SLOAD + masking + SSTORE = ~200-22200 gas
+- Set locked=false: SLOAD + masking + SSTORE = ~200-22200 gas
+- **Total overhead: ~505-46505 gas per call** (depending on cold/warm access)
+
+**onlyOwner Modifier:**
+- Load owner: SLOAD + masking = ~105-2105 gas
+- CALLER: 2 gas
+- EQ: 3 gas
+- **Total overhead: ~110-2110 gas per call**
+
+---
+
+#### H. METADATA (CBOR)
+
+Bytecode ends dengan CBOR-encoded metadata:
+```
+00000572: INVALID (0xfe)  # Sentinel - marks start of metadata
+00000573: LOG2            # Part of CBOR encoding
+...
+a2646970667358221220...   # CBOR data: IPFS hash, solc version
+...64736f6c634300081c0033 # "solc" version 0.8.28
+```
+
+Decoded:
+- `6970667358`: "ipfs" in hex
+- `736f6c63`: "solc" in hex
+- `00081c`: version 0.8.28
+
+---
 
 **Key Features:**
 1. **Constructor:** Set `owner = msg.sender` (deployer menjadi owner)
